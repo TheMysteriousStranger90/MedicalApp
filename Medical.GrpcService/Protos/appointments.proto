@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+option csharp_namespace = "Medical.GrpcService";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package medical;
+
+service AppointmentService {
+  rpc GetAppointments (AppointmentRequest) returns (AppointmentResponse);
+  rpc GetAppointmentById (AppointmentByIdRequest) returns (AppointmentModel);
+  rpc CreateAppointment (CreateAppointmentRequest) returns (AppointmentModel);
+  rpc UpdateAppointment (UpdateAppointmentRequest) returns (AppointmentModel);
+  rpc DeleteAppointment (DeleteAppointmentRequest) returns (DeleteAppointmentResponse);
+}
+
+message AppointmentModel {
+  string id = 1;
+  string doctorId = 2;
+  string patientId = 3;
+  google.protobuf.Timestamp appointmentDate = 4;
+  AppointmentStatus status = 5;
+  string notes = 6;
+  string symptoms = 7;
+  double fee = 8;
+  bool isPaid = 9;
+}
+
+message AppointmentRequest {
+  string doctorId = 1;
+  string patientId = 2;
+  google.protobuf.Timestamp date = 3;
+  AppointmentStatus status = 4;
+}
+
+message AppointmentByIdRequest {
+  string id = 1;
+}
+
+message AppointmentResponse {
+  repeated AppointmentModel appointments = 1;
+}
+
+message CreateAppointmentRequest {
+  string doctorId = 1;
+  string patientId = 2;
+  google.protobuf.Timestamp appointmentDate = 3;
+  string notes = 4;
+  string symptoms = 5;
+  double fee = 6;
+}
+
+message UpdateAppointmentRequest {
+  string id = 1;
+  AppointmentStatus status = 2;
+  string notes = 3;
+  string symptoms = 4;
+  bool isPaid = 5;
+}
+
+message DeleteAppointmentRequest {
+  string id = 1;
+}
+
+message DeleteAppointmentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+enum AppointmentStatus {
+  APPOINTMENT_STATUS_SCHEDULED = 0;
+  APPOINTMENT_STATUS_COMPLETED = 1;
+  APPOINTMENT_STATUS_CANCELLED = 2;
+}
+
+service DoctorService {
+  rpc GetDoctors (GetDoctorsRequest) returns (GetDoctorsResponse);
+  rpc GetDoctorById (GetDoctorByIdRequest) returns (DoctorModel);
+  rpc GetAvailableDoctors (GetAvailableDoctorsRequest) returns (GetDoctorsResponse);
+}
+
+service PatientService {
+  rpc GetPatients (GetPatientsRequest) returns (GetPatientsResponse);
+  rpc GetPatientById (GetPatientByIdRequest) returns (PatientModel);
+  rpc GetPatientMedicalHistory (GetPatientByIdRequest) returns (GetMedicalRecordsResponse);
+}
+
+service MedicalRecordService {
+  rpc GetMedicalRecords (GetMedicalRecordsRequest) returns (GetMedicalRecordsResponse);
+  rpc CreateMedicalRecord (CreateMedicalRecordRequest) returns (MedicalRecordModel);
+}
+
+message DoctorModel {
+  string id = 1;
+  string fullName = 2;
+  string specialization = 3;
+  string licenseNumber = 4;
+  string education = 5;
+  string experience = 6;
+  double consultationFee = 7;
+}
+
+message PatientModel {
+  string id = 1;
+  string fullName = 2;
+  google.protobuf.Timestamp dateOfBirth = 3;
+  string gender = 4;
+  string phone = 5;
+  string address = 6;
+}
+
+message MedicalRecordModel {
+  string id = 1;
+  string patientId = 2;
+  string diagnosis = 3;
+  string treatment = 4;
+  string prescriptions = 5;
+  string notes = 6;
+  google.protobuf.Timestamp createdAt = 7;
+  repeated LabResultModel labResults = 8;
+}
+
+message LabResultModel {
+  string id = 1;
+  string testName = 2;
+  string testResult = 3;
+  string referenceRange = 4;
+  google.protobuf.Timestamp testDate = 5;
+  bool isAbnormal = 6;
+}
+
+
+message GetDoctorsRequest {
+  string specialization = 1;
+}
+
+message GetDoctorsResponse {
+  repeated DoctorModel doctors = 1;
+}
+
+message GetDoctorByIdRequest {
+  string id = 1;
+}
+
+message GetAvailableDoctorsRequest {
+  google.protobuf.Timestamp date = 1;
+}
+
+// Patient service messages
+message GetPatientsRequest {
+  string doctorId = 1;
+}
+
+message GetPatientsResponse {
+  repeated PatientModel patients = 1;
+}
+
+message GetPatientByIdRequest {
+  string id = 1;
+}
+
+// MedicalRecord service messages
+message GetMedicalRecordsRequest {
+  string patientId = 1;
+}
+
+message GetMedicalRecordsResponse {
+  repeated MedicalRecordModel records = 1;
+}
+
+message CreateMedicalRecordRequest {
+  string patientId = 1;
+  string diagnosis = 2;
+  string treatment = 3;
+  string prescriptions = 4;
+  string notes = 5;
+  repeated LabResultModel labResults = 6;
+}
