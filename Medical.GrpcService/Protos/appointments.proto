@@ -7,6 +7,21 @@ import "google/protobuf/empty.proto";
 
 package medical;
 
+service AuthenticationService {
+  rpc Login (LoginRequest) returns (LoginResponse);
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+  string email = 2;
+  repeated string roles = 3;
+}
+
 service AppointmentService {
   rpc GetAppointments (AppointmentRequest) returns (AppointmentResponse);
   rpc GetAppointmentById (AppointmentByIdRequest) returns (AppointmentModel);

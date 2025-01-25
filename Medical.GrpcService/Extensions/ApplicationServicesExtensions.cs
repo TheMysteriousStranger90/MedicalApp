@@ -2,6 +2,7 @@
 using Medical.GrpcService.Mapping;
 using Medical.GrpcService.Repositories;
 using Medical.GrpcService.Repositories.Interfaces;
+using Medical.GrpcService.Token;
 using Microsoft.EntityFrameworkCore;
 
 namespace Medical.GrpcService.Extensions;
@@ -29,6 +30,8 @@ public static class ApplicationServicesExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         services.AddAutoMapper(typeof(AutoMapperProfile));
+        
+        services.AddScoped<ITokenService, TokenService>();
         
         return services;
     }

@@ -2,9 +2,11 @@
 using Grpc.Core;
 using Medical.GrpcService.Entities;
 using Medical.GrpcService.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Medical.GrpcService.Services;
 
+[Authorize]
 public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
 {
     private readonly IUnitOfWork _unitOfWork;
