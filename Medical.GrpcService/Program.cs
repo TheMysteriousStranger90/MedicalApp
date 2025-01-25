@@ -52,7 +52,17 @@ app.MapGrpcService<DoctorGrpcService>();
 app.MapGrpcService<PatientGrpcService>();      
 app.MapGrpcService<MedicalRecordGrpcService>();
 
+app.MapHealthChecks("/health");
+
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");
+
+app.MapGet("/version", () => new 
+{ 
+    Version = "1.0.0",
+    Environment = app.Environment.EnvironmentName
+});
+
+app.MapGet("/docs", () => Results.Redirect("https://github.com/yourusername/medical-grpc-service"));
 
 
 app.Run();
