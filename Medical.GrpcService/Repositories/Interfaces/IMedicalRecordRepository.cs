@@ -1,6 +1,10 @@
-﻿namespace Medical.GrpcService.Repositories.Interfaces;
+﻿using Medical.GrpcService.Entities;
+using Medical.GrpcService.Entities.DTOs;
 
-public interface IMedicalRecordRepository
+namespace Medical.GrpcService.Repositories.Interfaces;
+
+public interface IMedicalRecordRepository : IGenericRepository<MedicalRecord>
 {
-    
+    Task<IEnumerable<MedicalRecordDto>> GetPatientMedicalHistoryAsync(string patientId);
+    Task<MedicalRecordDto?> GetMedicalRecordWithLabResultsAsync(string recordId);
 }

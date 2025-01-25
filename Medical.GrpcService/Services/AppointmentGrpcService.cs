@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using Grpc.Core;
 using Medical.GrpcService.Entities;
 using Medical.GrpcService.Repositories.Interfaces;

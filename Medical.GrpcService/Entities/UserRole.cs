@@ -1,6 +1,9 @@
-﻿namespace Medical.GrpcService.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class UserRole
+namespace Medical.GrpcService.Entities;
+
+public class UserRole : IdentityUserRole<string>
 {
-    
+    public User User { get; set; } = null!;
+    public Role Role { get; set; } = null!;
 }
