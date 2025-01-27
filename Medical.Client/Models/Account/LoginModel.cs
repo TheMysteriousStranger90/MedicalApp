@@ -43,7 +43,8 @@ public class LoginModel : PageModel
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, response.Email),
-                    new Claim(ClaimTypes.Name, response.Email)
+                    new Claim(ClaimTypes.Name, response.Email),
+                    new Claim(ClaimTypes.NameIdentifier, response.UserId),
                 };
 
                 claims.AddRange(response.Roles.Select(role =>

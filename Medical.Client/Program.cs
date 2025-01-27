@@ -27,6 +27,12 @@ builder.Services.AddAuthentication(options =>
         options.SlidingExpiration = true;
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequirePatientRole", policy => policy.RequireRole("Patient"));
+    options.AddPolicy("RequireDoctorRole", policy => policy.RequireRole("Doctor"));
+});
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>

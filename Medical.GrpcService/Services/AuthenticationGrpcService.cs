@@ -50,7 +50,8 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
             {
                 Token = token,
                 Email = user.Email,
-                Roles = { roles }
+                Roles = { roles },
+                UserId = user.Id,
             };
         }
         catch (Exception ex)
@@ -103,7 +104,8 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
                 Message = "Registration successful",
                 Token = token,
                 Email = user.Email,
-                Roles = { roles }
+                Roles = { roles },
+                UserId = user.Id,
             };
         }
         catch (Exception ex)
