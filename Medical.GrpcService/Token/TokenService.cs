@@ -17,7 +17,17 @@ public class TokenService : ITokenService
     {
         _config = config;
         _userManager = userManager;
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"] ?? throw new InvalidOperationException()));
+        
+        var keyBytes = Encoding.UTF8.GetBytes(_config["Token:Key"] 
+                                              ?? throw new InvalidOperationException("Token:Key not configured"));
+            
+        if (keyBytes.Length * 8 < 512)
+        {
+            throw new InvalidOperationException(
+                "Token key must be at least 512 bits (64 bytes) for HMAC-SHA512");
+        }
+        
+        _key = new SymmetricSecurityKey(keyBytes);
     }
 
     public async Task<string> CreateToken(User user)
