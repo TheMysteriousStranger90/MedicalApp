@@ -1,7 +1,14 @@
+using Grpc.Net.Client;
+using Medical.Client.Extensions;
+using Medical.Client.Interceptors;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddGrpcClients(builder.Configuration);
+builder.Services.AddScoped<AuthInterceptor>();
 
 var app = builder.Build();
 
