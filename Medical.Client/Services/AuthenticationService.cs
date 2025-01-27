@@ -29,4 +29,37 @@ public class AuthenticationServiceGrpc : IAuthenticationService
             throw;
         }
     }
+    
+    public async Task<RegisterResponse> RegisterAsync(string email, string password, string fullName)
+    {
+        try
+        {
+            var request = new RegisterRequest 
+            { 
+                Email = email, 
+                Password = password,
+                FullName = fullName
+            };
+            return await _client.RegisterAsync(request);
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError(ex, "Error during registration for user {Email}", email);
+            throw;
+        }
+    }
+
+    public async Task<LogoutResponse> LogoutAsync(string token)
+    {
+        try
+        {
+            var request = new LogoutRequest { Token = token };
+            return await _client.LogoutAsync(request);
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError(ex, "Error during logout");
+            throw;
+        }
+    }
 }

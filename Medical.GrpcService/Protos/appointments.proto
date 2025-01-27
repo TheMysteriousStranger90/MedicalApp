@@ -9,6 +9,31 @@ package medical;
 
 service AuthenticationService {
   rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string fullName = 3;
+}
+
+message RegisterResponse {
+  bool success = 1;
+  string message = 2;
+  string token = 3;
+  string email = 4;
+  repeated string roles = 5;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 message LoginRequest {
