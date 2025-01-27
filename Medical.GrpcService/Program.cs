@@ -47,6 +47,8 @@ app.UseCors("AllowGrpcWeb");
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapGrpcService<AuthenticationGrpcService>();
+
 app.MapGrpcService<AppointmentGrpcService>();
 app.MapGrpcService<DoctorGrpcService>();       
 app.MapGrpcService<PatientGrpcService>();      
