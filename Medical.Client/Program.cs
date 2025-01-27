@@ -1,22 +1,23 @@
-using Grpc.Net.Client;
 using Medical.Client.Extensions;
 using Medical.Client.Interceptors;
 using Medical.Client.Interfaces;
+using Medical.Client.Middleware;
 using Medical.Client.Services;
-using AuthenticationService = Medical.Client.AuthenticationService;
-using DoctorService = Medical.Client.DoctorService;
-using MedicalRecordService = Medical.Client.MedicalRecordService;
-using PatientService = Medical.Client.PatientService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Core services
 builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddGrpcClients(builder.Configuration);
+
+// Authentication and storage
+builder.Services.AddSingleton<ITokenStorageService, LocalStorageTokenService>();
 builder.Services.AddScoped<AuthInterceptor>();
 
+// gRPC clients
+builder.Services.AddGrpcClients(builder.Configuration);
 
+// Service implementations
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceGrpc>();
 builder.Services.AddScoped<IAppointmentService, AppointmentServiceGrpc>();
 builder.Services.AddScoped<IDoctorService, DoctorServiceGrpc>();
@@ -25,21 +26,21 @@ builder.Services.AddScoped<IMedicalRecordService, MedicalRecordServiceGrpc>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
+// Authentication pipeline
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<AuthenticationMiddleware>();
 
 app.MapRazorPages();
-
 app.Run();
