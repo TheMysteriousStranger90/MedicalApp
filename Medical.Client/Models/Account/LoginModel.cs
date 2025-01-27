@@ -1,8 +1,12 @@
-﻿using Medical.Client.Interfaces;
+﻿using System.Security.Claims;
+using Medical.Client.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using IAuthenticationService = Medical.Client.Interfaces.IAuthenticationService;
 
-namespace Medical.Client.Models;
+namespace Medical.Client.Models.Account;
 
 public class LoginModel : PageModel
 {
@@ -10,9 +14,7 @@ public class LoginModel : PageModel
     private readonly ITokenStorageService _tokenStorage;
     private readonly ILogger<LoginModel> _logger;
 
-    [BindProperty]
-    public LoginInputModel Input { get; set; }
-
+    [BindProperty] public LoginInputModel Input { get; set; }
     public string ErrorMessage { get; set; }
 
     public LoginModel(
@@ -33,10 +35,27 @@ public class LoginModel : PageModel
                 return Page();
 
             var response = await _authService.LoginAsync(Input.Email, Input.Password);
-            
+
             if (response?.Token != null)
             {
                 _tokenStorage.SetToken(response.Token);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Email, response.Email),
+                    new Claim(ClaimTypes.Name, response.Email)
+                };
+
+                claims.AddRange(response.Roles.Select(role =>
+                    new Claim(ClaimTypes.Role, role)));
+
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity));
+
                 return RedirectToPage("/Index");
             }
 

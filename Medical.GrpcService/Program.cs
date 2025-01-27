@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddGrpc();
+builder.Services.AddGrpc(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowGrpcWeb", builder =>
@@ -39,20 +42,19 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-
 app.UseHttpsRedirection();
+
 app.UseRouting();
 app.UseCors("AllowGrpcWeb");
-
+app.UseGrpcWeb();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGrpcService<AuthenticationGrpcService>();
-
-app.MapGrpcService<AppointmentGrpcService>();
-app.MapGrpcService<DoctorGrpcService>();       
-app.MapGrpcService<PatientGrpcService>();      
-app.MapGrpcService<MedicalRecordGrpcService>();
+app.MapGrpcService<AuthenticationGrpcService>().EnableGrpcWeb();
+app.MapGrpcService<AppointmentGrpcService>().EnableGrpcWeb();
+app.MapGrpcService<DoctorGrpcService>().EnableGrpcWeb();
+app.MapGrpcService<PatientGrpcService>().EnableGrpcWeb();
+app.MapGrpcService<MedicalRecordGrpcService>().EnableGrpcWeb();
 
 app.MapHealthChecks("/health");
 
@@ -64,7 +66,7 @@ app.MapGet("/version", () => new
     Environment = app.Environment.EnvironmentName
 });
 
-app.MapGet("/docs", () => Results.Redirect("https://github.com/yourusername/medical-grpc-service"));
+app.MapGet("/docs", () => Results.Redirect("https://github.com/TheMysteriousStranger90/MedicalApp"));
 
 
 app.Run();

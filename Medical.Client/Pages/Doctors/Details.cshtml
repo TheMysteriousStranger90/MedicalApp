@@ -1,0 +1,49 @@
+﻿@page "{id}"
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Medical.Client.Models.Doctors.DetailsModel
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<div class="container">
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    @if (Model.Doctor != null)
+    {
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Dr. @Model.Doctor.FullName</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Professional Information</h4>
+                        <dl class="row">
+                            <dt class="col-sm-4">Specialization</dt>
+                            <dd class="col-sm-8">@Model.Doctor.Specialization</dd>
+
+                            <dt class="col-sm-4">License Number</dt>
+                            <dd class="col-sm-8">@Model.Doctor.LicenseNumber</dd>
+
+                            <dt class="col-sm-4">Education</dt>
+                            <dd class="col-sm-8">@Model.Doctor.Education</dd>
+
+                            <dt class="col-sm-4">Experience</dt>
+                            <dd class="col-sm-8">@Model.Doctor.Experience</dd>
+
+                            <dt class="col-sm-4">Consultation Fee</dt>
+                            <dd class="col-sm-8">@Model.Doctor.ConsultationFee.ToString("C")</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+                <a asp-page="/Appointments/Create" asp-route-doctorId="@Model.Doctor.Id" class="btn btn-primary">Book Appointment</a>
+            </div>
+        </div>
+    }
+</div>
