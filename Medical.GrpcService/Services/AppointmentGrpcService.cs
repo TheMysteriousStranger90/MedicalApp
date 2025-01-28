@@ -166,7 +166,20 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
                 throw new RpcException(new Status(StatusCode.NotFound,
                     $"Appointment {request.Id} not found"));
             }
+            
+            if (request.Status == AppointmentStatus.Completed && appointment.Status != AppointmentStatus.Completed)
+            {
+                var medicalRecord = new MedicalRecord
+                {
+                    PatientId = appointment.PatientId,
+                    Diagnosis = request.Notes ?? string.Empty,
+                    Treatment = request.Symptoms ?? string.Empty,
+                    CreatedAt = DateTime.UtcNow
+                };
 
+                appointment.MedicalRecord = medicalRecord;
+            }
+            
             appointment.Status = request.Status;
             appointment.Notes = request.Notes ?? appointment.Notes;
             appointment.Symptoms = request.Symptoms ?? appointment.Symptoms;

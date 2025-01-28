@@ -78,4 +78,40 @@
             </div>
         </div>
     }
+
+    @if (User.IsInRole("Doctor") && Model.Appointment.Status == AppointmentStatus.Scheduled)
+    {
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>Complete Appointment</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-page-handler="Complete">
+                <input type="hidden" asp-for="Appointment.Id" />
+
+                <div class="mb-3">
+                    <label class="form-label">Diagnosis</label>
+                    <textarea name="Diagnosis" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Treatment</label>
+                    <textarea name="Treatment" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Prescriptions</label>
+                    <textarea name="Prescriptions" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Notes</label>
+                    <textarea name="Notes" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Complete & Create Medical Record</button>
+            </form>
+        </div>
+    </div>
+    }
 </div>
