@@ -36,9 +36,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Input.AppointmentDate" class="form-label">Appointment Date</label>
-                    <input asp-for="Input.AppointmentDate" type="datetime-local" class="form-control" />
-                    <span asp-validation-for="Input.AppointmentDate" class="text-danger"></span>
+                    <label asp-for="AppointmentDateTime" class="form-label">Appointment Date</label>
+                    <input asp-for="AppointmentDateTime" type="datetime-local" class="form-control" required
+                           min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">

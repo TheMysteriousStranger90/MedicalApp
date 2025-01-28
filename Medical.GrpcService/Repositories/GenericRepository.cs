@@ -1,4 +1,5 @@
 ﻿using Medical.GrpcService.Context;
+using Medical.GrpcService.Entities;
 using Medical.GrpcService.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +14,26 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _context = context;
     }
 
-    public async Task<T?> GetByIdAsync(string id)
+    public virtual async Task<T?> GetByIdAsync(string id)
     {
-        return await _context.Set<T>().FindAsync(id);
+        try
+        {
+            if (typeof(T) == typeof(Appointment))
+            {
+                if (Guid.TryParse(id, out Guid guidId))
+                {
+                    return await _context.Set<T>().FindAsync(guidId);
+                }
+
+                return null;
+            }
+
+            return await _context.Set<T>().FindAsync(id);
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()

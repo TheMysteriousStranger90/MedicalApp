@@ -13,9 +13,9 @@ public class AppointmentRepository : GenericRepository<Appointment>, IAppointmen
     private readonly ILogger<AppointmentRepository> _logger;
 
     public AppointmentRepository(
-        ApplicationDbContext context, 
+        ApplicationDbContext context,
         IMapper mapper,
-        ILogger<AppointmentRepository> logger) : base(context) 
+        ILogger<AppointmentRepository> logger) : base(context)
     {
         _mapper = mapper;
         _logger = logger;

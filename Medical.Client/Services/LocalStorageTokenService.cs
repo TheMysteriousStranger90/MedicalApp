@@ -6,15 +6,21 @@ public class LocalStorageTokenService : ITokenStorageService
 {
     private const string TokenKey = "jwt_token";
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILogger<LocalStorageTokenService> _logger;
 
-    public LocalStorageTokenService(IHttpContextAccessor httpContextAccessor)
+    public LocalStorageTokenService(
+        IHttpContextAccessor httpContextAccessor,
+        ILogger<LocalStorageTokenService> logger)
     {
         _httpContextAccessor = httpContextAccessor;
+        _logger = logger;
     }
 
     public string? GetToken()
     {
-        return _httpContextAccessor.HttpContext?.Request.Cookies[TokenKey];
+        var token = _httpContextAccessor.HttpContext?.Request.Cookies[TokenKey];
+        _logger.LogDebug("Retrieved token from cookies: {TokenExists}", !string.IsNullOrEmpty(token));
+        return token;
     }
 
     public void SetToken(string token)
@@ -23,11 +29,12 @@ public class LocalStorageTokenService : ITokenStorageService
         {
             HttpOnly = true,
             Secure = true,
-            SameSite = SameSiteMode.Strict,
+            SameSite = SameSiteMode.Lax,
             Expires = DateTime.UtcNow.AddDays(7)
         };
 
         _httpContextAccessor.HttpContext?.Response.Cookies.Append(TokenKey, token, cookieOptions);
+        _logger.LogDebug("Token stored in cookies");
     }
 
     public void ClearToken()

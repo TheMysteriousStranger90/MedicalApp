@@ -41,15 +41,18 @@ public class AutoMapperProfile : Profile
         CreateMap<Appointment, AppointmentModel>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()))
             .ForMember(dest => dest.AppointmentDate, opt =>
-                opt.MapFrom(src =>
-                    Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(src.AppointmentDate.ToUniversalTime())));
-        CreateMap<Appointment, AppointmentModel>()
-            .ForMember(dest => dest.Fee, opt => opt.MapFrom(src => src.Fee))
-            .ReverseMap();
+                opt.MapFrom(src => Timestamp.FromDateTime(
+                    DateTime.SpecifyKind(src.AppointmentDate, DateTimeKind.Utc))))
+            .ReverseMap()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.Parse(src.Id)));
 
         CreateMap<CreateAppointmentRequest, Appointment>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
             .ForMember(dest => dest.AppointmentDate, opt =>
-                opt.MapFrom(src => src.AppointmentDate.ToDateTime()));
+                opt.MapFrom(src => src.AppointmentDate.ToDateTime()))
+            .ForMember(dest => dest.Status, opt =>
+                opt.MapFrom(src => AppointmentStatus.Scheduled))
+            .ForMember(dest => dest.IsPaid, opt => opt.MapFrom(src => false));
 
         CreateMap<PatientDto, PatientModel>()
             .ForMember(dest => dest.DateOfBirth,
@@ -80,5 +83,12 @@ public class AutoMapperProfile : Profile
             .ReverseMap();
         CreateMap<DoctorDto, DoctorModel>()
             .ReverseMap();
+
+        CreateMap<UpdateAppointmentRequest, Appointment>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes))
+            .ForMember(dest => dest.Symptoms, opt => opt.MapFrom(src => src.Symptoms))
+            .ForMember(dest => dest.IsPaid, opt => opt.MapFrom(src => src.IsPaid));
     }
 }

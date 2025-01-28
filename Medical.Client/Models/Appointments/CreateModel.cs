@@ -13,7 +13,11 @@ public class CreateModel : PageModel
     private readonly ILogger<CreateModel> _logger;
     private readonly ITokenStorageService _tokenStorage;
 
-    [BindProperty] public CreateAppointmentRequest Input { get; set; } = new();
+    [BindProperty]
+    public CreateAppointmentRequest Input { get; set; } = new();
+
+    [BindProperty]
+    public DateTime AppointmentDateTime { get; set; } = DateTime.Now.AddHours(1);
     public List<DoctorModel> AvailableDoctors { get; set; } = new();
     public DoctorModel? SelectedDoctor { get; set; }
     public string? ErrorMessage { get; set; }
@@ -57,7 +61,10 @@ public class CreateModel : PageModel
         try
         {
             if (!ModelState.IsValid)
+            {
+                _logger.LogWarning("Invalid model state: {@ModelState}", ModelState);
                 return Page();
+            }
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId))
@@ -66,24 +73,26 @@ public class CreateModel : PageModel
             }
 
             Input.PatientId = userId;
+            Input.AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
+                DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Utc));
 
-            if (SelectedDoctor != null)
-            {
-                Input.Fee = SelectedDoctor.ConsultationFee;
-            }
+            _logger.LogInformation("Creating appointment: {@Appointment}", new 
+            { 
+                Input.DoctorId,
+                Input.PatientId,
+                AppointmentDate = Input.AppointmentDate?.ToDateTime(),
+                Input.Symptoms,
+                Input.Notes
+            });
 
             var appointment = await _appointmentService.CreateAppointmentAsync(Input);
             return RedirectToPage("./Details", new { id = appointment.Id });
         }
-        catch (RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.Unauthenticated)
-        {
-            _logger.LogWarning("Authentication failed during appointment creation");
-            return RedirectToPage("/Account/Login");
-        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error creating appointment");
-            ErrorMessage = "Failed to create appointment. Please try again.";
+            ErrorMessage = "Failed to create appointment: " + ex.Message;
+            await OnGetAsync(Input.DoctorId);
             return Page();
         }
     }

@@ -7,10 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddGrpc(options =>
-{
-    options.EnableDetailedErrors = true;
-});
+builder.Services.AddGrpc(options => { options.EnableDetailedErrors = true; });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowGrpcWeb", builder =>
@@ -42,11 +39,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseCors("AllowGrpcWeb");
-app.UseGrpcWeb();
+app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -60,8 +58,8 @@ app.MapHealthChecks("/health");
 
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");
 
-app.MapGet("/version", () => new 
-{ 
+app.MapGet("/version", () => new
+{
     Version = "1.0.0",
     Environment = app.Environment.EnvironmentName
 });
