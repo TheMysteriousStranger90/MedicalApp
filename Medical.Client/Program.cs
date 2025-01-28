@@ -1,13 +1,19 @@
 using Medical.Client;
 using Medical.Client.Configuration;
-using Medical.Client.Extensions;
 using Medical.Client.Interceptors;
 using Medical.Client.Interfaces;
 using Medical.Client.Middleware;
 using Medical.Client.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Core services
 builder.Services.AddRazorPages();
@@ -15,20 +21,20 @@ builder.Services.AddHttpContextAccessor();
 
 // Authentication setup
 builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie(options =>
-{
-    options.LoginPath = "/Account/Login";
-    options.LogoutPath = "/Account/Logout";
-    options.AccessDeniedPath = "/Account/AccessDenied";
-    options.Cookie.Name = "MedicalAuth";
-    options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromDays(7);
-    options.SlidingExpiration = true;
-});
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.Cookie.Name = "MedicalAuth";
+        options.Cookie.HttpOnly = true;
+        options.ExpireTimeSpan = TimeSpan.FromDays(7);
+        options.SlidingExpiration = true;
+    });
 
 builder.Services.AddAuthorization(options =>
 {
@@ -66,15 +72,9 @@ builder.Services.AddGrpcClient<AppointmentService.AppointmentServiceClient>(opti
     options.Address = baseAddress;
 });
 
-builder.Services.AddGrpcClient<DoctorService.DoctorServiceClient>(options =>
-{
-    options.Address = baseAddress;
-});
+builder.Services.AddGrpcClient<DoctorService.DoctorServiceClient>(options => { options.Address = baseAddress; });
 
-builder.Services.AddGrpcClient<PatientService.PatientServiceClient>(options =>
-{
-    options.Address = baseAddress;
-});
+builder.Services.AddGrpcClient<PatientService.PatientServiceClient>(options => { options.Address = baseAddress; });
 
 builder.Services.AddGrpcClient<MedicalRecordService.MedicalRecordServiceClient>(options =>
 {
@@ -88,23 +88,36 @@ builder.Services.AddScoped<IDoctorService, DoctorServiceGrpc>();
 builder.Services.AddScoped<IPatientService, PatientServiceGrpc>();
 builder.Services.AddScoped<IMedicalRecordService, MedicalRecordServiceGrpc>();
 
-var app = builder.Build();
 
-// Configure pipeline
-if (!app.Environment.IsDevelopment())
+try
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    Log.Information("Starting Medical Client web application");
+    var app = builder.Build();
+
+    // Configure pipeline
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseExceptionHandler("/Error");
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+
+    app.UseRouting();
+    app.UseCors("AllowAll");
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.UseMiddleware<AuthenticationMiddleware>();
+
+    app.MapRazorPages();
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-app.UseCors("AllowAll");
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseMiddleware<AuthenticationMiddleware>();
-
-app.MapRazorPages();
-app.Run();
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

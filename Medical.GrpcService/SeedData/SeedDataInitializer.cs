@@ -69,6 +69,102 @@ public static class SeedDataInitializer
                 Education = "Yale School of Medicine",
                 Experience = "10 years",
                 ConsultationFee = 120.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor3@example.com",
+                Email = "doctor3@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Michael Brown",
+                Specialization = "Orthopedics",
+                LicenseNumber = "MD54321",
+                Education = "Stanford University School of Medicine",
+                Experience = "12 years",
+                ConsultationFee = 130.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor4@example.com",
+                Email = "doctor4@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Emily Davis",
+                Specialization = "Dermatology",
+                LicenseNumber = "MD98765",
+                Education = "Johns Hopkins School of Medicine",
+                Experience = "8 years",
+                ConsultationFee = 110.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor5@example.com",
+                Email = "doctor5@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. James Wilson",
+                Specialization = "Neurology",
+                LicenseNumber = "MD11223",
+                Education = "Mayo Clinic Alix School of Medicine",
+                Experience = "20 years",
+                ConsultationFee = 200.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor6@example.com",
+                Email = "doctor6@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Linda Martinez",
+                Specialization = "Oncology",
+                LicenseNumber = "MD33445",
+                Education = "University of California, San Francisco",
+                Experience = "18 years",
+                ConsultationFee = 180.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor7@example.com",
+                Email = "doctor7@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Robert Taylor",
+                Specialization = "Psychiatry",
+                LicenseNumber = "MD55667",
+                Education = "Columbia University Vagelos College of Physicians and Surgeons",
+                Experience = "14 years",
+                ConsultationFee = 160.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor8@example.com",
+                Email = "doctor8@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Patricia Anderson",
+                Specialization = "Endocrinology",
+                LicenseNumber = "MD77889",
+                Education = "University of Pennsylvania Perelman School of Medicine",
+                Experience = "16 years",
+                ConsultationFee = 170.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor9@example.com",
+                Email = "doctor9@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. William Thomas",
+                Specialization = "Gastroenterology",
+                LicenseNumber = "MD99001",
+                Education = "Washington University in St. Louis School of Medicine",
+                Experience = "13 years",
+                ConsultationFee = 140.00m
+            },
+            new Doctor
+            {
+                UserName = "doctor10@example.com",
+                Email = "doctor10@example.com",
+                EmailConfirmed = true,
+                FullName = "Dr. Elizabeth Jackson",
+                Specialization = "Rheumatology",
+                LicenseNumber = "MD22334",
+                Education = "University of Chicago Pritzker School of Medicine",
+                Experience = "11 years",
+                ConsultationFee = 125.00m
             }
         };
 
