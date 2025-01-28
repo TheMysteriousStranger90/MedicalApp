@@ -31,4 +31,8 @@
         <Protobuf Include="Protos\appointments.proto" GrpcServices="Client" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\images\" />
+    </ItemGroup>
+
 </Project>

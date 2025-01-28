@@ -1,10 +1,121 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Medical Clinic - Your Health Partner";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 fade-in-left">
+                <h1 class="display-3 fw-bold text-primary">Your Health Is Our Priority</h1>
+                <p class="lead my-4">Experience world-class healthcare with our team of expert doctors. Book appointments online, track your medical history, and take control of your health journey.</p>
+                <div class="d-flex gap-3">
+                    @if (Model.IsAuthenticated)
+                    {
+                    <a asp-page="/Doctors/Index" class="btn btn-primary btn-lg pulse-button">Find a Doctor</a>
+                    <a asp-page="/Appointments/Create" class="btn btn-outline-primary btn-lg">Book Appointment</a>
+                    }
+                    else
+                    {
+                    <a asp-page="/Account/Register" class="btn btn-primary btn-lg">Register Now</a>
+                    <a asp-page="/Account/Login" class="btn btn-outline-primary btn-lg">Login</a>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 fade-in-right">
+                <img src="~/images/doctor-hero.png" alt="Doctor" class="img-fluid floating-animation">
+            </div>
+        </div>
+    </div>
 </div>
+
+<section class="features-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fade-in">Why Choose Us</h2>
+        <div class="row g-4">
+            <div class="col-md-4 fade-in-up">
+                <div class="feature-card">
+                    <i class="fas fa-user-md fa-3x text-primary mb-3"></i>
+                    <h3>Expert Doctors</h3>
+                    <p>Access to qualified and experienced healthcare professionals.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in-up" style="animation-delay: 0.2s">
+                <div class="feature-card">
+                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                    <h3>24/7 Service</h3>
+                    <p>Round-the-clock medical support and emergency care.</p>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in-up" style="animation-delay: 0.4s">
+                <div class="feature-card">
+                    <i class="fas fa-hospital fa-3x text-primary mb-3"></i>
+                    <h3>Modern Facilities</h3>
+                    <p>State-of-the-art medical equipment and facilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-section py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3 text-center fade-in">
+                <div class="stat-card">
+                    <h2 class="counter">50+</h2>
+                    <p>Expert Doctors</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center fade-in">
+                <div class="stat-card">
+                    <h2 class="counter">10k+</h2>
+                    <p>Happy Patients</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center fade-in">
+                <div class="stat-card">
+                    <h2 class="counter">15+</h2>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center fade-in">
+                <div class="stat-card">
+                    <h2 class="counter">24/7</h2>
+                    <p>Available Support</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 fade-in-left">
+                <h2>Ready to Get Started?</h2>
+                <p class="lead mb-0">
+                    @if (Model.IsAuthenticated)
+                    {
+                    <span>Book your appointment today and take the first step towards better health.</span>
+                    }
+                    else
+                    {
+                    <span>Register now to access our medical services and book appointments.</span>
+                    }
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end fade-in-right">
+                @if (Model.IsAuthenticated)
+                {
+                <a asp-page="/Appointments/Create" class="btn btn-primary btn-lg">Book Appointment</a>
+                }
+                else
+                {
+                <a asp-page="/Account/Register" class="btn btn-primary btn-lg">Register Now</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
