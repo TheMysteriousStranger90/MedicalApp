@@ -46,37 +46,39 @@ public class AutoMapperProfile : Profile
         CreateMap<Appointment, AppointmentModel>()
             .ForMember(dest => dest.Fee, opt => opt.MapFrom(src => src.Fee))
             .ReverseMap();
-        
+
         CreateMap<CreateAppointmentRequest, Appointment>()
             .ForMember(dest => dest.AppointmentDate, opt =>
                 opt.MapFrom(src => src.AppointmentDate.ToDateTime()));
-        
+
         CreateMap<PatientDto, PatientModel>()
-            .ForMember(dest => dest.DateOfBirth, 
+            .ForMember(dest => dest.DateOfBirth,
                 opt => opt.MapFrom(src => Timestamp.FromDateTime(src.DateOfBirth.ToUniversalTime())))
-            .ForMember(dest => dest.Gender, 
+            .ForMember(dest => dest.Gender,
                 opt => opt.MapFrom(src => src.Gender.ToString()))
             .ReverseMap()
-            .ForMember(dest => dest.DateOfBirth, 
+            .ForMember(dest => dest.DateOfBirth,
                 opt => opt.MapFrom(src => src.DateOfBirth.ToDateTime()))
-            .ForMember(dest => dest.Gender, 
+            .ForMember(dest => dest.Gender,
                 opt => opt.MapFrom(src => Enum.Parse<Gender>(src.Gender)));
-        
-        CreateMap<DoctorDto, DoctorModel>()
-            .ReverseMap();
-        
+
         CreateMap<MedicalRecordDto, MedicalRecordModel>()
-            .ForMember(dest => dest.CreatedAt, 
-                opt => opt.MapFrom(src => 
+            .ForMember(dest => dest.CreatedAt,
+                opt => opt.MapFrom(src =>
                     Timestamp.FromDateTime(src.CreatedAt.ToUniversalTime())));
 
         CreateMap<LabResultDto, LabResultModel>()
-            .ForMember(dest => dest.TestDate, 
-                opt => opt.MapFrom(src => 
+            .ForMember(dest => dest.TestDate,
+                opt => opt.MapFrom(src =>
                     Timestamp.FromDateTime(src.TestDate.ToUniversalTime())));
-                    
+
         CreateMap<LabResultModel, LabResult>()
-            .ForMember(dest => dest.TestDate, 
+            .ForMember(dest => dest.TestDate,
                 opt => opt.MapFrom(src => src.TestDate.ToDateTime()));
+
+        CreateMap<Doctor, DoctorDto>()
+            .ReverseMap();
+        CreateMap<DoctorDto, DoctorModel>()
+            .ReverseMap();
     }
 }

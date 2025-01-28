@@ -8,4 +8,5 @@ public interface IDoctorRepository : IGenericRepository<Doctor>
     Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationAsync(string specialization);
     Task<DoctorDto?> GetDoctorWithSchedulesAsync(string doctorId);
     Task<IEnumerable<DoctorDto>> GetAvailableDoctorsAsync(DateTime date);
+    Task<IEnumerable<DoctorDto>> GetAllDoctorsAsync();
 }

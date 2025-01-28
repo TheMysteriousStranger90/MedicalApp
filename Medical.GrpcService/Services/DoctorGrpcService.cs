@@ -20,23 +20,22 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
         _logger = logger;
     }
 
-    public override async Task<GetDoctorsResponse> GetDoctors(
-        GetDoctorsRequest request, 
-        ServerCallContext context)
+    public override async Task<GetDoctorsResponse> GetDoctors(GetDoctorsRequest request, ServerCallContext context)
     {
         try
         {
-            var doctors = await _unitOfWork.Doctors.GetDoctorsBySpecializationAsync(request.Specialization);
+            var doctors = string.IsNullOrEmpty(request.Specialization) 
+                ? await _unitOfWork.Doctors.GetAllDoctorsAsync()
+                : await _unitOfWork.Doctors.GetDoctorsBySpecializationAsync(request.Specialization);
+
             var response = new GetDoctorsResponse();
             response.Doctors.AddRange(_mapper.Map<IEnumerable<DoctorModel>>(doctors));
             return response;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error getting doctors by specialization {Specialization}", 
-                request.Specialization);
-            throw new RpcException(new Status(StatusCode.Internal, 
-                "Error retrieving doctors"));
+            _logger.LogError(ex, "Error getting doctors");
+            throw new RpcException(new Status(StatusCode.Internal, "Error retrieving doctors"));
         }
     }
 

@@ -2,7 +2,8 @@
 
 public interface IDoctorService
 {
-    Task<IEnumerable<DoctorModel>> GetDoctorsAsync(string specialization);
+    Task<IEnumerable<DoctorModel>> GetAllDoctorsAsync();
+    Task<IEnumerable<DoctorModel>> GetDoctorsBySpecializationAsync(string specialization);
     Task<DoctorModel> GetDoctorByIdAsync(string id);
     Task<IEnumerable<DoctorModel>> GetAvailableDoctorsAsync(DateTime date);
 }

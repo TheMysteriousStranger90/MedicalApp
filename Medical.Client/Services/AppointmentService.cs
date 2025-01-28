@@ -5,14 +5,17 @@ namespace Medical.Client.Services;
 
 public class AppointmentServiceGrpc : IAppointmentService
 {
-    private readonly Medical.Client.AppointmentService.AppointmentServiceClient _client;
+    private readonly AppointmentService.AppointmentServiceClient _client;
+    private readonly ITokenStorageService _tokenStorage;
     private readonly ILogger<AppointmentServiceGrpc> _logger;
 
     public AppointmentServiceGrpc(
-        Medical.Client.AppointmentService.AppointmentServiceClient client,
+        AppointmentService.AppointmentServiceClient client,
+        ITokenStorageService tokenStorage,
         ILogger<AppointmentServiceGrpc> logger)
     {
         _client = client;
+        _tokenStorage = tokenStorage;
         _logger = logger;
     }
 
@@ -48,7 +51,12 @@ public class AppointmentServiceGrpc : IAppointmentService
     {
         try
         {
-            return await _client.CreateAppointmentAsync(request);
+            var metadata = new Metadata
+            {
+                { "Authorization", $"Bearer {_tokenStorage.GetToken()}" }
+            };
+
+            return await _client.CreateAppointmentAsync(request, metadata);
         }
         catch (RpcException ex)
         {

@@ -81,4 +81,23 @@ public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
             throw;
         }
     }
+    
+    public async Task<IEnumerable<DoctorDto>> GetAllDoctorsAsync()
+    {
+        try
+        {
+            _logger.LogInformation("Getting all active doctors");
+            var doctors = await _context.Doctors
+                .Where(d => d.IsActive)
+                .OrderBy(d => d.FullName)
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error getting all doctors");
+            throw;
+        }
+    }
 }

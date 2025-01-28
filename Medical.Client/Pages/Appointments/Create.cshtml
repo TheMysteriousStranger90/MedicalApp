@@ -1,0 +1,65 @@
+﻿@page
+@model Medical.Client.Models.Appointments.CreateModel
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<div class="container">
+    <h2><i class="fas fa-calendar-plus me-2"></i>Create Appointment</h2>
+
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Input.DoctorId" class="form-label">Doctor</label>
+                    @if (Model.SelectedDoctor != null)
+                    {
+                    <input type="hidden" asp-for="Input.DoctorId" />
+                    <input type="text" class="form-control" value="@Model.SelectedDoctor.FullName - @Model.SelectedDoctor.Specialization" readonly />
+                    }
+                    else
+                    {
+                    <select asp-for="Input.DoctorId" class="form-select">
+                        <option value="">Select Doctor</option>
+                        @foreach (var doctor in Model.AvailableDoctors)
+                        {
+                        <option value="@doctor.Id">@doctor.FullName - @doctor.Specialization</option>
+                        }
+                    </select>
+                    }
+                    <span asp-validation-for="Input.DoctorId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.AppointmentDate" class="form-label">Appointment Date</label>
+                    <input asp-for="Input.AppointmentDate" type="datetime-local" class="form-control" />
+                    <span asp-validation-for="Input.AppointmentDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Symptoms" class="form-label">Symptoms</label>
+                    <textarea asp-for="Input.Symptoms" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Input.Symptoms" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Notes" class="form-label">Notes</label>
+                    <textarea asp-for="Input.Notes" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Input.Notes" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Appointment</button>
+                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -17,10 +17,28 @@ public class DoctorServiceGrpc : IDoctorService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<DoctorModel>> GetDoctorsAsync(string specialization)
+    public async Task<IEnumerable<DoctorModel>> GetAllDoctorsAsync()
     {
         try
         {
+            var request = new GetDoctorsRequest { Specialization = string.Empty };
+            var response = await _client.GetDoctorsAsync(request);
+            return response.Doctors;
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError(ex, "Error getting all doctors");
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<DoctorModel>> GetDoctorsBySpecializationAsync(string specialization)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(specialization))
+                return await GetAllDoctorsAsync();
+
             var request = new GetDoctorsRequest { Specialization = specialization };
             var response = await _client.GetDoctorsAsync(request);
             return response.Doctors;

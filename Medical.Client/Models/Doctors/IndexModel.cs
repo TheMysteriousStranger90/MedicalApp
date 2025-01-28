@@ -26,7 +26,7 @@ public class IndexModel : PageModel
     {
         try
         {
-            Doctors = await _doctorService.GetDoctorsAsync(Specialization ?? string.Empty);
+            Doctors = await _doctorService.GetDoctorsBySpecializationAsync(Specialization ?? string.Empty);
         }
         catch (Exception ex)
         {
