@@ -1,4 +1,5 @@
 ﻿@page "{id}"
+@using Medical.Client.Helpers
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Medical.Client.Models.Doctors.DetailsModel
 @{
@@ -35,7 +36,7 @@
                             <dd class="col-sm-8">@Model.Doctor.Experience</dd>
 
                             <dt class="col-sm-4">Consultation Fee</dt>
-                            <dd class="col-sm-8">@Model.Doctor.ConsultationFee.ToString("C")</dd>
+                            <dd class="col-sm-8">@CurrencyHelper.FormatUSD(Model.Doctor.ConsultationFee)</dd>
                         </dl>
                     </div>
                 </div>

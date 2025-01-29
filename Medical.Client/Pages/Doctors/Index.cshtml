@@ -1,4 +1,5 @@
 ﻿@page
+@using Medical.Client.Helpers
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Medical.Client.Models.Doctors.IndexModel
 @{
@@ -57,7 +58,7 @@
                         </p>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="fas fa-dollar-sign"></i> Consultation Fee: @doctor.ConsultationFee.ToString("C")
+                                <i class="fas fa-dollar-sign"></i> Consultation Fee: @CurrencyHelper.FormatUSD(doctor.ConsultationFee)
                             </small>
                         </p>
                         <a asp-page="./Details" asp-route-id="@doctor.Id" class="btn btn-primary">View Details</a>

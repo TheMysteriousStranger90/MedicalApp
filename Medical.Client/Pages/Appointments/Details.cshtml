@@ -1,4 +1,6 @@
 ﻿@page "{id}"
+@using Medical.Client.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Medical.Client.Models.Appointments.DetailsModel
 @{
     ViewData["Title"] = "Appointment Details";
@@ -52,7 +54,7 @@
                             <dd class="col-sm-8">@Model.Appointment.AppointmentDate.ToDateTime().ToString("g")</dd>
 
                             <dt class="col-sm-4">Fee</dt>
-                            <dd class="col-sm-8">@Model.Appointment.Fee.ToString("C")</dd>
+                            <dd class="col-sm-8">@CurrencyHelper.FormatUSD(@Model.Appointment.Fee)</dd>
 
                             <dt class="col-sm-4">Payment Status</dt>
                             <dd class="col-sm-8">

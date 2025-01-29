@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using Grpc.Core;
 using Medical.Client.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,12 @@ public class CreateModel : PageModel
     public CreateAppointmentRequest Input { get; set; } = new();
 
     [BindProperty]
-    public DateTime AppointmentDateTime { get; set; } = DateTime.Now.AddHours(1);
+    [DataType(DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    public DateTime AppointmentDateTime { get; set; } = DateTime.Now
+        .AddHours(1)
+        .AddSeconds(-DateTime.Now.Second)
+        .AddMilliseconds(-DateTime.Now.Millisecond);
     public List<DoctorModel> AvailableDoctors { get; set; } = new();
     public DoctorModel? SelectedDoctor { get; set; }
     public string? ErrorMessage { get; set; }
@@ -72,9 +78,18 @@ public class CreateModel : PageModel
                 return RedirectToPage("/Account/Login");
             }
 
+            var appointmentTime = new DateTime(
+                AppointmentDateTime.Year,
+                AppointmentDateTime.Month,
+                AppointmentDateTime.Day,
+                AppointmentDateTime.Hour,
+                AppointmentDateTime.Minute,
+                0,
+                DateTimeKind.Local);
+
             Input.PatientId = userId;
             Input.AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
-                DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Utc));
+                appointmentTime.ToUniversalTime());
 
             _logger.LogInformation("Creating appointment: {@Appointment}", new 
             { 
