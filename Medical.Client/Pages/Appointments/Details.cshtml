@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        @if (User.IsInRole("Doctor") && Model.Appointment.Status == AppointmentStatus.Scheduled)
+        @if (User.IsInRole("Doctor") && Model.Appointment.Status == AppointmentStatus.Completed)
         {
             <div class="card mt-4">
                 <div class="card-header">

@@ -43,40 +43,31 @@ public class MedicalRecordGrpcService : MedicalRecordService.MedicalRecordServic
         }
     }
 
-    public override async Task<MedicalRecordModel> CreateMedicalRecord(
-        CreateMedicalRecordRequest request,
-        ServerCallContext context)
+    public override async Task<MedicalRecordModel> CreateMedicalRecord(CreateMedicalRecordRequest request, ServerCallContext context)
     {
         try
         {
-            var medicalRecord = new MedicalRecord
-            {
-                PatientId = request.PatientId,
-                Diagnosis = request.Diagnosis,
-                Treatment = request.Treatment,
-                Prescriptions = request.Prescriptions,
-                Notes = request.Notes,
-                CreatedAt = DateTime.UtcNow,
-                LabResults = _mapper.Map<List<LabResult>>(request.LabResults)
-            };
+            var medicalRecord = _mapper.Map<MedicalRecord>(request);
 
             await _unitOfWork.MedicalRecords.AddAsync(medicalRecord);
             var success = await _unitOfWork.Complete();
 
             if (!success)
             {
-                throw new RpcException(new Status(StatusCode.Internal, 
-                    "Failed to create medical record"));
+                throw new RpcException(new Status(StatusCode.Internal, "Failed to create medical record"));
             }
 
             return _mapper.Map<MedicalRecordModel>(medicalRecord);
         }
+        catch (AutoMapper.AutoMapperMappingException ex)
+        {
+            _logger.LogError(ex, "Mapping error creating medical record for patient {PatientId}", request.PatientId);
+            throw new RpcException(new Status(StatusCode.Internal, "Error mapping medical record"));
+        }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error creating medical record for patient {PatientId}", 
-                request.PatientId);
-            throw new RpcException(new Status(StatusCode.Internal, 
-                "Error creating medical record"));
+            _logger.LogError(ex, "Error creating medical record for patient {PatientId}", request.PatientId);
+            throw new RpcException(new Status(StatusCode.Internal, "Error creating medical record"));
         }
     }
 }

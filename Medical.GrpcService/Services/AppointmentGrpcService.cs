@@ -165,7 +165,9 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
             appointment.IsPaid = request.IsPaid;
             appointment.Fee = request.Fee;
 
-            if (request.Status == AppointmentStatus.Completed && oldStatus != AppointmentStatus.Completed)
+            // Create medical record only when completing appointment and if it doesn't already exist
+            if (request.Status == AppointmentStatus.Completed && oldStatus != AppointmentStatus.Completed &&
+                appointment.MedicalRecordId == null)
             {
                 if (string.IsNullOrEmpty(request.Notes) || string.IsNullOrEmpty(request.Symptoms))
                 {

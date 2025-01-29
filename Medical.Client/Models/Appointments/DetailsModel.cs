@@ -82,7 +82,7 @@ public class DetailsModel : PageModel
                 ErrorMessage = "Appointment not found";
                 return Page();
             }
-
+            
             var updateRequest = new UpdateAppointmentRequest
             {
                 Id = CompleteModel.AppointmentId,

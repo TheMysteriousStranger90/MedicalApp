@@ -62,12 +62,6 @@
                     <a asp-page="./Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info">
                         <i class="fas fa-info-circle"></i> Details
                     </a>
-                    @if (appointment.Status == AppointmentStatus.Scheduled)
-                    {
-                    <a asp-page="./Complete" asp-route-id="@appointment.Id" class="btn btn-sm btn-success">
-                        <i class="fas fa-check"></i> Complete
-                    </a>
-                    }
                 </td>
             </tr>
             }

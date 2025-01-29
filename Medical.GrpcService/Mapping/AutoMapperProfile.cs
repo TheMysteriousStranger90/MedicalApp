@@ -90,5 +90,14 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes))
             .ForMember(dest => dest.Symptoms, opt => opt.MapFrom(src => src.Symptoms))
             .ForMember(dest => dest.IsPaid, opt => opt.MapFrom(src => src.IsPaid));
+        
+        CreateMap<MedicalRecord, MedicalRecordModel>()
+            .ForMember(d => d.CreatedAt, 
+                opt => opt.MapFrom(s => Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(s.CreatedAt)));
+
+        CreateMap<LabResult, LabResultModel>().ReverseMap();
+        CreateMap<CreateMedicalRecordRequest, MedicalRecord>()
+            .ForMember(d => d.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
+            .ForMember(d => d.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
     }
 }
