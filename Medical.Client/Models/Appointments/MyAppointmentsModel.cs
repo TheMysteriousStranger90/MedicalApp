@@ -9,14 +9,22 @@ namespace Medical.Client.Models.Appointments;
 public class MyAppointmentsModel : PageModel
 {
     private readonly IAppointmentService _appointmentService;
+    private readonly IDoctorService _doctorService;
+    private readonly IPatientService _patientService;
     private readonly ILogger<MyAppointmentsModel> _logger;
 
-    public IEnumerable<AppointmentModel> Appointments { get; private set; } = new List<AppointmentModel>();
+    public IEnumerable<AppointmentViewModel> Appointments { get; private set; } = new List<AppointmentViewModel>();
     public string? ErrorMessage { get; set; }
 
-    public MyAppointmentsModel(IAppointmentService appointmentService, ILogger<MyAppointmentsModel> logger)
+    public MyAppointmentsModel(
+        IAppointmentService appointmentService,
+        IDoctorService doctorService,
+        IPatientService patientService,
+        ILogger<MyAppointmentsModel> logger)
     {
         _appointmentService = appointmentService;
+        _doctorService = doctorService;
+        _patientService = patientService;
         _logger = logger;
     }
 
@@ -39,30 +47,59 @@ public class MyAppointmentsModel : PageModel
                 Date = Timestamp.FromDateTime(DateTime.UtcNow)
             };
 
+            // Role-based filtering
             if (userRole == "Patient")
             {
-                _logger.LogInformation("Fetching appointments for patient {PatientId}", userId);
                 request.PatientId = userId;
+                var appointments = await _appointmentService.GetAppointmentsAsync(request);
+                var viewModels = new List<AppointmentViewModel>();
+
+                foreach (var appointment in appointments.Where(a => a.PatientId == userId)) // Additional security check
+                {
+                    var doctor = await _doctorService.GetDoctorByIdAsync(appointment.DoctorId);
+                    viewModels.Add(new AppointmentViewModel
+                    {
+                        Id = appointment.Id,
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        DoctorName = doctor?.FullName ?? "Unknown",
+                        PatientName = "You",
+                        Status = appointment.Status
+                    });
+                }
+
+                Appointments = viewModels;
             }
             else if (userRole == "Doctor")
             {
-                _logger.LogInformation("Fetching appointments for doctor {DoctorId}", userId);
                 request.DoctorId = userId;
+                var appointments = await _appointmentService.GetAppointmentsAsync(request);
+                var viewModels = new List<AppointmentViewModel>();
+
+                foreach (var appointment in appointments.Where(a => a.DoctorId == userId)) // Additional security check
+                {
+                    var patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
+                    viewModels.Add(new AppointmentViewModel
+                    {
+                        Id = appointment.Id,
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        DoctorName = "You",
+                        PatientName = patient?.FullName ?? "Unknown",
+                        Status = appointment.Status
+                    });
+                }
+
+                Appointments = viewModels;
             }
             else
             {
-                _logger.LogWarning("Unauthorized access attempt by user {UserId}", userId);
                 ErrorMessage = "Unauthorized access";
                 return;
             }
-
-            Appointments = await _appointmentService.GetAppointmentsAsync(request);
-            _logger.LogInformation("Retrieved {Count} appointments for {Role} {UserId}", 
-                Appointments.Count(), userRole, userId);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error loading appointments");
+            _logger.LogError(ex, "Error loading appointments for user {UserId}",
+                User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
             ErrorMessage = "Failed to load appointments.";
         }
     }
@@ -77,13 +114,13 @@ public class MyAppointmentsModel : PageModel
                 ErrorMessage = "Invalid appointment ID";
                 return Page();
             }
-            
+
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
 
             if (appointment.PatientId != userId)
             {
-                _logger.LogWarning("Unauthorized cancellation attempt - AppointmentId: {Id}, UserId: {UserId}", 
+                _logger.LogWarning("Unauthorized cancellation attempt - AppointmentId: {Id}, UserId: {UserId}",
                     id, userId);
                 return Unauthorized();
             }

@@ -34,7 +34,7 @@
                 <div class="card-body">
                     @{
                         var upcomingAppointments = Model.Appointments
-                            .Where(a => a.AppointmentDate.ToDateTime() > DateTime.Now && 
+                            .Where(a => a.AppointmentDate > DateTime.Now && 
                                    a.Status == AppointmentStatus.Scheduled);
                     }
                     @if (!upcomingAppointments.Any())
@@ -48,8 +48,18 @@
                             <div class="appointment-card mb-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h6>@appointment.AppointmentDate.ToDateTime().ToString("dddd, MMM d, yyyy")</h6>
-                                        <p class="text-muted mb-0">@appointment.AppointmentDate.ToDateTime().ToString("h:mm tt")</p>
+                                        <h6>@appointment.AppointmentDate.ToString("dddd, MMM d, yyyy")</h6>
+                                        <p class="text-muted mb-0">
+                                            @appointment.AppointmentDate.ToString("h:mm tt")
+                                            @if (User.IsInRole("Patient"))
+                                            {
+                                            <span>with Dr. @appointment.DoctorName</span>
+                                            }
+                                            else
+                                            {
+                                            <span>with @appointment.PatientName</span>
+                                            }
+                                        </p>
                                     </div>
                                     <div>
                                         <form method="post" asp-page-handler="Cancel" asp-route-id="@appointment.Id" class="d-inline">
@@ -79,7 +89,7 @@
                 <div class="card-body">
                     @{
                         var pastAppointments = Model.Appointments
-                            .Where(a => a.AppointmentDate.ToDateTime() <= DateTime.Now || 
+                            .Where(a => a.AppointmentDate <= DateTime.Now || 
                                    a.Status != AppointmentStatus.Scheduled);
                     }
                     @if (!pastAppointments.Any())
@@ -93,7 +103,7 @@
                             <div class="appointment-card mb-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h6>@appointment.AppointmentDate.ToDateTime().ToString("MMM d, yyyy")</h6>
+                                        <h6>@appointment.AppointmentDate.ToString("MMM d, yyyy")</h6>
                                         <span class="badge bg-@(appointment.Status switch {
                                             AppointmentStatus.Completed => "success",
                                             AppointmentStatus.Cancelled => "danger",

@@ -42,14 +42,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <dl class="row">
+                            <dt class="col-sm-4">Doctor</dt>
+                            <dd class="col-sm-8">@Model.DoctorName</dd>
+
+                            <dt class="col-sm-4">Patient</dt>
+                            <dd class="col-sm-8">@Model.PatientName</dd>
+
                             <dt class="col-sm-4">Date & Time</dt>
                             <dd class="col-sm-8">@Model.Appointment.AppointmentDate.ToDateTime().ToString("g")</dd>
-
-                            <dt class="col-sm-4">Doctor ID</dt>
-                            <dd class="col-sm-8">@Model.Appointment.DoctorId</dd>
-
-                            <dt class="col-sm-4">Patient ID</dt>
-                            <dd class="col-sm-8">@Model.Appointment.PatientId</dd>
 
                             <dt class="col-sm-4">Fee</dt>
                             <dd class="col-sm-8">@Model.Appointment.Fee.ToString("C")</dd>
