@@ -27,6 +27,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/MyAppointments" ? "active" : "")" 
+                   asp-page="/Appointments/MyAppointments">
+                    <i class="fas fa-calendar-check me-1"></i> My Appointments
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/DoctorSchedule" ? "active" : "")" 
                    asp-page="/Appointments/DoctorSchedule">
                     <i class="fas fa-calendar-alt me-1"></i> My Schedule

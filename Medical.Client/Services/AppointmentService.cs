@@ -47,7 +47,12 @@ public class AppointmentServiceGrpc : IAppointmentService
         try
         {
             var request = new AppointmentByIdRequest { Id = id };
-            return await _client.GetAppointmentByIdAsync(request);
+            var metadata = new Metadata
+            {
+                { "Authorization", $"Bearer {_tokenStorage.GetToken()}" }
+            };
+        
+            return await _client.GetAppointmentByIdAsync(request, metadata);
         }
         catch (RpcException ex)
         {
