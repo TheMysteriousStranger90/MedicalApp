@@ -208,6 +208,45 @@ public static class SeedDataInitializer
                 Address = "456 Oak Ave",
                 BloodGroup = "O+",
                 EmergencyContact = "Jane Wilson: 234-555-0123"
+            },
+            new Patient
+            {
+                UserName = "patient3@example.com",
+                Email = "patient3@example.com",
+                EmailConfirmed = true,
+                FullName = "Sarah Johnson",
+                DateOfBirth = new DateTime(1992, 3, 10),
+                Gender = Gender.Female,
+                Phone = "345-678-9012",
+                Address = "789 Pine St",
+                BloodGroup = "B-",
+                EmergencyContact = "John Johnson: 345-555-0123"
+            },
+            new Patient
+            {
+                UserName = "patient4@example.com",
+                Email = "patient4@example.com",
+                EmailConfirmed = true,
+                FullName = "David Martinez",
+                DateOfBirth = new DateTime(1988, 11, 30),
+                Gender = Gender.Male,
+                Phone = "456-789-0123",
+                Address = "321 Elm St",
+                BloodGroup = "AB+",
+                EmergencyContact = "Maria Martinez: 456-555-0123"
+            },
+            new Patient
+            {
+                UserName = "patient5@example.com",
+                Email = "patient5@example.com",
+                EmailConfirmed = true,
+                FullName = "Emily Chen",
+                DateOfBirth = new DateTime(1995, 7, 25),
+                Gender = Gender.Female,
+                Phone = "567-890-1234",
+                Address = "654 Maple Ave",
+                BloodGroup = "O-",
+                EmergencyContact = "William Chen: 567-555-0123"
             }
         };
 

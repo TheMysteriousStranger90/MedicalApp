@@ -35,39 +35,42 @@
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Patient</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
+            <tr>
+                <th>Time</th>
+                <th>Patient</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var appointment in Model.Appointments.OrderBy(a => a.AppointmentDate.ToDateTime()))
-                {
-                    <tr>
-                        <td>@appointment.AppointmentDate.ToDateTime().ToString("g")</td>
-                        <td>@appointment.PatientId</td>
-                        <td>
-                            <span class="badge bg-@(appointment.Status switch {
-                                AppointmentStatus.Scheduled => "primary",
-                                AppointmentStatus.Completed => "success",
-                                AppointmentStatus.Cancelled => "danger",
-                                _ => "secondary"
-                            })">
-                                @appointment.Status
-                            </span>
-                        </td>
-                        <td>
-                            <a asp-page="./Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info">
-                                <i class="fas fa-info-circle"></i>
-                            </a>
-                            <a asp-page="./Edit" asp-route-id="@appointment.Id" class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                }
+            @foreach (var appointment in Model.Appointments)
+            {
+            <tr>
+                <td>@appointment.AppointmentDate.ToString("g")</td>
+                <td>@appointment.PatientName</td>
+                <td>
+                    <span class="badge bg-@(appointment.Status switch {
+                    AppointmentStatus.Scheduled => "primary",
+                    AppointmentStatus.Completed => "success",
+                    AppointmentStatus.Cancelled => "danger",
+                    _ => "secondary"
+                    })">
+                        @appointment.Status
+                    </span>
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info">
+                        <i class="fas fa-info-circle"></i> Details
+                    </a>
+                    @if (appointment.Status == AppointmentStatus.Scheduled)
+                    {
+                    <a asp-page="./Complete" asp-route-id="@appointment.Id" class="btn btn-sm btn-success">
+                        <i class="fas fa-check"></i> Complete
+                    </a>
+                    }
+                </td>
+            </tr>
+            }
             </tbody>
         </table>
     </div>
