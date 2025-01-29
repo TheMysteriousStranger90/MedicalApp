@@ -1,4 +1,4 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
 option csharp_namespace = "Medical.Client";
 
@@ -99,6 +99,7 @@ message UpdateAppointmentRequest {
   string notes = 3;
   string symptoms = 4;
   bool isPaid = 5;
+  double fee = 6;
 }
 
 message DeleteAppointmentRequest {

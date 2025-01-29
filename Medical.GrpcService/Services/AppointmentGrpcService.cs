@@ -144,64 +144,68 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
         }
     }
 
-    public override async Task<AppointmentModel> UpdateAppointment(
-        UpdateAppointmentRequest request,
+    public override async Task<AppointmentModel> UpdateAppointment(UpdateAppointmentRequest request,
         ServerCallContext context)
     {
         try
         {
-            _logger.LogInformation("Updating appointment {Id} to status {Status}",
-                request.Id, request.Status);
+            _logger.LogInformation("Updating appointment {Id} to status {Status}", request.Id, request.Status);
 
-            if (!Guid.TryParse(request.Id, out Guid appointmentId))
-            {
-                throw new RpcException(new Status(StatusCode.InvalidArgument,
-                    "Invalid appointment ID format"));
-            }
-
-            var appointment = await _unitOfWork.Appointments.GetByIdAsync(appointmentId.ToString());
-
+            var appointment = await _unitOfWork.Appointments.GetByIdAsync(request.Id);
             if (appointment == null)
             {
-                throw new RpcException(new Status(StatusCode.NotFound,
-                    $"Appointment {request.Id} not found"));
+                throw new RpcException(new Status(StatusCode.NotFound, $"Appointment {request.Id} not found"));
             }
-            
-            if (request.Status == AppointmentStatus.Completed && appointment.Status != AppointmentStatus.Completed)
-            {
-                var medicalRecord = new MedicalRecord
-                {
-                    PatientId = appointment.PatientId,
-                    Diagnosis = request.Notes ?? string.Empty,
-                    Treatment = request.Symptoms ?? string.Empty,
-                    CreatedAt = DateTime.UtcNow
-                };
 
-                appointment.MedicalRecord = medicalRecord;
-            }
-            
+            var oldStatus = appointment.Status;
+
             appointment.Status = request.Status;
             appointment.Notes = request.Notes ?? appointment.Notes;
             appointment.Symptoms = request.Symptoms ?? appointment.Symptoms;
             appointment.IsPaid = request.IsPaid;
+            appointment.Fee = request.Fee;
 
-            _unitOfWork.Appointments.UpdateAsync(appointment);
-            await _unitOfWork.Complete();
+            if (request.Status == AppointmentStatus.Completed && oldStatus != AppointmentStatus.Completed)
+            {
+                if (string.IsNullOrEmpty(request.Notes) || string.IsNullOrEmpty(request.Symptoms))
+                {
+                    throw new RpcException(new Status(StatusCode.InvalidArgument,
+                        "Notes (Diagnosis) and Symptoms (Treatment) are required to complete appointment"));
+                }
 
-            _logger.LogInformation("Successfully updated appointment {Id} to status {Status}",
-                appointment.Id, appointment.Status);
+                var medicalRecord = new MedicalRecord
+                {
+                    Id = Guid.NewGuid(),
+                    PatientId = appointment.PatientId,
+                    Diagnosis = request.Notes,
+                    Treatment = request.Symptoms,
+                    Notes = request.Notes,
+                    Prescriptions = string.Empty,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                await _unitOfWork.MedicalRecords.AddAsync(medicalRecord);
+
+                appointment.MedicalRecordId = medicalRecord.Id;
+
+                _logger.LogInformation("Created medical record {RecordId} for appointment {AppointmentId}",
+                    medicalRecord.Id, appointment.Id);
+            }
+
+            await _unitOfWork.Appointments.UpdateAsync(appointment);
+            var success = await _unitOfWork.Complete();
+
+            if (!success)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, "Failed to update appointment"));
+            }
 
             return _mapper.Map<AppointmentModel>(appointment);
-        }
-        catch (RpcException)
-        {
-            throw;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error updating appointment {Id}", request.Id);
-            throw new RpcException(new Status(StatusCode.Internal,
-                $"Error updating appointment: {ex.Message}"));
+            throw new RpcException(new Status(StatusCode.Internal, $"Error updating appointment: {ex.Message}"));
         }
     }
 

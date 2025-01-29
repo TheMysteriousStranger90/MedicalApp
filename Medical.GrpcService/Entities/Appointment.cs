@@ -27,5 +27,7 @@ public class Appointment
 
     public virtual Doctor Doctor { get; set; }
     public virtual Patient Patient { get; set; }
+    
+    public Guid? MedicalRecordId { get; set; }
     public virtual MedicalRecord? MedicalRecord { get; set; }
 }

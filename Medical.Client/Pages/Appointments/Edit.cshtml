@@ -22,7 +22,7 @@
                     <select asp-for="Input.Status" class="form-select">
                         @foreach (var status in Enum.GetValues(typeof(AppointmentStatus)))
                         {
-                            <option value="@status">@status</option>
+                        <option value="@status">@status</option>
                         }
                     </select>
                 </div>
@@ -37,12 +37,20 @@
                     <textarea asp-for="Input.Notes" class="form-control" rows="3"></textarea>
                 </div>
 
+                @if (Model.IsDoctor)
+                {
+                <div class="mb-3">
+                    <label asp-for="Input.Fee" class="form-label">Fee</label>
+                    <input asp-for="Input.Fee" class="form-control" type="number" step="0.01" />
+                </div>
+
                 <div class="mb-3">
                     <div class="form-check">
                         <input asp-for="Input.IsPaid" class="form-check-input" />
                         <label asp-for="Input.IsPaid" class="form-check-label">Payment Received</label>
                     </div>
                 </div>
+                }
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
