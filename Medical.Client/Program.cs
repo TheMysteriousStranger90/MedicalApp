@@ -1,6 +1,4 @@
-using System.Security.Cryptography.X509Certificates;
-using Medical.Client;
-using Medical.Client.Configuration;
+using Medical.Client.Extensions;
 using Medical.Client.Interceptors;
 using Medical.Client.Interfaces;
 using Medical.Client.Middleware;
@@ -11,16 +9,16 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
+    .Enrich.WithProperty("Application", "Medical.Client")
+    .Enrich.FromLogContext()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
 
 builder.Host.UseSerilog();
 
-// Core services
 builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 
-// Authentication setup
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -45,89 +43,33 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowGrpcWeb", builder =>
+    options.AddPolicy("AllowAll", builder =>
     {
         builder.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding",
-                "Grpc-Accept-Encoding");
+            .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
     });
 });
 
-// Authentication and storage
 builder.Services.AddSingleton<ITokenStorageService, LocalStorageTokenService>();
 builder.Services.AddScoped<AuthInterceptor>();
 
-// gRPC client registration
-var grpcConfig = builder.Configuration.GetSection("GrpcClient").Get<GrpcClientConfig>();
-var baseAddress = new Uri(grpcConfig?.BaseAddress ?? "https://localhost:7084");
+builder.Services.AddGrpcClients(builder.Configuration);
 
-var handler = new HttpClientHandler
-{
-    ServerCertificateCustomValidationCallback = 
-        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-};
+builder.Services.AddHealthChecks();
 
-builder.Services.AddGrpcClient<AuthenticationService.AuthenticationServiceClient>(options =>
-    {
-        options.Address = baseAddress;
-    })
-    .ConfigureChannel(options =>
-    {
-        options.HttpHandler = handler;
-    });
-
-builder.Services.AddGrpcClient<AppointmentService.AppointmentServiceClient>(options =>
-    {
-        options.Address = baseAddress;
-    })
-    .ConfigureChannel(options =>
-    {
-        options.HttpHandler = handler;
-    });
-
-builder.Services.AddGrpcClient<DoctorService.DoctorServiceClient>(options => 
-    { 
-        options.Address = baseAddress; 
-    })
-    .ConfigureChannel(options =>
-    {
-        options.HttpHandler = handler;
-    });
-
-builder.Services.AddGrpcClient<PatientService.PatientServiceClient>(options => 
-    { 
-        options.Address = baseAddress; 
-    })
-    .ConfigureChannel(options =>
-    {
-        options.HttpHandler = handler;
-    });
-
-builder.Services.AddGrpcClient<MedicalRecordService.MedicalRecordServiceClient>(options =>
-    {
-        options.Address = baseAddress;
-    })
-    .ConfigureChannel(options =>
-    {
-        options.HttpHandler = handler;
-    });
-
-// Service implementations
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceGrpc>();
 builder.Services.AddScoped<IAppointmentService, AppointmentServiceGrpc>();
 builder.Services.AddScoped<IDoctorService, DoctorServiceGrpc>();
 builder.Services.AddScoped<IPatientService, PatientServiceGrpc>();
 builder.Services.AddScoped<IMedicalRecordService, MedicalRecordServiceGrpc>();
 
-
 try
 {
     Log.Information("Starting Medical Client web application");
     var app = builder.Build();
-
-    // Configure pipeline
+    
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Error");
@@ -142,6 +84,8 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
     app.UseMiddleware<AuthenticationMiddleware>();
+    
+    app.MapHealthChecks("/health");
 
     app.MapRazorPages();
     app.Run();
