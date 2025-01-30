@@ -2,10 +2,12 @@
 @model Medical.Client.Models.Account.RegisterModel
 @{
     ViewData["Title"] = "Register";
+
+    const string doctorEmailDomain = "@medicalapp";
 }
 
 <div class="row justify-content-center">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h1>@ViewData["Title"]</h1>
         @if (!string.IsNullOrEmpty(Model.ErrorMessage))
         {
@@ -13,22 +15,65 @@
         }
         <form method="post">
             <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username"/>
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" id="emailInput"/>
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+
             <div class="form-floating mb-3">
                 <input asp-for="Input.FullName" class="form-control"/>
                 <label asp-for="Input.FullName"></label>
                 <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
+
+            <!-- Doctor Fields -->
+            <div id="doctorFields" style="display: none;">
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Specialization" class="form-control"/>
+                    <label asp-for="Input.Specialization">Specialization</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.LicenseNumber" class="form-control"/>
+                    <label asp-for="Input.LicenseNumber">License Number</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.ConsultationFee" class="form-control" type="number"/>
+                    <label asp-for="Input.ConsultationFee">Consultation Fee</label>
+                </div>
+            </div>
+
+            <!-- Patient Fields -->
+            <div id="patientFields" style="display: none;">
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.DateOfBirth" class="form-control" type="date"/>
+                    <label asp-for="Input.DateOfBirth">Date of Birth</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select asp-for="Input.Gender" class="form-select">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label asp-for="Input.Gender">Gender</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Phone" class="form-control"/>
+                    <label asp-for="Input.Phone">Phone</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Address" class="form-control"/>
+                    <label asp-for="Input.Address">Address</label>
+                </div>
+            </div>
+
             <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control"/>
+                <input asp-for="Input.Password" class="form-control" type="password"/>
                 <label asp-for="Input.Password"></label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control"/>
+                <input asp-for="Input.ConfirmPassword" class="form-control" type="password"/>
                 <label asp-for="Input.ConfirmPassword"></label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
@@ -38,5 +83,58 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const doctorEmailDomain = '@doctorEmailDomain';
+        
+        function updateValidation(isDoctorEmail) {
+            if (isDoctorEmail) {
+                // Make doctor fields required
+                $('#Input_Specialization').prop('required', true);
+                $('#Input_LicenseNumber').prop('required', true);
+                $('#Input_ConsultationFee').prop('required', true);
+                
+                // Make patient fields optional
+                $('#Input_DateOfBirth').prop('required', false);
+                $('#Input_Gender').prop('required', false);
+                $('#Input_Phone').prop('required', false);
+                $('#Input_Address').prop('required', false);
+            } else {
+                // Make doctor fields optional
+                $('#Input_Specialization').prop('required', false);
+                $('#Input_LicenseNumber').prop('required', false);
+                $('#Input_ConsultationFee').prop('required', false);
+                
+                // Make patient fields required
+                $('#Input_DateOfBirth').prop('required', true);
+                $('#Input_Gender').prop('required', true);
+                $('#Input_Phone').prop('required', true);
+                $('#Input_Address').prop('required', true);
+            }
+        }
+
+        document.getElementById('emailInput').addEventListener('input', function(e) {
+            const email = e.target.value;
+            const isDoctorEmail = email.toLowerCase().includes(doctorEmailDomain);
+            
+            document.getElementById('doctorFields').style.display = isDoctorEmail ? 'block' : 'none';
+            document.getElementById('patientFields').style.display = isDoctorEmail ? 'none' : 'block';
+            
+            updateValidation(isDoctorEmail);
+            
+            // Reset validation
+            $('form').removeData('validator');
+            $('form').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse('form');
+        });
+
+        // Form submit handler
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            
+            if ($(this).valid()) {
+                this.submit();
+            }
+        });
+    </script>
 }

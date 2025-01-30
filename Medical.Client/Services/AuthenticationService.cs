@@ -1,5 +1,6 @@
 ﻿using Grpc.Core;
 using Medical.Client.Interfaces;
+using Medical.Client.Models;
 
 namespace Medical.Client.Services;
 
@@ -29,22 +30,30 @@ public class AuthenticationServiceGrpc : IAuthenticationService
             throw;
         }
     }
-    
-    public async Task<RegisterResponse> RegisterAsync(string email, string password, string fullName)
+
+    public async Task<RegisterResponse> RegisterAsync(RegisterInputModel input)
     {
         try
         {
-            var request = new RegisterRequest 
-            { 
-                Email = email, 
-                Password = password,
-                FullName = fullName
+            var request = new RegisterRequest
+            {
+                Email = input.Email,
+                Password = input.Password,
+                FullName = input.FullName,
+                Specialization = input.Specialization,
+                LicenseNumber = input.LicenseNumber,
+                ConsultationFee = (double)input.ConsultationFee,
+                DateOfBirth = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
+                    input.DateOfBirth?.ToUniversalTime() ?? DateTime.UtcNow),
+                Gender = input.Gender,
+                Phone = input.Phone,
+                Address = input.Address
             };
             return await _client.RegisterAsync(request);
         }
         catch (RpcException ex)
         {
-            _logger.LogError(ex, "Error during registration for user {Email}", email);
+            _logger.LogError(ex, "Error during registration for user {Email}", input.Email);
             throw;
         }
     }

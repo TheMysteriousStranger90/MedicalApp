@@ -35,4 +35,10 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="server.pfx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

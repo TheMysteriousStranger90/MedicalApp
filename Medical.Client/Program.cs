@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using Medical.Client;
 using Medical.Client.Configuration;
 using Medical.Client.Interceptors;
@@ -62,24 +63,56 @@ builder.Services.AddScoped<AuthInterceptor>();
 var grpcConfig = builder.Configuration.GetSection("GrpcClient").Get<GrpcClientConfig>();
 var baseAddress = new Uri(grpcConfig?.BaseAddress ?? "https://localhost:7084");
 
-builder.Services.AddGrpcClient<AuthenticationService.AuthenticationServiceClient>(options =>
+var handler = new HttpClientHandler
 {
-    options.Address = baseAddress;
-});
+    ServerCertificateCustomValidationCallback = 
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+};
+
+builder.Services.AddGrpcClient<AuthenticationService.AuthenticationServiceClient>(options =>
+    {
+        options.Address = baseAddress;
+    })
+    .ConfigureChannel(options =>
+    {
+        options.HttpHandler = handler;
+    });
 
 builder.Services.AddGrpcClient<AppointmentService.AppointmentServiceClient>(options =>
-{
-    options.Address = baseAddress;
-});
+    {
+        options.Address = baseAddress;
+    })
+    .ConfigureChannel(options =>
+    {
+        options.HttpHandler = handler;
+    });
 
-builder.Services.AddGrpcClient<DoctorService.DoctorServiceClient>(options => { options.Address = baseAddress; });
+builder.Services.AddGrpcClient<DoctorService.DoctorServiceClient>(options => 
+    { 
+        options.Address = baseAddress; 
+    })
+    .ConfigureChannel(options =>
+    {
+        options.HttpHandler = handler;
+    });
 
-builder.Services.AddGrpcClient<PatientService.PatientServiceClient>(options => { options.Address = baseAddress; });
+builder.Services.AddGrpcClient<PatientService.PatientServiceClient>(options => 
+    { 
+        options.Address = baseAddress; 
+    })
+    .ConfigureChannel(options =>
+    {
+        options.HttpHandler = handler;
+    });
 
 builder.Services.AddGrpcClient<MedicalRecordService.MedicalRecordServiceClient>(options =>
-{
-    options.Address = baseAddress;
-});
+    {
+        options.Address = baseAddress;
+    })
+    .ConfigureChannel(options =>
+    {
+        options.HttpHandler = handler;
+    });
 
 // Service implementations
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceGrpc>();

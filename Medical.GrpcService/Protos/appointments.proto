@@ -17,6 +17,13 @@ message RegisterRequest {
   string email = 1;
   string password = 2;
   string fullName = 3;
+  string specialization = 4;
+  string licenseNumber = 5;
+  double consultationFee = 6;
+  google.protobuf.Timestamp dateOfBirth = 7;
+  string gender = 8;
+  string phone = 9;
+  string address = 10;
 }
 
 message RegisterResponse {
