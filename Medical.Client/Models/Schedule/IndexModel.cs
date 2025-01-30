@@ -13,11 +13,6 @@ public class IndexModel : PageModel
     public List<ScheduleModel> Schedules { get; set; } = new();
     public string? ErrorMessage { get; set; }
 
-    [BindProperty(SupportsGet = true)]
-    public DateTime? FromDate { get; set; }
-
-    [BindProperty(SupportsGet = true)]
-    public DateTime? ToDate { get; set; }
     [BindProperty]
     public string DeleteId { get; set; }
 
@@ -36,23 +31,10 @@ public class IndexModel : PageModel
             {
                 return;
             }
-            
-            FromDate ??= DateTime.Today;
-            ToDate ??= DateTime.Today.AddMonths(1);
-            
-            if (ToDate < FromDate)
-            {
-                ToDate = FromDate.Value.AddMonths(1);
-            }
 
-            _logger.LogInformation(
-                "Getting schedules for doctor {DoctorId} from {FromDate:yyyy-MM-dd} to {ToDate:yyyy-MM-dd}",
-                userId, FromDate, ToDate);
+            _logger.LogInformation("Getting schedules for doctor {DoctorId}", userId);
 
-            var schedules = await _doctorService.GetDoctorScheduleAsync(
-                userId,
-                FromDate.Value,
-                ToDate.Value);
+            var schedules = await _doctorService.GetDoctorScheduleAsync(userId, DateTime.MinValue, DateTime.MaxValue);
 
             Schedules = schedules.ToList();
         }

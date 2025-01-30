@@ -20,31 +20,10 @@
         <div class="alert alert-danger">@Model.ErrorMessage</div>
     }
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <form method="get" class="row g-3">
-                <div class="col-md-4">
-                    <label asp-for="FromDate" class="form-label">From Date</label>
-                    <input asp-for="FromDate" type="date" class="form-control"
-                           value="@(Model.FromDate?.ToString("yyyy-MM-dd"))" />
-                </div>
-                <div class="col-md-4">
-                    <label asp-for="ToDate" class="form-label">To Date</label>
-                    <input asp-for="ToDate" type="date" class="form-control"
-                           value="@(Model.ToDate?.ToString("yyyy-MM-dd"))" />
-                </div>
-                <div class="col-md-4 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary me-2">Filter</button>
-                    <a asp-page="./Index" class="btn btn-secondary">Reset</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
     @if (!Model.Schedules.Any())
     {
         <div class="alert alert-info">
-            No schedules found for the selected period.
+            No schedules found.
         </div>
     }
     else
@@ -67,8 +46,8 @@
                     {
                         <tr>
                             <td>@(((DayOfWeek)schedule.DayOfWeek).ToFormattedDayOfWeek())</td>
-                            <td>@schedule.StartTime.ToDateTime().ToString("HH:mm")</td>
-                            <td>@schedule.EndTime.ToDateTime().ToString("HH:mm")</td>
+                            <td>@schedule.StartTime.ToLocalDateTime().ToString("HH:mm")</td>
+                            <td>@schedule.EndTime.ToLocalDateTime().ToString("HH:mm")</td>
                             <td>@schedule.SlotDurationMinutes min</td>
                             <td>
                                 <span class="badge bg-@(schedule.IsAvailable ? "success" : "danger")">
