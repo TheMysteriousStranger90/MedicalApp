@@ -42,6 +42,7 @@ public class RegisterModel : PageModel
 
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, response.UserId),
                     new Claim(ClaimTypes.Email, response.Email),
                     new Claim(ClaimTypes.Name, response.Email)
                 };
@@ -52,14 +53,21 @@ public class RegisterModel : PageModel
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(7)
+                };
+
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity));
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
 
                 return RedirectToPage("/Index");
             }
 
-            ErrorMessage = "Registration failed.";
+            ErrorMessage = response?.Message ?? "Registration failed.";
             return Page();
         }
         catch (Exception ex)

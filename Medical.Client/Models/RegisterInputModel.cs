@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-using Medical.Client.Validations;
 
 namespace Medical.Client.Models;
 
@@ -21,29 +19,16 @@ public class RegisterInputModel
     [Compare("Password")]
     public string ConfirmPassword { get; set; }
 
-    // Doctor fields
-    [RequiredIf("IsDoctorEmail", true)]
-    public string Specialization { get; set; }
-    
-    [RequiredIf("IsDoctorEmail", true)]
-    public string LicenseNumber { get; set; }
-    
-    [RequiredIf("IsDoctorEmail", true)]
-    public decimal ConsultationFee { get; set; }
-
-    // Patient fields
-    [RequiredIf("IsDoctorEmail", false)]
+    [Required]
     public DateTime? DateOfBirth { get; set; }
     
-    [RequiredIf("IsDoctorEmail", false)]
+    [Required]
     public string Gender { get; set; }
     
-    [RequiredIf("IsDoctorEmail", false)]
+    [Required]
+    [Phone]
     public string Phone { get; set; }
     
-    [RequiredIf("IsDoctorEmail", false)]
+    [Required]
     public string Address { get; set; }
-
-    [JsonIgnore]
-    public bool IsDoctorEmail => Email?.Contains("@medicalapp", StringComparison.OrdinalIgnoreCase) ?? false;
 }

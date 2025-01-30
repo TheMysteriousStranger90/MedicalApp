@@ -40,9 +40,6 @@ public class AuthenticationServiceGrpc : IAuthenticationService
                 Email = input.Email,
                 Password = input.Password,
                 FullName = input.FullName,
-                Specialization = input.Specialization,
-                LicenseNumber = input.LicenseNumber,
-                ConsultationFee = (double)input.ConsultationFee,
                 DateOfBirth = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
                     input.DateOfBirth?.ToUniversalTime() ?? DateTime.UtcNow),
                 Gender = input.Gender,

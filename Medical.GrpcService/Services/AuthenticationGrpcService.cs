@@ -73,69 +73,45 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
                 throw new RpcException(new Status(StatusCode.AlreadyExists, "Email already registered"));
             }
 
-            var emailParts = request.Email.Split('@');
-            var isDoctorEmail = emailParts.Length == 2 && 
-                                emailParts[1].StartsWith(DOCTOR_EMAIL_DOMAIN, StringComparison.OrdinalIgnoreCase);
-        
-            User user;
-            if (isDoctorEmail)
+            var user = new Patient
             {
-                user = new Doctor
-                {
-                    UserName = request.Email,
-                    Email = request.Email,
-                    FullName = request.FullName ?? "Doctor",
-                    Specialization = request.Specialization ?? "General",
-                    LicenseNumber = request.LicenseNumber ?? "TBD",
-                    ConsultationFee = (decimal)(request.ConsultationFee > 0 ? request.ConsultationFee : 50),
-                    Created = DateTime.UtcNow,
-                    LastActive = DateTime.UtcNow,
-                    IsActive = true
-                };
-            }
-            else
-            {
-                user = new Patient
-                {
-                    UserName = request.Email,
-                    Email = request.Email,
-                    FullName = request.FullName ?? "Patient",
-                    DateOfBirth = request.DateOfBirth?.ToDateTime() ?? DateTime.UtcNow,
-                    Gender = Enum.TryParse<Gender>(request.Gender, true, out var gender) ? gender : Gender.Male,
-                    Phone = request.Phone ?? string.Empty,
-                    Address = request.Address ?? string.Empty,
-                    Created = DateTime.UtcNow,
-                    LastActive = DateTime.UtcNow,
-                    IsActive = true
-                };
-            }
+                UserName = request.Email,
+                Email = request.Email,
+                FullName = request.FullName ?? "Patient",
+                DateOfBirth = request.DateOfBirth?.ToDateTime() ?? DateTime.UtcNow,
+                Gender = Enum.TryParse<Gender>(request.Gender, true, out var gender) ? gender : Gender.Male,
+                Phone = request.Phone ?? string.Empty,
+                Address = request.Address ?? string.Empty,
+                Created = DateTime.UtcNow,
+                LastActive = DateTime.UtcNow,
+                IsActive = true
+            };
 
-            var role = isDoctorEmail ? DOCTOR_ROLE : PATIENT_ROLE;
             var result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded)
             {
-                throw new RpcException(new Status(StatusCode.InvalidArgument, 
+                throw new RpcException(new Status(StatusCode.InvalidArgument,
                     string.Join(", ", result.Errors.Select(e => e.Description))));
             }
 
-            if (!await _roleManager.RoleExistsAsync(role))
+            if (!await _roleManager.RoleExistsAsync(PATIENT_ROLE))
             {
-                var roleResult = await _roleManager.CreateAsync(new Role { Name = role });
+                var roleResult = await _roleManager.CreateAsync(new Role { Name = PATIENT_ROLE });
                 if (!roleResult.Succeeded)
                 {
-                    _logger.LogError("Failed to create role: {Role}", role);
+                    _logger.LogError("Failed to create role: {Role}", PATIENT_ROLE);
                     throw new RpcException(new Status(StatusCode.Internal, "Failed to create role"));
                 }
             }
-            
-            var roleAssignResult = await _userManager.AddToRoleAsync(user, role);
+
+            var roleAssignResult = await _userManager.AddToRoleAsync(user, PATIENT_ROLE);
             if (!roleAssignResult.Succeeded)
             {
-                _logger.LogError("Failed to assign role {Role} to user {Email}", role, user.Email);
+                _logger.LogError("Failed to assign role {Role} to user {Email}", PATIENT_ROLE, user.Email);
                 throw new RpcException(new Status(StatusCode.Internal, "Failed to assign role"));
             }
 
-            _logger.LogInformation("User {Email} registered successfully with role {Role}", user.Email, role);
+            _logger.LogInformation("Patient {Email} registered successfully", user.Email);
 
             var token = await _tokenService.CreateToken(user);
             var roles = await _userManager.GetRolesAsync(user);
@@ -143,7 +119,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
             return new RegisterResponse
             {
                 Success = true,
-                Message = $"Registration successful as {role}",
+                Message = "Registration successful",
                 Token = token,
                 Email = user.Email,
                 Roles = { roles },
