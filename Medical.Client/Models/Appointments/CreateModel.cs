@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using Grpc.Core;
 using Medical.Client.Helpers;
 using Medical.Client.Interfaces;
 using Microsoft.AspNetCore.Mvc;

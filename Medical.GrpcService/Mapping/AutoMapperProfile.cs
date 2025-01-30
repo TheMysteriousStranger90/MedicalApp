@@ -106,5 +106,71 @@ public class AutoMapperProfile : Profile
             .ForMember(d => d.AppointmentDate,
                 opt => opt.MapFrom(s => Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
                     DateTime.SpecifyKind(s.AppointmentDate, DateTimeKind.Utc))));
+        
+        
+        CreateMap<TimeSlot, TimeSlotDto>().ReverseMap();
+        CreateMap<Schedule, ScheduleDto>().ReverseMap();
+        
+        CreateMap<TimeSlot, TimeSlotModel>()
+            .ForMember(d => d.StartTime, 
+                opt => opt.MapFrom(s => Timestamp.FromDateTime(s.StartTime.ToUniversalTime())))
+            .ForMember(d => d.EndTime, 
+                opt => opt.MapFrom(s => Timestamp.FromDateTime(s.EndTime.ToUniversalTime())));
+                
+        
+        CreateMap<Schedule, ScheduleDto>()
+            .ForMember(d => d.TimeSlots, 
+                opt => opt.MapFrom(s => s.TimeSlots.OrderBy(ts => ts.StartTime)));
+
+        CreateMap<Schedule, ScheduleModel>()
+            .ForMember(d => d.StartTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(DateTime.Today.Add(s.StartTime).ToUniversalTime())))
+            .ForMember(d => d.EndTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(DateTime.Today.Add(s.EndTime).ToUniversalTime())))
+            .ForMember(d => d.TimeSlots, 
+                opt => opt.MapFrom(s => s.TimeSlots.OrderBy(ts => ts.StartTime)));
+        
+        
+        CreateMap<TimeSlotDto, TimeSlotModel>()
+            .ForMember(d => d.StartTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(s.StartTime.ToUniversalTime())))
+            .ForMember(d => d.EndTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(s.EndTime.ToUniversalTime())))
+            .ForMember(d => d.AppointmentId, 
+                opt => opt.MapFrom(s => s.AppointmentId ?? string.Empty))
+            .ForMember(d => d.IsBooked, 
+                opt => opt.MapFrom(s => s.IsBooked));
+
+        CreateMap<ScheduleDto, ScheduleModel>()
+            .ForMember(d => d.StartTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(DateTime.Today.Add(s.StartTime).ToUniversalTime())))
+            .ForMember(d => d.EndTime, 
+                opt => opt.MapFrom(s => 
+                    Timestamp.FromDateTime(DateTime.Today.Add(s.EndTime).ToUniversalTime())))
+            .ForMember(d => d.ValidFrom,
+                opt => opt.MapFrom(s => 
+                    s.ValidFrom.HasValue ? 
+                        Timestamp.FromDateTime(s.ValidFrom.Value.ToUniversalTime()) : 
+                        Timestamp.FromDateTime(DateTime.MinValue.ToUniversalTime())))
+            .ForMember(d => d.ValidTo,
+                opt => opt.MapFrom(s => 
+                    s.ValidTo.HasValue ? 
+                        Timestamp.FromDateTime(s.ValidTo.Value.ToUniversalTime()) : 
+                        Timestamp.FromDateTime(DateTime.MaxValue.ToUniversalTime())));
+        
+        
+        CreateMap<UpdateScheduleRequest, Schedule>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.Parse(src.Id)))
+            .ForMember(dest => dest.IsAvailable, opt => opt.MapFrom(src => src.IsAvailable))
+            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToDateTime().TimeOfDay))
+            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToDateTime().TimeOfDay))
+            .ForMember(dest => dest.SlotDurationMinutes, opt => opt.MapFrom(src => src.SlotDurationMinutes))
+            .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes))
+            .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => (DayOfWeek)src.DayOfWeek));
     }
 }

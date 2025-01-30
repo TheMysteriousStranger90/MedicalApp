@@ -10,16 +10,20 @@ public class Schedule
     public string DoctorId { get; set; }
     
     [Required]
-    public DateTime StartTime { get; set; }
+    public DayOfWeek DayOfWeek { get; set; }
     
     [Required]
-    public DateTime EndTime { get; set; }
+    public TimeSpan StartTime { get; set; }
     
-    public bool IsAvailable { get; set; }
-    public DayOfWeek DayOfWeek { get; set; }
-    public int MaxAppointments { get; set; }
+    [Required]
+    public TimeSpan EndTime { get; set; }
+    
+    public int SlotDurationMinutes { get; set; } = 30;
+    public bool IsAvailable { get; set; } = true;
+    public DateTime? ValidFrom { get; set; }
+    public DateTime? ValidTo { get; set; }
     public string? Notes { get; set; }
-    public bool IsRecurring { get; set; }
 
     public virtual Doctor Doctor { get; set; }
+    public virtual ICollection<TimeSlot> TimeSlots { get; set; } = new List<TimeSlot>();
 }
