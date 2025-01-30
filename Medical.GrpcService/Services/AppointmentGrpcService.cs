@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Grpc.Core;
 using Medical.GrpcService.Entities;
+using Medical.GrpcService.Entities.DTOs;
 using Medical.GrpcService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Medical.GrpcService.Services;
 
-//[Authorize]
 public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -23,23 +23,36 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
         _logger = logger;
     }
 
-    public override async Task<AppointmentResponse> GetAppointments(
-        AppointmentRequest request,
-        ServerCallContext context)
+    public override async Task<AppointmentResponse> GetAppointments(AppointmentRequest request, ServerCallContext context)
     {
         try
         {
-            var appointments = await _unitOfWork.Appointments.GetAllAsync();
+            IEnumerable<AppointmentDto> appointments;
+
+            if (!string.IsNullOrEmpty(request.DoctorId))
+            {
+                appointments = await _unitOfWork.Appointments.GetDoctorAppointmentsAsync(request.DoctorId);
+                _logger.LogInformation("Retrieved appointments for doctor {DoctorId}", request.DoctorId);
+            }
+            else if (!string.IsNullOrEmpty(request.PatientId))
+            {
+                appointments = await _unitOfWork.Appointments.GetPatientAppointmentsAsync(request.PatientId);
+                _logger.LogInformation("Retrieved appointments for patient {PatientId}", request.PatientId);
+            }
+            else
+            {
+                appointments = await _unitOfWork.Appointments.GetUpcomingAppointmentsAsync();
+                _logger.LogInformation("Retrieved all upcoming appointments");
+            }
+
             var response = new AppointmentResponse();
-            response.Appointments.AddRange(
-                _mapper.Map<IEnumerable<AppointmentModel>>(appointments));
+            response.Appointments.AddRange(_mapper.Map<IEnumerable<AppointmentModel>>(appointments));
             return response;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error getting appointments");
-            throw new RpcException(new Status(StatusCode.Internal,
-                "Error getting appointments"));
+            throw new RpcException(new Status(StatusCode.Internal, "Error getting appointments"));
         }
     }
 

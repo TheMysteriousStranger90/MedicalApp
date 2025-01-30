@@ -99,5 +99,12 @@ public class AutoMapperProfile : Profile
         CreateMap<CreateMedicalRecordRequest, MedicalRecord>()
             .ForMember(d => d.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
             .ForMember(d => d.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
+        
+        
+        
+        CreateMap<AppointmentDto, AppointmentModel>()
+            .ForMember(d => d.AppointmentDate,
+                opt => opt.MapFrom(s => Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
+                    DateTime.SpecifyKind(s.AppointmentDate, DateTimeKind.Utc))));
     }
 }
