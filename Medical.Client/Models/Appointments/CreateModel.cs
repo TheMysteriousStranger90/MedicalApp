@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Grpc.Core;
+using Medical.Client.Helpers;
 using Medical.Client.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -66,19 +67,12 @@ public class CreateModel : PageModel
     {
         try
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("Invalid model state: {@ModelState}", ModelState);
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(userId))
-            {
-                return RedirectToPage("/Account/Login");
-            }
-
-            var appointmentTime = new DateTime(
+            if (string.IsNullOrEmpty(userId)) return RedirectToPage("/Account/Login");
+            
+            var localDateTime = new DateTime(
                 AppointmentDateTime.Year,
                 AppointmentDateTime.Month,
                 AppointmentDateTime.Day,
@@ -88,18 +82,11 @@ public class CreateModel : PageModel
                 DateTimeKind.Local);
 
             Input.PatientId = userId;
-            Input.AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(
-                appointmentTime.ToUniversalTime());
+            Input.AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp
+                .FromDateTime(localDateTime.ToUtcTime());
 
-            _logger.LogInformation("Creating appointment: {@Appointment}", new 
-            { 
-                Input.DoctorId,
-                Input.PatientId,
-                AppointmentDate = Input.AppointmentDate?.ToDateTime(),
-                Input.Symptoms,
-                Input.Notes
-            });
-
+            _logger.LogInformation("Creating appointment for local time: {LocalTime}", localDateTime);
+        
             var appointment = await _appointmentService.CreateAppointmentAsync(Input);
             return RedirectToPage("./Details", new { id = appointment.Id });
         }

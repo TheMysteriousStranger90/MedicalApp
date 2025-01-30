@@ -116,12 +116,15 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
             if (doctor == null)
                 throw new RpcException(new Status(StatusCode.NotFound, "Doctor not found"));
 
+            var appointmentTime = request.AppointmentDate.ToDateTime();
+            _logger.LogInformation("Received appointment time (UTC): {Time}", appointmentTime);
+
             var appointment = new Appointment
             {
                 Id = Guid.NewGuid(),
                 DoctorId = request.DoctorId,
                 PatientId = request.PatientId,
-                AppointmentDate = request.AppointmentDate.ToDateTime(),
+                AppointmentDate = appointmentTime,
                 Notes = request.Notes ?? string.Empty,
                 Symptoms = request.Symptoms ?? string.Empty,
                 Fee = request.Fee,

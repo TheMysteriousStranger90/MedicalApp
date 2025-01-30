@@ -61,7 +61,7 @@ public class IndexModel : PageModel
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
-                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                         DoctorName = doctor?.FullName ?? "Unknown",
                         PatientName = patient?.FullName ?? "Unknown",
                         Status = appointment.Status
@@ -84,7 +84,7 @@ public class IndexModel : PageModel
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
-                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                         DoctorName = doctor?.FullName ?? "Unknown",
                         PatientName = patient?.FullName ?? "Unknown",
                         Status = appointment.Status
@@ -106,7 +106,7 @@ public class IndexModel : PageModel
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
-                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                         DoctorName = doctor?.FullName ?? "Unknown",
                         PatientName = patient?.FullName ?? "Unknown",
                         Status = appointment.Status

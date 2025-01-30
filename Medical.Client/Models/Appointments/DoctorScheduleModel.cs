@@ -55,7 +55,7 @@ public class DoctorScheduleModel : PageModel
                 viewModels.Add(new AppointmentViewModel
                 {
                     Id = appointment.Id,
-                    AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                    AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                     PatientName = patient?.FullName ?? "Unknown",
                     Status = appointment.Status
                 });

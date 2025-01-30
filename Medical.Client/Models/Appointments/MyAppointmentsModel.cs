@@ -60,7 +60,7 @@ public class MyAppointmentsModel : PageModel
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
-                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                         DoctorName = doctor?.FullName ?? "Unknown",
                         PatientName = "You",
                         Status = appointment.Status
@@ -75,13 +75,13 @@ public class MyAppointmentsModel : PageModel
                 var appointments = await _appointmentService.GetAppointmentsAsync(request);
                 var viewModels = new List<AppointmentViewModel>();
 
-                foreach (var appointment in appointments.Where(a => a.DoctorId == userId)) // Additional security check
+                foreach (var appointment in appointments.Where(a => a.DoctorId == userId))
                 {
                     var patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
-                        AppointmentDate = appointment.AppointmentDate.ToDateTime(),
+                        AppointmentDate = appointment.AppointmentDate.ToDateTime().ToLocalTime(),
                         DoctorName = "You",
                         PatientName = patient?.FullName ?? "Unknown",
                         Status = appointment.Status

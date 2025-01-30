@@ -1,4 +1,5 @@
 ﻿@page "{patientId}"
+@using Medical.Client.Helpers
 @model Medical.Client.Models.MedicalRecords.HistoryModel
 @{
     ViewData["Title"] = "Medical History";
@@ -23,7 +24,7 @@
         <div class="card mb-3 shadow-sm">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
-                    <span>Record Date: @record.CreatedAt.ToDateTime().ToString("g")</span>
+                    <span>Record Date: @record.CreatedAt.ToLocalTimeString()</span>
                 </div>
             </div>
             <div class="card-body">
