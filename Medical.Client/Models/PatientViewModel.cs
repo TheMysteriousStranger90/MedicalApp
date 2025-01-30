@@ -8,6 +8,18 @@ public class PatientViewModel
     public string FullName { get; set; }
     public string Phone { get; set; }
     public Timestamp DateOfBirth { get; set; }
-    public DateTime? NextAppointment { get; set; }
-    public DateTime? LastAppointment { get; set; }
+    private DateTime? _nextAppointment;
+    private DateTime? _lastAppointment;
+
+    public DateTime? NextAppointment
+    {
+        get => _nextAppointment?.ToLocalTime();
+        set => _nextAppointment = value;
+    }
+
+    public DateTime? LastAppointment
+    {
+        get => _lastAppointment?.ToLocalTime();
+        set => _lastAppointment = value;
+    }
 }
