@@ -124,7 +124,8 @@ public class DoctorServiceGrpc : IDoctorService
         }
     }
 
-    public async Task<IEnumerable<ScheduleModel>> GetDoctorScheduleAsync(string doctorId, DateTime fromDate, DateTime toDate)
+    public async Task<IEnumerable<ScheduleModel>> GetDoctorScheduleAsync(string doctorId, DateTime fromDate,
+        DateTime toDate)
     {
         try
         {

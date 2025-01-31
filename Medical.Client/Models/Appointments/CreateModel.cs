@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using Google.Protobuf.WellKnownTypes;
 using Medical.Client.Helpers;
 using Medical.Client.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,9 @@ public class CreateModel : PageModel
     public List<DoctorModel> AvailableDoctors { get; set; } = new();
     public DoctorModel? SelectedDoctor { get; set; }
     public string? ErrorMessage { get; set; }
+    public List<ScheduleModel> DoctorSchedules { get; set; } = new();
+    public List<TimeSlotModel> AvailableTimeSlots { get; set; } = new();
+    
 
     public CreateModel(
         IAppointmentService appointmentService,
@@ -48,6 +52,23 @@ public class CreateModel : PageModel
             {
                 SelectedDoctor = await _doctorService.GetDoctorByIdAsync(doctorId);
                 Input.DoctorId = doctorId;
+
+                // Get schedule for next month
+                var schedules = await _doctorService.GetDoctorScheduleAsync(
+                    doctorId,
+                    DateTime.UtcNow,
+                    DateTime.UtcNow.AddMonths(1));
+
+                DoctorSchedules = schedules
+                    .Where(s => s.IsAvailable)
+                    .ToList();
+
+                // Get available slots
+                AvailableTimeSlots = DoctorSchedules
+                    .SelectMany(s => s.TimeSlots)
+                    .Where(ts => !ts.IsBooked)
+                    .OrderBy(ts => ts.StartTime.ToDateTime())
+                    .ToList();
             }
             else
             {
@@ -57,8 +78,8 @@ public class CreateModel : PageModel
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error loading doctors");
-            ErrorMessage = "Failed to load available doctors.";
+            _logger.LogError(ex, "Error loading doctor schedule");
+            ErrorMessage = "Failed to load schedule.";
         }
     }
 

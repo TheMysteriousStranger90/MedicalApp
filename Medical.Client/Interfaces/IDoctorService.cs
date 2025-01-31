@@ -1,4 +1,6 @@
-﻿namespace Medical.Client.Interfaces;
+﻿using Google.Protobuf.WellKnownTypes;
+
+namespace Medical.Client.Interfaces;
 
 public interface IDoctorService
 {
