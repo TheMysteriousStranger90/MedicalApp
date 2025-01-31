@@ -91,22 +91,14 @@ public class CreateModel : PageModel
 
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId)) return RedirectToPage("/Account/Login");
-            
-            var localDateTime = new DateTime(
-                AppointmentDateTime.Year,
-                AppointmentDateTime.Month,
-                AppointmentDateTime.Day,
-                AppointmentDateTime.Hour,
-                AppointmentDateTime.Minute,
-                0,
-                DateTimeKind.Local);
+        
+            var localDateTime = DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Local);
 
             Input.PatientId = userId;
-            Input.AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp
-                .FromDateTime(localDateTime.ToUtcTime());
+            Input.AppointmentDate = Timestamp.FromDateTime(localDateTime.ToUtcTime());
 
             _logger.LogInformation("Creating appointment for local time: {LocalTime}", localDateTime);
-        
+    
             var appointment = await _appointmentService.CreateAppointmentAsync(Input);
             return RedirectToPage("./Details", new { id = appointment.Id });
         }

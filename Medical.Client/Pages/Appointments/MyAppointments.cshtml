@@ -13,12 +13,20 @@
             <i class="fas fa-calendar-check me-2"></i>
             @(isPatient ? "My Appointments" : "Doctor Schedule")
         </h2>
-        @if (isPatient)
-        {
-        <a asp-page="/Appointments/Create" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i>Book New Appointment
-        </a>
-        }
+        <div>
+            @if (isDoctor)
+            {
+            <a asp-page="/Appointments/DoctorSchedule" class="btn btn-primary me-2">
+                <i class="fas fa-calendar-alt me-2"></i>Manage Schedule
+            </a>
+            }
+            @if (isPatient)
+            {
+            <a asp-page="/Appointments/Create" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>Book New Appointment
+            </a>
+            }
+        </div>
     </div>
 
     @if (Model.ErrorMessage != null)

@@ -41,20 +41,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (var schedule in Model.DoctorSchedules)
-                                                {
-                                                    <tr>
-                                                        <td>@(((DayOfWeek)schedule.DayOfWeek).ToFormattedDayOfWeek())</td>
-                                                        <td>
-                                                            @schedule.StartTime.ToDateTime().ToString("HH:mm") - 
-                                                            @schedule.EndTime.ToDateTime().ToString("HH:mm")
-                                                        </td>
-                                                        <td>
-                                                            @schedule.ValidFrom.ToDateTime().ToString("d") - 
-                                                            @schedule.ValidTo.ToDateTime().ToString("d")
-                                                        </td>
-                                                    </tr>
-                                                }
+                                            @foreach (var schedule in Model.DoctorSchedules)
+                                            {
+                                            <tr>
+                                                <td>@(((DayOfWeek)schedule.DayOfWeek).ToFormattedDayOfWeek())</td>
+                                                <td>
+                                                    @schedule.StartTime.ToLocalDateTime().ToString("HH:mm") -
+                                                    @schedule.EndTime.ToLocalDateTime().ToString("HH:mm")
+                                                </td>
+                                                <td>
+                                                    @schedule.ValidFrom.ToLocalDateTime().ToString("d") -
+                                                    @schedule.ValidTo.ToLocalDateTime().ToString("d")
+                                                </td>
+                                            </tr>
+                                            }
                                             </tbody>
                                         </table>
                                     </div>
@@ -77,19 +77,19 @@
 
                 @if (Model.SelectedDoctor != null)
                 {
-                    <div class="mb-3">
-                        <label class="form-label">Available Time Slots</label>
-                        <select asp-for="AppointmentDateTime" class="form-select" required>
-                            <option value="">Select Time</option>
-                            @foreach (var slot in Model.AvailableTimeSlots)
-                            {
-                                <option value="@slot.StartTime.ToDateTime().ToString("yyyy-MM-ddTHH:mm:ss")">
-                                    @slot.StartTime.ToDateTime().ToString("dd/MM/yyyy HH:mm")
-                                </option>
-                            }
-                        </select>
-                        <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Available Time Slots</label>
+                    <select asp-for="AppointmentDateTime" class="form-select" required>
+                        <option value="">Select Time</option>
+                        @foreach (var slot in Model.AvailableTimeSlots)
+                        {
+                        <option value="@slot.StartTime.ToDateTime().ToString("yyyy-MM-ddTHH:mm:ss")">
+                            @slot.StartTime.ToLocalDateTime().ToString("dd/MM/yyyy HH:mm")
+                        </option>
+                        }
+                    </select>
+                    <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
+                </div>
                 }
 
                 <div class="mb-3">
