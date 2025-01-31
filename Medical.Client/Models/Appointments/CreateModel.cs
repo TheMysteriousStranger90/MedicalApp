@@ -92,7 +92,7 @@ public class CreateModel : PageModel
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId)) return RedirectToPage("/Account/Login");
         
-            var localDateTime = DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Local);
+            var localDateTime = DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Utc);
 
             Input.PatientId = userId;
             Input.AppointmentDate = Timestamp.FromDateTime(localDateTime.ToUtcTime());

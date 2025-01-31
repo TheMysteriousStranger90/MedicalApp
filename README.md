@@ -1,4 +1,5 @@
 # MedicalApp
+![Image 1](Screenshots/Screen(1).png)
 
 ## Overview
 A distributed healthcare appointment management system built with .NET 8 and gRPC, enabling doctors and patients to manage medical appointments efficiently.
@@ -15,6 +16,29 @@ A distributed healthcare appointment management system built with .NET 8 and gRP
     - View upcoming and past appointments
     - Cancel or reschedule appointments
     - Appointment status tracking
+
+![Image 1](Screenshots/Screen(2).png)
+![Image 1](Screenshots/Screen(3).png)
+![Image 1](Screenshots/Screen(4).png)
+![Image 1](Screenshots/Screen(5).png)
+![Image 1](Screenshots/Screen(6).png)
+![Image 1](Screenshots/Screen(7).png)
+![Image 1](Screenshots/Screen(8).png)
+![Image 1](Screenshots/Screen(9).png)
+![Image 1](Screenshots/Screen(10).png)
+![Image 1](Screenshots/Screen(11).png)
+![Image 1](Screenshots/Screen(12).png)
+![Image 1](Screenshots/Screen(13).png)
+![Image 1](Screenshots/Screen(14).png)
+![Image 1](Screenshots/Screen(15).png)
+![Image 1](Screenshots/Screen(16).png)
+![Image 1](Screenshots/Screen(17).png)
+![Image 1](Screenshots/Screen(18).png)
+![Image 1](Screenshots/Screen(19).png)
+![Image 1](Screenshots/Screen(20).png)
+![Image 1](Screenshots/Screen(21).png)
+![Image 1](Screenshots/Screen(22).png)
+![Image 1](Screenshots/Screen(23).png)
 
 ## Technical Stack
 - .NET 8.0
