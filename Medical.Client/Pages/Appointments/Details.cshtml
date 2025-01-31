@@ -51,7 +51,9 @@
                             <dd class="col-sm-8">@Model.PatientName</dd>
 
                             <dt class="col-sm-4">Date & Time</dt>
-                            <dd class="col-sm-8">@Model.Appointment.AppointmentDate.ToLocalTimeString()</dd>
+                            <dd class="col-sm-8">
+                                @Model.Appointment.AppointmentDate.ToLocalTimeString()
+                            </dd>
                             
                             <dt class="col-sm-4">Fee</dt>
                             <dd class="col-sm-8">@CurrencyHelper.FormatUSD(@Model.Appointment.Fee)</dd>

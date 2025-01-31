@@ -3,6 +3,19 @@
 ## Overview
 A distributed healthcare appointment management system built with .NET 8 and gRPC, enabling doctors and patients to manage medical appointments efficiently.
 
+## Features
+- **Doctor Schedule Management**
+    - Create schedules with working hours
+    - Set validity periods for schedules
+    - Define appointment slot duration
+    - Manage schedule availability
+    - View and manage time slots
+- **Appointment Management**
+    - Book appointments based on doctor's schedule
+    - View upcoming and past appointments
+    - Cancel or reschedule appointments
+    - Appointment status tracking
+
 ## Technical Stack
 - .NET 8.0
 - ASP.NET Core

@@ -1,4 +1,6 @@
 ﻿@page
+@using Medical.Client.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Medical.Client.Models.Schedule.CreateModel
 @{
     ViewData["Title"] = "Create Schedule";
@@ -23,9 +25,15 @@
                 @foreach (var schedule in Model.ExistingSchedules)
                 {
                 <tr>
-                    <td>@schedule.DayOfWeek</td>
-                    <td>@schedule.StartTime.ToDateTime().ToString("HH:mm") - @schedule.EndTime.ToDateTime().ToString("HH:mm")</td>
-                    <td>@schedule.ValidFrom.ToDateTime().ToString("d") - @schedule.ValidTo.ToDateTime().ToString("d")</td>
+                    <td>@(((DayOfWeek)schedule.DayOfWeek).ToFormattedDayOfWeek())</td>
+                    <td>
+                        @schedule.StartTime.ToLocalDateTime().ToString("HH:mm") -
+                        @schedule.EndTime.ToLocalDateTime().ToString("HH:mm")
+                    </td>
+                    <td>
+                        @schedule.ValidFrom.ToLocalDateTime().ToString("d") -
+                        @schedule.ValidTo.ToLocalDateTime().ToString("d")
+                    </td>
                 </tr>
                 }
                 </tbody>
