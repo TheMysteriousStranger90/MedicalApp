@@ -55,7 +55,7 @@ A distributed healthcare appointment management system built with .NET 8 and gRP
 - **Medical.Client**: Web client application
 
 ## SSL Certificate Setup
-1. Run makemedicalcerts.ps1.ps1 script
+1. Run makemedicalcerts.ps1 script
 2. Copy server.pfx to Medical.GrpcService root
 3. Copy client.pfx to Medical.Client root
 4. Set build action to "Content" and "Copy if newer" for both certificates
@@ -76,3 +76,10 @@ Bohdan Harabadzhyu
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## YouTube Review
+<details>
+<summary>📺 Watch Video Review</summary>
+
+[![YouTube](http://i.ytimg.com/vi/NF1lHzmazgs/hqdefault.jpg)](https://www.youtube.com/watch?v=NF1lHzmazgs)
+</details>
