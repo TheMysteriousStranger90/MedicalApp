@@ -1,0 +1,102 @@
+﻿@page
+@model Medical.Client.Models.Schedule.CreateModel
+@{
+    ViewData["Title"] = "Create Schedule";
+}
+
+<div class="container">
+
+    @if (Model.ExistingSchedules.Any())
+    {
+    <div class="mt-4">
+        <h4>Your Existing Schedules</h4>
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Hours</th>
+                    <th>Valid Period</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var schedule in Model.ExistingSchedules)
+                {
+                <tr>
+                    <td>@schedule.DayOfWeek</td>
+                    <td>@schedule.StartTime.ToDateTime().ToString("HH:mm") - @schedule.EndTime.ToDateTime().ToString("HH:mm")</td>
+                    <td>@schedule.ValidFrom.ToDateTime().ToString("d") - @schedule.ValidTo.ToDateTime().ToString("d")</td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+    
+    
+    <h2><i class="fas fa-calendar me-2"></i>Create Schedule</h2>
+
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post">
+        <input type="hidden" asp-for="Input.DoctorId"/>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Input.DayOfWeek" class="form-label">Day of Week</label>
+                    <select asp-for="Input.DayOfWeek" class="form-select" required>
+                        @foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
+                        {
+                            <option value="@((int)day)">@day</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="StartTime" class="form-label">Start Time</label>
+                    <input asp-for="StartTime" type="time" class="form-control" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EndTime" class="form-label">End Time</label>
+                    <input asp-for="EndTime" type="time" class="form-control" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.SlotDurationMinutes" class="form-label">Slot Duration (minutes)</label>
+                    <input asp-for="Input.SlotDurationMinutes" type="number" class="form-control"
+                           value="30" min="15" max="120" step="15" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ValidFrom" class="form-label">Valid From</label>
+                    <input asp-for="ValidFrom" type="date" class="form-control" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ValidTo" class="form-label">Valid To</label>
+                    <input asp-for="ValidTo" type="date" class="form-control" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Notes" class="form-label">Notes</label>
+                    <textarea asp-for="Input.Notes" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Schedule</button>
+                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -275,24 +275,58 @@ public static class SeedDataInitializer
                     new Schedule
                     {
                         DoctorId = doctor.Id,
-                        StartTime = DateTime.Today.AddHours(9),
-                        EndTime = DateTime.Today.AddHours(17),
+                        StartTime = new TimeSpan(9, 0, 0), // 9:00 AM
+                        EndTime = new TimeSpan(17, 0, 0), // 5:00 PM
                         DayOfWeek = DayOfWeek.Monday,
                         IsAvailable = true,
-                        MaxAppointments = 8,
-                        IsRecurring = true
+                        SlotDurationMinutes = 30,
+                        ValidFrom = DateTime.Today,
+                        ValidTo = DateTime.Today.AddMonths(3),
+                        Notes = "Regular Monday schedule"
                     },
                     new Schedule
                     {
                         DoctorId = doctor.Id,
-                        StartTime = DateTime.Today.AddHours(9),
-                        EndTime = DateTime.Today.AddHours(17),
+                        StartTime = new TimeSpan(9, 0, 0),
+                        EndTime = new TimeSpan(17, 0, 0),
                         DayOfWeek = DayOfWeek.Wednesday,
                         IsAvailable = true,
-                        MaxAppointments = 8,
-                        IsRecurring = true
+                        SlotDurationMinutes = 30,
+                        ValidFrom = DateTime.Today,
+                        ValidTo = DateTime.Today.AddMonths(3),
+                        Notes = "Regular Wednesday schedule"
                     }
                 };
+
+                // Generate time slots for each schedule
+                foreach (var schedule in schedules)
+                {
+                    var slots = new List<TimeSlot>();
+                    var startDate = schedule.ValidFrom.Value;
+                    var endDate = schedule.ValidTo.Value;
+
+                    for (var date = startDate; date <= endDate; date = date.AddDays(1))
+                    {
+                        if (date.DayOfWeek != schedule.DayOfWeek) continue;
+
+                        var slotStart = date.Date.Add(schedule.StartTime);
+                        var slotEnd = date.Date.Add(schedule.EndTime);
+
+                        while (slotStart.AddMinutes(schedule.SlotDurationMinutes) <= slotEnd)
+                        {
+                            slots.Add(new TimeSlot
+                            {
+                                StartTime = slotStart,
+                                EndTime = slotStart.AddMinutes(schedule.SlotDurationMinutes),
+                                IsBooked = false
+                            });
+
+                            slotStart = slotStart.AddMinutes(schedule.SlotDurationMinutes);
+                        }
+                    }
+
+                    schedule.TimeSlots = slots;
+                }
 
                 await context.Schedules.AddRangeAsync(schedules);
                 await context.SaveChangesAsync();

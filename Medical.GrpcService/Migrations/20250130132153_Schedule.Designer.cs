@@ -4,6 +4,7 @@ using Medical.GrpcService.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Medical.GrpcService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250130132153_Schedule")]
+    partial class Schedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace Medical.GrpcService.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Medical.GrpcService.Entities.LabResult", b =>
@@ -115,7 +118,7 @@ namespace Medical.GrpcService.Migrations
 
                     b.HasIndex("TestDate");
 
-                    b.ToTable("LabResults", (string)null);
+                    b.ToTable("LabResults");
                 });
 
             modelBuilder.Entity("Medical.GrpcService.Entities.MedicalRecord", b =>
@@ -153,7 +156,7 @@ namespace Medical.GrpcService.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("MedicalRecords", (string)null);
+                    b.ToTable("MedicalRecords");
                 });
 
             modelBuilder.Entity("Medical.GrpcService.Entities.Role", b =>
@@ -221,7 +224,7 @@ namespace Medical.GrpcService.Migrations
 
                     b.HasIndex("DoctorId", "DayOfWeek");
 
-                    b.ToTable("Schedules", (string)null);
+                    b.ToTable("Schedules");
                 });
 
             modelBuilder.Entity("Medical.GrpcService.Entities.TimeSlot", b =>
@@ -254,7 +257,7 @@ namespace Medical.GrpcService.Migrations
 
                     b.HasIndex("ScheduleId");
 
-                    b.ToTable("TimeSlots", (string)null);
+                    b.ToTable("TimeSlots");
                 });
 
             modelBuilder.Entity("Medical.GrpcService.Entities.User", b =>
@@ -472,7 +475,7 @@ namespace Medical.GrpcService.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUsers", null, t =>
+                    b.ToTable("AspNetUsers", t =>
                         {
                             t.Property("FullName")
                                 .HasColumnName("Doctor_FullName");

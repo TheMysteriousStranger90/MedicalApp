@@ -22,6 +22,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string,
     public DbSet<Patient> Patients { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<TimeSlot> TimeSlots { get; set; }
     public DbSet<MedicalRecord> MedicalRecords { get; set; }
     public DbSet<LabResult> LabResults { get; set; }
 

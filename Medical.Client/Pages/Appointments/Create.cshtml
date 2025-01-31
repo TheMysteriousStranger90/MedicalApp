@@ -1,4 +1,6 @@
 ﻿@page
+@using Medical.Client.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Medical.Client.Models.Appointments.CreateModel
 @{
     ViewData["Title"] = "Create Appointment";
@@ -19,29 +21,76 @@
                     <label asp-for="Input.DoctorId" class="form-label">Doctor</label>
                     @if (Model.SelectedDoctor != null)
                     {
-                    <input type="hidden" asp-for="Input.DoctorId" />
-                    <input type="text" class="form-control" value="@Model.SelectedDoctor.FullName - @Model.SelectedDoctor.Specialization" readonly />
+                        <input type="hidden" asp-for="Input.DoctorId" />
+                        <input type="text" class="form-control" value="@Model.SelectedDoctor.FullName - @Model.SelectedDoctor.Specialization" readonly />
+                        
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-link p-0" data-bs-toggle="collapse" data-bs-target="#scheduleCollapse">
+                                View Doctor's Schedule
+                            </button>
+                            <div class="collapse" id="scheduleCollapse">
+                                <div class="card card-body mt-2">
+                                    <h6>Working Hours</h6>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Day</th>
+                                                    <th>Hours</th>
+                                                    <th>Valid Period</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach (var schedule in Model.DoctorSchedules)
+                                            {
+                                            <tr>
+                                                <td>@(((DayOfWeek)schedule.DayOfWeek).ToFormattedDayOfWeek())</td>
+                                                <td>
+                                                    @schedule.StartTime.ToLocalDateTime().ToString("HH:mm") -
+                                                    @schedule.EndTime.ToLocalDateTime().ToString("HH:mm")
+                                                </td>
+                                                <td>
+                                                    @schedule.ValidFrom.ToLocalDateTime().ToString("d") -
+                                                    @schedule.ValidTo.ToLocalDateTime().ToString("d")
+                                                </td>
+                                            </tr>
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
                     else
                     {
-                    <select asp-for="Input.DoctorId" class="form-select">
-                        <option value="">Select Doctor</option>
-                        @foreach (var doctor in Model.AvailableDoctors)
-                        {
-                        <option value="@doctor.Id">@doctor.FullName - @doctor.Specialization</option>
-                        }
-                    </select>
+                        <select asp-for="Input.DoctorId" class="form-select">
+                            <option value="">Select Doctor</option>
+                            @foreach (var doctor in Model.AvailableDoctors)
+                            {
+                                <option value="@doctor.Id">@doctor.FullName - @doctor.Specialization</option>
+                            }
+                        </select>
                     }
                     <span asp-validation-for="Input.DoctorId" class="text-danger"></span>
                 </div>
 
+                @if (Model.SelectedDoctor != null)
+                {
                 <div class="mb-3">
-                    <label asp-for="AppointmentDateTime" class="form-label">Appointment Date</label>
-                    <input asp-for="AppointmentDateTime" type="datetime-local" class="form-control"
-                           required step="60"
-                           min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    <label class="form-label">Available Time Slots</label>
+                    <select asp-for="AppointmentDateTime" class="form-select" required>
+                        <option value="">Select Time</option>
+                        @foreach (var slot in Model.AvailableTimeSlots)
+                        {
+                        <option value="@slot.StartTime.ToDateTime().ToString("yyyy-MM-ddTHH:mm:ss")">
+                            @slot.StartTime.ToLocalDateTime().ToString("dd/MM/yyyy HH:mm")
+                        </option>
+                        }
+                    </select>
                     <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
                 </div>
+                }
 
                 <div class="mb-3">
                     <label asp-for="Input.Symptoms" class="form-label">Symptoms</label>
@@ -64,4 +113,14 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function() {
+            $('#Input_DoctorId').change(function() {
+                var doctorId = $(this).val();
+                if (doctorId) {
+                    window.location.href = window.location.pathname + '?doctorId=' + doctorId;
+                }
+            });
+        });
+    </script>
 }

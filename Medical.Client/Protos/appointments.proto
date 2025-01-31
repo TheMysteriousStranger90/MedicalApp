@@ -125,6 +125,10 @@ service DoctorService {
   rpc GetDoctors (GetDoctorsRequest) returns (GetDoctorsResponse);
   rpc GetDoctorById (GetDoctorByIdRequest) returns (DoctorModel);
   rpc GetAvailableDoctors (GetAvailableDoctorsRequest) returns (GetDoctorsResponse);
+  rpc CreateSchedule (CreateScheduleRequest) returns (ScheduleModel);
+  rpc UpdateSchedule (UpdateScheduleRequest) returns (ScheduleModel);
+  rpc DeleteSchedule (DeleteScheduleRequest) returns (DeleteScheduleResponse);
+  rpc GetDoctorSchedule (GetDoctorScheduleRequest) returns (GetDoctorScheduleResponse);
 }
 
 service PatientService {
@@ -223,4 +227,69 @@ message CreateMedicalRecordRequest {
   string prescriptions = 4;
   string notes = 5;
   repeated LabResultModel labResults = 6;
+}
+
+
+
+
+message ScheduleModel {
+  string id = 1;
+  string doctorId = 2;
+  int32 dayOfWeek = 3;
+  google.protobuf.Timestamp startTime = 4;
+  google.protobuf.Timestamp endTime = 5;
+  int32 slotDurationMinutes = 6;
+  bool isAvailable = 7;
+  google.protobuf.Timestamp validFrom = 8;
+  google.protobuf.Timestamp validTo = 9;
+  string notes = 10;
+  repeated TimeSlotModel timeSlots = 11;
+}
+
+message TimeSlotModel {
+  string id = 1;
+  google.protobuf.Timestamp startTime = 2;
+  google.protobuf.Timestamp endTime = 3;
+  bool isBooked = 4;
+  string appointmentId = 5;
+}
+
+message CreateScheduleRequest {
+  string doctorId = 1;
+  int32 dayOfWeek = 2;
+  google.protobuf.Timestamp startTime = 3;
+  google.protobuf.Timestamp endTime = 4;
+  int32 slotDurationMinutes = 5;
+  google.protobuf.Timestamp validFrom = 6;
+  google.protobuf.Timestamp validTo = 7;
+  string notes = 8;
+}
+
+message UpdateScheduleRequest {
+  string id = 1;
+  bool isAvailable = 2;
+  google.protobuf.Timestamp startTime = 3;
+  google.protobuf.Timestamp endTime = 4;
+  int32 slotDurationMinutes = 5;
+  string notes = 6;
+  int32 dayOfWeek = 7;
+}
+
+message DeleteScheduleRequest {
+  string id = 1;
+}
+
+message DeleteScheduleResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetDoctorScheduleRequest {
+  string doctorId = 1;
+  google.protobuf.Timestamp fromDate = 2;
+  google.protobuf.Timestamp toDate = 3;
+}
+
+message GetDoctorScheduleResponse {
+  repeated ScheduleModel schedules = 1;
 }
