@@ -13,20 +13,28 @@ builder.WebHost.ConfigureKestrel(options =>
     });
 });
 
-// Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddGrpc(options => { options.EnableDetailedErrors = true; });
+
+builder.Services.AddGrpc(options => { options.EnableDetailedErrors = builder.Environment.IsDevelopment(); });
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowGrpcWeb", builder =>
+    options.AddPolicy("AllowGrpcWeb", policy =>
     {
-        builder.AllowAnyOrigin()
+        policy.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+            .WithExposedHeaders(
+                "Grpc-Status", "Grpc-Message",
+                "Grpc-Encoding", "Grpc-Accept-Encoding");
     });
 });
+
+builder.Services.AddOpenTelemetryObservability(builder.Configuration);
+
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<ApplicationDbContext>();
 
 var app = builder.Build();
 
@@ -43,19 +51,17 @@ catch (Exception ex)
     throw;
 }
 
-// Configure middleware
 if (app.Environment.IsDevelopment())
-{
     app.UseDeveloperExceptionPage();
-}
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
 app.UseCors("AllowGrpcWeb");
 app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapPrometheusScrapingEndpoint();
 
 app.MapGrpcService<AuthenticationGrpcService>().EnableGrpcWeb();
 app.MapGrpcService<AppointmentGrpcService>().EnableGrpcWeb();
@@ -66,14 +72,11 @@ app.MapGrpcService<MedicalRecordGrpcService>().EnableGrpcWeb();
 app.MapHealthChecks("/health");
 
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client.");
-
 app.MapGet("/version", () => new
 {
-    Version = "1.0.0",
+    Version = "1.1.0",
     Environment = app.Environment.EnvironmentName
 });
-
 app.MapGet("/docs", () => Results.Redirect("https://github.com/TheMysteriousStranger90/MedicalApp"));
-
 
 app.Run();

@@ -1,8 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medical.GrpcService", "Medical.GrpcService\Medical.GrpcService.csproj", "{17ECCFB0-47A7-446C-BC9A-65762F4D62B0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{50237589-03AF-4F7A-A6C2-85C8DB1670B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medical.Client", "Medical.Client\Medical.Client.csproj", "{66EB3961-084C-4579-A224-0E311175C0FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medical.GrpcService", "Medical.GrpcService\Medical.GrpcService.csproj", "{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medical.Client", "Medical.Client\Medical.Client.csproj", "{1376E46D-ED66-4752-9900-4AE1A74DE690}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{094FA28E-AA54-489E-AA02-353FBE320FBC}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +18,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17ECCFB0-47A7-446C-BC9A-65762F4D62B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17ECCFB0-47A7-446C-BC9A-65762F4D62B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17ECCFB0-47A7-446C-BC9A-65762F4D62B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17ECCFB0-47A7-446C-BC9A-65762F4D62B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66EB3961-084C-4579-A224-0E311175C0FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66EB3961-084C-4579-A224-0E311175C0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66EB3961-084C-4579-A224-0E311175C0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66EB3961-084C-4579-A224-0E311175C0FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1376E46D-ED66-4752-9900-4AE1A74DE690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1376E46D-ED66-4752-9900-4AE1A74DE690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1376E46D-ED66-4752-9900-4AE1A74DE690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1376E46D-ED66-4752-9900-4AE1A74DE690}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0AA1EE85-FBDD-495E-B02B-BAD34E7B9BBA} = {50237589-03AF-4F7A-A6C2-85C8DB1670B0}
+		{1376E46D-ED66-4752-9900-4AE1A74DE690} = {50237589-03AF-4F7A-A6C2-85C8DB1670B0}
 	EndGlobalSection
 EndGlobal
