@@ -33,8 +33,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddOpenTelemetryObservability(builder.Configuration);
 
-builder.Services.AddHealthChecks()
-    .AddDbContextCheck<ApplicationDbContext>();
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
