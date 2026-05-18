@@ -31,12 +31,24 @@ try
 
         if (ctx.HostingEnvironment.IsDevelopment())
         {
-            options.ListenLocalhost(7084, o =>
+            // Use ListenAnyIP so the service is reachable from other Docker containers
+            // via the bridge network (ListenLocalhost only binds 127.0.0.1 and is
+            // invisible to sibling containers).
+            var devCertPath     = ctx.Configuration["Kestrel:Certificates:Default:Path"];
+            var devCertPassword = ctx.Configuration["Kestrel:Certificates:Default:Password"];
+
+            options.ListenAnyIP(7084, o =>
             {
                 o.Protocols = HttpProtocols.Http2;
-                o.UseHttps(); // ASP.NET Core development certificate
+                // When running inside Docker a PFX is mounted and its path injected via
+                // ASPNETCORE_Kestrel__Certificates__Default__Path; use it.
+                // For plain "dotnet run" outside Docker fall back to the ASP.NET dev-cert.
+                if (!string.IsNullOrEmpty(devCertPath) && File.Exists(devCertPath))
+                    o.UseHttps(devCertPath, devCertPassword);
+                else
+                    o.UseHttps(); // ASP.NET Core development certificate (local dev)
             });
-            options.ListenLocalhost(5006, o => { o.Protocols = HttpProtocols.Http1; });
+            options.ListenAnyIP(5006, o => { o.Protocols = HttpProtocols.Http1; });
         }
         else
         {
