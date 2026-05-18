@@ -1,0 +1,39 @@
+# Auto-detect text files and convert line endings to CRLF on Windows
+* text=auto eol=crlf
+
+# Source files
+*.cs      text diff=csharp eol=crlf
+*.csproj  text diff=xml    eol=crlf
+*.sln     text             eol=crlf
+*.props   text diff=xml    eol=crlf
+*.targets text diff=xml    eol=crlf
+*.xml     text diff=xml    eol=crlf
+*.json    text             eol=crlf
+*.yml     text             eol=crlf
+*.yaml    text             eol=crlf
+*.proto   text             eol=crlf
+*.md      text             eol=crlf
+*.txt     text             eol=crlf
+*.sh      text             eol=lf
+Dockerfile* text           eol=lf
+*.ps1     text             eol=crlf
+.editorconfig text         eol=crlf
+.gitattributes text        eol=crlf
+
+# Docker & CI
+docker-compose*.yml text   eol=lf
+*.sh                text   eol=lf
+
+# Binary files
+*.pfx    binary
+*.png    binary
+*.jpg    binary
+*.gif    binary
+*.ico    binary
+*.zip    binary
+*.nupkg  binary
+*.exe    binary
+*.dll    binary
+
+# Linguist
+*.proto  linguist-language=Protocol\ Buffer
