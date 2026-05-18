@@ -1,0 +1,16 @@
+2026-03-03 18:59:22.687 +02:00 [INF] User authenticated: false, Role: , Path: /
+2026-03-03 18:59:23.109 +02:00 [INF] User authenticated: false, Role: 
+2026-03-03 18:59:28.348 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2026-03-03 18:59:57.522 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2026-03-03 18:59:58.396 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2026-03-03 18:59:58.400 +02:00 [INF] User authenticated: true, Role: Doctor
+2026-03-03 18:59:59.807 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2026-03-03 18:59:59.828 +02:00 [INF] Getting schedules for doctor 13e614c1-46ff-4f20-9f11-e5b13593f311
+2026-03-03 19:00:06.480 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2026-03-03 19:00:06.491 +02:00 [INF] Attempting to delete schedule 0daf532c-78c6-4c3c-2d3e-08dd41cb7a85
+2026-03-03 19:00:06.849 +02:00 [INF] Schedule 0daf532c-78c6-4c3c-2d3e-08dd41cb7a85 deleted successfully
+2026-03-03 19:00:06.866 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2026-03-03 19:00:06.872 +02:00 [INF] Getting schedules for doctor 13e614c1-46ff-4f20-9f11-e5b13593f311
+2026-03-03 19:00:08.287 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2026-03-03 19:00:09.258 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2026-03-03 19:00:09.263 +02:00 [INF] Getting schedules for doctor 13e614c1-46ff-4f20-9f11-e5b13593f311

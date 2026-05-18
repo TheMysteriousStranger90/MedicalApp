@@ -1,0 +1,524 @@
+2025-01-31 07:59:25.110 +02:00 [INF] Starting Medical Client web application
+2025-01-31 07:59:30.788 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 07:59:31.161 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 07:59:34.541 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:00:00.234 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:00:01.359 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:00:01.362 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:00:03.607 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:00:03.648 +02:00 [INF] Getting schedules for doctor c59ba6c7-3868-4d08-b84b-bcf232cfe4df
+2025-01-31 08:00:07.973 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:00:31.065 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:00:31.098 +02:00 [INF] Creating schedule - DayOfWeek: 2, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 08:00:31.718 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:00:31.720 +02:00 [INF] Getting schedules for doctor c59ba6c7-3868-4d08-b84b-bcf232cfe4df
+2025-01-31 08:00:56.457 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 08:00:56.460 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 08:00:58.274 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:01:22.148 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:01:22.328 +02:00 [INF] User authenticated: true, Role: Patient, Path: /
+2025-01-31 08:01:22.333 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-31 08:01:24.297 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:01:24.318 +02:00 [INF] Requesting appointments for PatientId: f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:01:24.395 +02:00 [INF] Received 0 appointments
+2025-01-31 08:01:25.676 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:01:29.479 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:06:19.137 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:06:19.140 +02:00 [INF] Requesting appointments for PatientId: f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:06:19.251 +02:00 [INF] Received 0 appointments
+2025-01-31 08:06:20.293 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:06:21.874 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:11:53.551 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:11:55.378 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:11:55.438 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:12:01.177 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:12:01.294 +02:00 [INF] Requesting appointments for PatientId: f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:12:02.429 +02:00 [INF] Received 0 appointments
+2025-01-31 08:12:03.835 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:12:06.108 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:12:23.413 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:12:23.451 +02:00 [INF] Creating appointment for local time: "2025-02-03T10:00:00.0000000+02:00"
+2025-01-31 08:12:23.454 +02:00 [INF] Creating appointment with token: true
+2025-01-31 08:12:23.770 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:12:32.515 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:12:32.524 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:12:32.547 +02:00 [INF] Received 1 appointments
+2025-01-31 08:12:36.130 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:12:36.137 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:12:36.145 +02:00 [INF] Received 1 appointments
+2025-01-31 08:12:59.487 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:12:59.490 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:12:59.499 +02:00 [INF] Received 1 appointments
+2025-01-31 08:13:03.040 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:13:03.042 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:13:03.048 +02:00 [INF] Received 1 appointments
+2025-01-31 08:13:07.149 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:13:07.152 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:13:07.157 +02:00 [INF] Received 1 appointments
+2025-01-31 08:13:13.067 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:13:13.076 +02:00 [INF] Getting schedules for doctor c59ba6c7-3868-4d08-b84b-bcf232cfe4df
+2025-01-31 08:13:17.222 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:13:20.305 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:13:20.307 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:13:20.313 +02:00 [INF] Received 1 appointments
+2025-01-31 08:13:29.622 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:13:29.624 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:13:29.631 +02:00 [INF] Received 1 appointments
+2025-01-31 08:13:40.818 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:42.498 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:48.068 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:48.082 +02:00 [INF] Updating appointment b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee with status "Completed"
+2025-01-31 08:13:48.203 +02:00 [INF] Successfully updated appointment b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:48.215 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:55.953 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:55.966 +02:00 [INF] Updating appointment b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee with status "Completed"
+2025-01-31 08:13:55.978 +02:00 [INF] Successfully updated appointment b4fa7147-cd2d-4aa5-98cc-fa8506fb46ee
+2025-01-31 08:13:56.027 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /MedicalRecords/History/f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:14:05.694 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 08:14:06.237 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:14:06.240 +02:00 [INF] Requesting appointments for PatientId: f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:14:06.246 +02:00 [INF] Received 1 appointments
+2025-01-31 08:14:07.376 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/f957995d-1107-4d68-8034-52b0127b710d
+2025-01-31 08:14:32.111 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:14:32.114 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:14:32.119 +02:00 [INF] Received 1 appointments
+2025-01-31 08:17:41.956 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:17:43.283 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:17:43.330 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:17:48.318 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:17:48.418 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:17:49.553 +02:00 [INF] Received 1 appointments
+2025-01-31 08:17:51.291 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:17:51.310 +02:00 [INF] Getting schedules for doctor c59ba6c7-3868-4d08-b84b-bcf232cfe4df
+2025-01-31 08:17:56.639 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:17:56.645 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:17:56.655 +02:00 [INF] Received 1 appointments
+2025-01-31 08:17:57.338 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:17:58.584 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:17:58.591 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:17:58.599 +02:00 [INF] Received 1 appointments
+2025-01-31 08:18:40.909 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:18:42.102 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:18:42.155 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:18:44.219 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:18:44.324 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:18:47.939 +02:00 [INF] Received 1 appointments
+2025-01-31 08:18:50.708 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:18:50.730 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:18:50.750 +02:00 [INF] Received 1 appointments
+2025-01-31 08:19:02.845 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 08:19:02.876 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:19:02.885 +02:00 [INF] Received 1 appointments
+2025-01-31 08:19:04.613 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:19:07.974 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:19:07.987 +02:00 [INF] Getting schedules for doctor c59ba6c7-3868-4d08-b84b-bcf232cfe4df
+2025-01-31 08:19:14.094 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:19:14.098 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:19:14.105 +02:00 [INF] Received 1 appointments
+2025-01-31 08:19:15.557 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 08:19:15.564 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:19:15.570 +02:00 [INF] Received 1 appointments
+2025-01-31 08:32:37.241 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:32:39.315 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 08:32:39.370 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 08:33:49.089 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:34:22.883 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:34:23.791 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:34:23.794 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:34:27.831 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Doctors
+2025-01-31 08:34:38.742 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:34:38.760 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:34:39.881 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:35:18.531 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:35:18.552 +02:00 [INF] Creating schedule - DayOfWeek: 1, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 08:35:18.702 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:35:18.705 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:35:24.053 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:36:01.738 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:36:01.741 +02:00 [INF] Creating schedule - DayOfWeek: 2, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 08:36:01.812 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:36:01.814 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:36:07.009 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:36:38.250 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:36:38.255 +02:00 [INF] Creating schedule - DayOfWeek: 3, StartTime: "09:00:00", EndTime: "16:00:00"
+2025-01-31 08:36:38.330 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:36:38.333 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:36:47.093 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:37:10.375 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:37:10.378 +02:00 [INF] Creating schedule - DayOfWeek: 4, StartTime: "09:00:00", EndTime: "16:00:00"
+2025-01-31 08:37:10.446 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:37:10.449 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:37:27.292 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 08:37:27.304 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:37:27.350 +02:00 [INF] Received 0 appointments
+2025-01-31 08:37:28.079 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:37:28.088 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:37:28.096 +02:00 [INF] Received 0 appointments
+2025-01-31 08:37:31.072 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:39:48.109 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:39:49.667 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:39:49.714 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:39:56.477 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 08:39:56.574 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:40:01.873 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 08:40:53.027 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 08:40:53.029 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 08:40:54.877 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:41:33.985 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 08:41:34.182 +02:00 [INF] User authenticated: true, Role: Patient, Path: /
+2025-01-31 08:41:34.185 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-31 08:41:35.793 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 08:41:40.696 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 08:41:52.049 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors/Details/6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 08:42:01.640 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:42:50.448 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:42:50.468 +02:00 [INF] Creating appointment for local time: "2025-02-03T08:00:00.0000000+02:00"
+2025-01-31 08:42:50.471 +02:00 [INF] Creating appointment with token: true
+2025-01-31 08:42:50.758 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:43:03.659 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:43:03.676 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:43:03.723 +02:00 [INF] Received 1 appointments
+2025-01-31 08:43:07.643 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:43:08.420 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:43:08.423 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:43:08.430 +02:00 [INF] Received 1 appointments
+2025-01-31 08:43:30.949 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:43:31.608 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:43:31.611 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:43:31.620 +02:00 [INF] Received 1 appointments
+2025-01-31 08:43:32.291 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:43:39.030 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 08:43:44.944 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:46:03.711 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:46:05.918 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:46:05.990 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:46:10.864 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:46:14.448 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:46:21.507 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:46:22.200 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:46:22.226 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:46:22.331 +02:00 [INF] Received 1 appointments
+2025-01-31 08:46:29.071 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 08:46:29.076 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 08:46:29.105 +02:00 [INF] Received 1 appointments
+2025-01-31 08:48:15.329 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:48:16.548 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:48:16.626 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:48:20.844 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:48:24.217 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 08:48:24.240 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:48:24.361 +02:00 [INF] Received 1 appointments
+2025-01-31 08:48:25.659 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 08:48:26.159 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:28.329 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:29.459 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:30.071 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:30.262 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:30.603 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:48:30.944 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:49:25.339 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:49:26.486 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:49:26.542 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:49:38.010 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:49:42.399 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 08:50:23.474 +02:00 [INF] Starting Medical Client web application
+2025-01-31 08:50:24.993 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 08:50:25.052 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 08:50:33.690 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 09:06:55.469 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:06:57.205 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:06:57.363 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:07:04.924 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 09:08:08.561 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:08:09.595 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:08:09.642 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:08:19.615 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments
+2025-01-31 09:08:19.726 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:08:22.460 +02:00 [INF] Received 1 appointments
+2025-01-31 09:08:25.832 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:08:25.857 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:08:25.871 +02:00 [INF] Received 1 appointments
+2025-01-31 09:08:30.574 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:08:30.687 +02:00 [INF] Cancelling appointment c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 09:08:30.691 +02:00 [INF] Updating appointment c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5 with status "Cancelled"
+2025-01-31 09:08:31.137 +02:00 [INF] Successfully updated appointment c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 09:08:31.140 +02:00 [INF] Successfully cancelled appointment c8eaa417-1cff-4e8f-b557-3fbcf6e07aa5
+2025-01-31 09:08:31.151 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:08:31.154 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:08:31.162 +02:00 [INF] Received 1 appointments
+2025-01-31 09:08:32.745 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 09:08:34.764 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors/Details/6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 09:08:36.235 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:09:19.796 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:09:19.849 +02:00 [INF] Creating appointment for local time: "2025-02-03T08:00:00.0000000+02:00"
+2025-01-31 09:09:19.853 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:09:19.966 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:13:41.752 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:13:43.232 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:13:43.280 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:13:48.314 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:13:53.226 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Edit/982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:14:06.698 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Edit/982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:14:06.734 +02:00 [INF] Updating appointment 982289fa-0064-42b8-bbd8-6be6ea634a44 with status "Cancelled"
+2025-01-31 09:14:07.138 +02:00 [INF] Successfully updated appointment 982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:14:07.149 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/982289fa-0064-42b8-bbd8-6be6ea634a44
+2025-01-31 09:14:08.986 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:14:09.004 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:14:09.112 +02:00 [INF] Received 2 appointments
+2025-01-31 09:14:11.584 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:14:14.158 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:14:31.988 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:14:32.012 +02:00 [INF] Selected local time: "2025-02-03T08:00:00.0000000+02:00"
+2025-01-31 09:14:32.014 +02:00 [INF] UTC time before conversion: "2025-02-03T06:00:00.0000000Z"
+2025-01-31 09:14:32.017 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:14:32.075 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/e87df551-0b70-42e2-99a7-40c493c3f36b
+2025-01-31 09:23:20.162 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:23:21.206 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:23:21.260 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:23:27.087 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:23:27.199 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:23:28.317 +02:00 [INF] Received 3 appointments
+2025-01-31 09:23:31.307 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:23:33.493 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:23:50.080 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:23:50.143 +02:00 [INF] Selected local time: "2025-02-04T08:00:00.0000000+02:00"
+2025-01-31 09:23:50.146 +02:00 [INF] UTC time before conversion: "2025-02-04T06:00:00.0000000Z"
+2025-01-31 09:23:50.150 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:23:50.631 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/3c4ac446-ec15-462a-9cf2-288ebee6a22b
+2025-01-31 09:24:32.986 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:27:26.314 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:27:27.560 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:27:27.604 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:27:37.135 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:27:54.041 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:27:54.072 +02:00 [INF] Selected local time: "2025-02-04T08:00:00.0000000+02:00"
+2025-01-31 09:27:54.075 +02:00 [INF] UTC time before conversion: "2025-02-04T06:00:00.0000000Z"
+2025-01-31 09:27:54.076 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:27:54.368 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/575a6db8-27e5-49c3-9a19-213574feaa18
+2025-01-31 09:31:10.730 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:31:11.812 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:31:11.841 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:31:17.404 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:31:17.481 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:31:18.174 +02:00 [INF] Received 5 appointments
+2025-01-31 09:31:21.382 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:31:23.276 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:31:37.261 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:31:37.296 +02:00 [INF] Local time: "2025-02-04T08:00:00.0000000"
+2025-01-31 09:31:37.299 +02:00 [INF] Creating appointment for local time: "2025-02-04T08:00:00.0000000"
+2025-01-31 09:31:37.301 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:31:37.605 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/2cb59656-a789-41b2-9538-a00a4d5d093c
+2025-01-31 09:32:58.160 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:32:59.347 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:32:59.374 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:33:01.531 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 09:33:01.583 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:33:02.299 +02:00 [INF] Received 6 appointments
+2025-01-31 09:33:06.035 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:33:16.201 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:33:16.258 +02:00 [INF] Local time: "2025-02-04T08:00:00.0000000Z"
+2025-01-31 09:33:16.261 +02:00 [INF] Creating appointment for local time: "2025-02-04T08:00:00.0000000Z"
+2025-01-31 09:33:16.264 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:33:16.759 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/e77eec83-f4d6-437f-8cce-9e197cd36cf8
+2025-01-31 09:33:21.293 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments
+2025-01-31 09:33:21.308 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:33:21.337 +02:00 [INF] Received 7 appointments
+2025-01-31 09:33:35.306 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 09:33:35.310 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:33:35.318 +02:00 [INF] Received 7 appointments
+2025-01-31 09:33:37.987 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 09:33:37.990 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:33:37.995 +02:00 [INF] Received 7 appointments
+2025-01-31 09:33:39.149 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 09:33:39.157 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:33:39.163 +02:00 [INF] Received 7 appointments
+2025-01-31 09:33:55.810 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:33:55.814 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:33:55.820 +02:00 [INF] Received 7 appointments
+2025-01-31 09:33:57.925 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/e77eec83-f4d6-437f-8cce-9e197cd36cf8
+2025-01-31 09:45:35.203 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:45:36.184 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:45:36.213 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:45:41.072 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:45:41.137 +02:00 [INF] Requesting appointments for PatientId: e39f1749-c86e-4e77-a29c-e442e7d7ba82
+2025-01-31 09:45:41.879 +02:00 [INF] Received 7 appointments
+2025-01-31 09:47:08.204 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:47:09.492 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:47:09.544 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:47:16.784 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:47:19.296 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 09:47:19.308 +02:00 [INF] Getting schedules for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+2025-01-31 09:47:20.388 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:47:55.016 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:47:55.050 +02:00 [INF] Creating schedule - DayOfWeek: 1, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 09:47:55.189 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-31 09:47:55.195 +02:00 [ERR] Error creating schedule for doctor 6d835c9a-e08c-4e05-b42e-e00d0f7a902f
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.DoctorServiceGrpc.CreateScheduleAsync(CreateScheduleRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\DoctorService.cs:line 89
+2025-01-31 09:47:55.205 +02:00 [ERR] Error creating schedule
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.DoctorServiceGrpc.CreateScheduleAsync(CreateScheduleRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\DoctorService.cs:line 89
+   at Medical.Client.Models.Schedule.CreateModel.OnPostAsync() in D:\OtherProjects\MedicalApp\Medical.Client\Models\Schedule\CreateModel.cs:line 88
+2025-01-31 09:48:14.390 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Account/Logout
+2025-01-31 09:48:14.435 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 09:48:14.437 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 09:48:28.392 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 09:48:49.335 +02:00 [INF] Starting Medical Client web application
+2025-01-31 09:48:50.560 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 09:48:50.606 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 09:48:53.129 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 09:49:24.361 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 09:49:25.254 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 09:49:25.258 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 09:49:26.435 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:49:47.221 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:49:47.242 +02:00 [INF] Creating schedule - DayOfWeek: 1, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 09:49:47.682 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 09:49:47.688 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 09:49:57.383 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:50:19.530 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:50:19.533 +02:00 [INF] Creating schedule - DayOfWeek: 2, StartTime: "09:00:00", EndTime: "17:00:00"
+2025-01-31 09:50:19.592 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 09:50:19.594 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 09:50:29.495 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:51:07.036 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:51:07.039 +02:00 [INF] Creating schedule - DayOfWeek: 3, StartTime: "09:00:00", EndTime: "16:00:00"
+2025-01-31 09:51:07.100 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 09:51:07.102 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 09:51:10.939 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:51:32.861 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 09:51:32.864 +02:00 [INF] Creating schedule - DayOfWeek: 4, StartTime: "09:00:00", EndTime: "16:00:00"
+2025-01-31 09:51:32.934 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 09:51:32.936 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 09:51:49.073 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 09:51:49.076 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 09:51:53.085 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 09:52:12.002 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 09:52:12.175 +02:00 [INF] User authenticated: true, Role: Patient, Path: /
+2025-01-31 09:52:12.178 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-31 09:52:14.890 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 09:52:16.282 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors/Details/1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 09:52:17.611 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:52:41.485 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 09:52:41.502 +02:00 [INF] Creating appointment for local time: "2025-02-03T08:00:00.0000000Z"
+2025-01-31 09:52:41.505 +02:00 [INF] Creating appointment with token: true
+2025-01-31 09:52:41.608 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:53:00.861 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:53:00.873 +02:00 [INF] Requesting appointments for PatientId: 4c29de3c-c0fa-409e-9f69-f6447438ae67
+2025-01-31 09:53:00.915 +02:00 [INF] Received 1 appointments
+2025-01-31 09:53:13.423 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/4c29de3c-c0fa-409e-9f69-f6447438ae67
+2025-01-31 09:53:23.045 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 09:53:23.047 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:53:23.067 +02:00 [INF] Received 1 appointments
+2025-01-31 09:53:34.450 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 09:53:34.457 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:53:34.463 +02:00 [INF] Received 1 appointments
+2025-01-31 09:53:47.428 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:05.269 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:20.706 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:20.723 +02:00 [INF] Updating appointment 50f1ee7c-1a47-40fc-8c81-01a493ab8e7e with status "Completed"
+2025-01-31 09:54:20.784 +02:00 [INF] Successfully updated appointment 50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:20.794 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:43.294 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:43.311 +02:00 [INF] Updating appointment 50f1ee7c-1a47-40fc-8c81-01a493ab8e7e with status "Completed"
+2025-01-31 09:54:43.321 +02:00 [INF] Successfully updated appointment 50f1ee7c-1a47-40fc-8c81-01a493ab8e7e
+2025-01-31 09:54:43.363 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /MedicalRecords/History/4c29de3c-c0fa-409e-9f69-f6447438ae67
+2025-01-31 09:54:52.917 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 09:54:52.920 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:54:52.923 +02:00 [INF] Received 1 appointments
+2025-01-31 09:55:05.340 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/4c29de3c-c0fa-409e-9f69-f6447438ae67
+2025-01-31 09:55:18.674 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 09:55:18.679 +02:00 [INF] Requesting appointments for PatientId: 4c29de3c-c0fa-409e-9f69-f6447438ae67
+2025-01-31 09:55:18.687 +02:00 [INF] Received 1 appointments
+2025-01-31 09:55:37.694 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 09:55:37.702 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 09:55:37.709 +02:00 [INF] Received 1 appointments
+2025-01-31 10:58:49.903 +02:00 [INF] Starting Medical Client web application
+2025-01-31 10:58:51.268 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 10:58:51.328 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 10:58:53.898 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Account/Logout
+2025-01-31 10:58:56.498 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 10:58:56.501 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 10:59:02.060 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 10:59:02.064 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 10:59:23.081 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 10:59:34.244 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 11:00:52.567 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 11:00:52.571 +02:00 [INF] User authenticated: false, Role: 
+2025-01-31 11:01:11.606 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 11:01:29.996 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 11:01:30.547 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /
+2025-01-31 11:01:30.550 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-31 11:01:33.066 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Doctors
+2025-01-31 11:01:40.354 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Doctors
+2025-01-31 11:01:42.833 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 11:01:42.853 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:01:43.038 +02:00 [INF] Received 1 appointments
+2025-01-31 11:01:45.584 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 11:01:45.601 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:01:45.619 +02:00 [INF] Received 1 appointments
+2025-01-31 11:01:50.196 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 11:01:50.214 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 11:01:53.803 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 11:02:14.726 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule/Create
+2025-01-31 11:02:14.743 +02:00 [INF] Creating schedule - DayOfWeek: 5, StartTime: "09:00:00", EndTime: "15:00:00"
+2025-01-31 11:02:15.263 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Schedule
+2025-01-31 11:02:15.266 +02:00 [INF] Getting schedules for doctor 1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 11:02:21.667 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 11:02:21.671 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:02:21.680 +02:00 [INF] Received 1 appointments
+2025-01-31 11:02:23.331 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 11:02:23.339 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:02:23.345 +02:00 [INF] Received 1 appointments
+2025-01-31 11:02:33.859 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/DoctorSchedule
+2025-01-31 11:02:33.869 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:02:33.882 +02:00 [INF] Received 1 appointments
+2025-01-31 11:02:36.879 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 11:02:36.882 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:02:36.888 +02:00 [INF] Received 1 appointments
+2025-01-31 11:02:45.914 +02:00 [INF] User authenticated: false, Role: , Path: /Account/Login
+2025-01-31 11:02:46.075 +02:00 [INF] User authenticated: true, Role: Patient, Path: /
+2025-01-31 11:02:46.078 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-31 11:02:48.527 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 11:02:48.532 +02:00 [INF] Requesting appointments for PatientId: 0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:02:48.565 +02:00 [INF] Received 0 appointments
+2025-01-31 11:02:50.080 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:02:51.964 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 11:02:58.910 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 11:03:00.662 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors/Details/1e1014c7-d55a-43a4-84aa-e1a61e3d4c80
+2025-01-31 11:03:02.642 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 11:03:25.362 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Create
+2025-01-31 11:03:25.376 +02:00 [INF] Creating appointment for local time: "2025-02-05T09:00:00.0000000Z"
+2025-01-31 11:03:25.381 +02:00 [INF] Creating appointment with token: true
+2025-01-31 11:03:25.570 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/Details/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:03:29.989 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments
+2025-01-31 11:03:29.997 +02:00 [INF] Requesting appointments for PatientId: 0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:03:30.002 +02:00 [INF] Received 1 appointments
+2025-01-31 11:03:32.609 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 11:03:32.612 +02:00 [INF] Requesting appointments for PatientId: 0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:03:32.617 +02:00 [INF] Received 1 appointments
+2025-01-31 11:03:37.670 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/MyAppointments
+2025-01-31 11:03:37.674 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:03:37.679 +02:00 [INF] Received 2 appointments
+2025-01-31 11:03:43.245 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:03:46.007 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:03:57.284 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Edit/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:03:57.318 +02:00 [INF] Updating appointment f88b4930-f006-415f-8441-b9d20e64ddaa with status "Completed"
+2025-01-31 11:03:57.447 +02:00 [INF] Successfully updated appointment f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:03:57.463 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:04:03.285 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Appointments/Details/f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:04:03.308 +02:00 [INF] Updating appointment f88b4930-f006-415f-8441-b9d20e64ddaa with status "Completed"
+2025-01-31 11:04:03.324 +02:00 [INF] Successfully updated appointment f88b4930-f006-415f-8441-b9d20e64ddaa
+2025-01-31 11:04:03.402 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /MedicalRecords/History/0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:04:06.905 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /Patients/MyPatients
+2025-01-31 11:04:06.908 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-31 11:04:06.914 +02:00 [INF] Received 2 appointments
+2025-01-31 11:04:10.097 +02:00 [INF] User authenticated: true, Role: Doctor, Path: /MedicalRecords/History/0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:04:15.522 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Appointments/MyAppointments
+2025-01-31 11:04:15.527 +02:00 [INF] Requesting appointments for PatientId: 0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:04:15.542 +02:00 [INF] Received 1 appointments
+2025-01-31 11:04:17.229 +02:00 [INF] User authenticated: true, Role: Patient, Path: /MedicalRecords/History/0d1e521f-4633-4df6-aade-280145212446
+2025-01-31 11:04:19.394 +02:00 [INF] User authenticated: true, Role: Patient, Path: /Doctors
+2025-01-31 13:05:11.147 +02:00 [INF] Starting Medical Client web application
+2025-01-31 13:05:14.363 +02:00 [INF] User authenticated: false, Role: , Path: /
+2025-01-31 13:05:14.612 +02:00 [INF] User authenticated: false, Role: 

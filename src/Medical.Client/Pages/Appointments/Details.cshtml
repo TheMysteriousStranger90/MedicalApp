@@ -1,0 +1,127 @@
+﻿@page "{id}"
+@using Medical.Client.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Medical.Client.Models.Appointments.DetailsModel
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-calendar-check me-2"></i>Appointment Details</h2>
+        <div>
+            <a asp-page="./Edit" asp-route-id="@Model.Appointment?.Id" class="btn btn-primary">
+                <i class="fas fa-edit me-1"></i>Edit
+            </a>
+            <a asp-page="./Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back to List
+            </a>
+        </div>
+    </div>
+
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    @if (Model.Appointment != null)
+    {
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    Appointment Information
+                    <span class="badge bg-@(Model.Appointment.Status switch {
+                        AppointmentStatus.Scheduled => "primary",
+                        AppointmentStatus.Completed => "success",
+                        AppointmentStatus.Cancelled => "danger",
+                        _ => "secondary"
+                    }) ms-2">
+                        @Model.Appointment.Status
+                    </span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Doctor</dt>
+                            <dd class="col-sm-8">@Model.DoctorName</dd>
+
+                            <dt class="col-sm-4">Patient</dt>
+                            <dd class="col-sm-8">@Model.PatientName</dd>
+
+                            <dt class="col-sm-4">Date & Time</dt>
+                            <dd class="col-sm-8">
+                                @Model.Appointment.AppointmentDate.ToLocalTimeString()
+                            </dd>
+                            
+                            <dt class="col-sm-4">Fee</dt>
+                            <dd class="col-sm-8">@CurrencyHelper.FormatUSD(@Model.Appointment.Fee)</dd>
+
+                            <dt class="col-sm-4">Payment Status</dt>
+                            <dd class="col-sm-8">
+                                @if (Model.Appointment.IsPaid)
+                                {
+                                    <span class="badge bg-success">Paid</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning">Pending</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Symptoms</h6>
+                        <p class="mb-3">@Model.Appointment.Symptoms</p>
+
+                        <h6>Notes</h6>
+                        <p class="mb-0">@Model.Appointment.Notes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (User.IsInRole("Doctor") && Model.Appointment.Status == AppointmentStatus.Completed)
+        {
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Complete Appointment</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="Complete">
+                        <input type="hidden" asp-for="CompleteModel.AppointmentId" value="@Model.Appointment.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="CompleteModel.Diagnosis" class="form-label">Diagnosis</label>
+                            <textarea asp-for="CompleteModel.Diagnosis" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="CompleteModel.Diagnosis" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CompleteModel.Treatment" class="form-label">Treatment</label>
+                            <textarea asp-for="CompleteModel.Treatment" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="CompleteModel.Treatment" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CompleteModel.Prescriptions" class="form-label">Prescriptions</label>
+                            <textarea asp-for="CompleteModel.Prescriptions" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CompleteModel.Notes" class="form-label">Notes</label>
+                            <textarea asp-for="CompleteModel.Notes" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Complete & Create Medical Record</button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-warning">No appointment details found.</div>
+    }
+</div>
