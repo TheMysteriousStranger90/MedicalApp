@@ -34,27 +34,21 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
     {
         try
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
-            if (user == null)
-            {
-                throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
-            }
+            User? user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null) throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
 
-            var result = await _userManager.CheckPasswordAsync(user, request.Password);
-            if (!result)
-            {
-                throw new RpcException(new Status(StatusCode.Unauthenticated, "Invalid password"));
-            }
+            bool result = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!result) throw new RpcException(new Status(StatusCode.Unauthenticated, "Invalid password"));
 
-            var roles = await _userManager.GetRolesAsync(user);
-            var token = await _tokenService.CreateToken(user);
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+            string token = await _tokenService.CreateToken(user);
 
             return new LoginResponse
             {
                 Token = token,
                 Email = user.Email,
                 Roles = { roles },
-                UserId = user.Id,
+                UserId = user.Id
             };
         }
         catch (Exception ex)
@@ -69,9 +63,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
         try
         {
             if (await _userManager.FindByEmailAsync(request.Email) != null)
-            {
                 throw new RpcException(new Status(StatusCode.AlreadyExists, "Email already registered"));
-            }
 
             var user = new Patient
             {
@@ -79,7 +71,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
                 Email = request.Email,
                 FullName = request.FullName ?? "Patient",
                 DateOfBirth = request.DateOfBirth?.ToDateTime() ?? DateTime.UtcNow,
-                Gender = Enum.TryParse<Gender>(request.Gender, true, out var gender) ? gender : Gender.Male,
+                Gender = Enum.TryParse<Gender>(request.Gender, true, out Gender gender) ? gender : Gender.Male,
                 Phone = request.Phone ?? string.Empty,
                 Address = request.Address ?? string.Empty,
                 Created = DateTime.UtcNow,
@@ -87,7 +79,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
                 IsActive = true
             };
 
-            var result = await _userManager.CreateAsync(user, request.Password);
+            IdentityResult result = await _userManager.CreateAsync(user, request.Password);
             if (!result.Succeeded)
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,
@@ -96,7 +88,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
 
             if (!await _roleManager.RoleExistsAsync(PATIENT_ROLE))
             {
-                var roleResult = await _roleManager.CreateAsync(new Role { Name = PATIENT_ROLE });
+                IdentityResult roleResult = await _roleManager.CreateAsync(new Role { Name = PATIENT_ROLE });
                 if (!roleResult.Succeeded)
                 {
                     _logger.LogError("Failed to create role: {Role}", PATIENT_ROLE);
@@ -104,7 +96,7 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
                 }
             }
 
-            var roleAssignResult = await _userManager.AddToRoleAsync(user, PATIENT_ROLE);
+            IdentityResult roleAssignResult = await _userManager.AddToRoleAsync(user, PATIENT_ROLE);
             if (!roleAssignResult.Succeeded)
             {
                 _logger.LogError("Failed to assign role {Role} to user {Email}", PATIENT_ROLE, user.Email);
@@ -113,8 +105,8 @@ public class AuthenticationGrpcService : AuthenticationService.AuthenticationSer
 
             _logger.LogInformation("Patient {Email} registered successfully", user.Email);
 
-            var token = await _tokenService.CreateToken(user);
-            var roles = await _userManager.GetRolesAsync(user);
+            string token = await _tokenService.CreateToken(user);
+            IList<string> roles = await _userManager.GetRolesAsync(user);
 
             return new RegisterResponse
             {

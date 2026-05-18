@@ -7,7 +7,9 @@ namespace Medical.GrpcService.Tests.Helpers;
 /// <summary>Minimal in-process ServerCallContext for unit testing.</summary>
 internal sealed class TestServerCallContext : ServerCallContext
 {
-    private TestServerCallContext() { }
+    private TestServerCallContext()
+    {
+    }
 
     public static ServerCallContext Create() => new TestServerCallContext();
 
@@ -21,8 +23,7 @@ internal sealed class TestServerCallContext : ServerCallContext
     protected override Status StatusCore { get; set; }
     protected override WriteOptions? WriteOptionsCore { get; set; }
 
-    protected override AuthContext AuthContextCore =>
-        new AuthContext(null, new Dictionary<string, List<AuthProperty>>());
+    protected override AuthContext AuthContextCore => new(null, new Dictionary<string, List<AuthProperty>>());
 
     protected override ContextPropagationToken CreatePropagationTokenCore(
         ContextPropagationOptions? options) =>

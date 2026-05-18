@@ -26,7 +26,7 @@ public class AppointmentRepository : GenericRepository<Appointment>, IAppointmen
         try
         {
             _logger.LogInformation("Getting appointments for doctor: {DoctorId}", doctorId);
-            var appointments = await _context.Appointments
+            List<Appointment> appointments = await _context.Appointments
                 .Include(a => a.Patient)
                 .Where(a => a.DoctorId == doctorId)
                 .OrderByDescending(a => a.AppointmentDate)
@@ -46,7 +46,7 @@ public class AppointmentRepository : GenericRepository<Appointment>, IAppointmen
         try
         {
             _logger.LogInformation("Getting appointments for patient: {PatientId}", patientId);
-            var appointments = await _context.Appointments
+            List<Appointment> appointments = await _context.Appointments
                 .Include(a => a.Doctor)
                 .Where(a => a.PatientId == patientId)
                 .OrderByDescending(a => a.AppointmentDate)
@@ -66,7 +66,7 @@ public class AppointmentRepository : GenericRepository<Appointment>, IAppointmen
         try
         {
             _logger.LogInformation("Getting appointments for date: {Date}", date.ToShortDateString());
-            var appointments = await _context.Appointments
+            List<Appointment> appointments = await _context.Appointments
                 .Include(a => a.Doctor)
                 .Include(a => a.Patient)
                 .Where(a => a.AppointmentDate.Date == date.Date)
@@ -87,7 +87,7 @@ public class AppointmentRepository : GenericRepository<Appointment>, IAppointmen
         try
         {
             _logger.LogInformation("Getting upcoming appointments");
-            var appointments = await _context.Appointments
+            List<Appointment> appointments = await _context.Appointments
                 .Include(a => a.Doctor)
                 .Include(a => a.Patient)
                 .Where(a => a.AppointmentDate > DateTime.UtcNow && a.Status == AppointmentStatus.Scheduled)

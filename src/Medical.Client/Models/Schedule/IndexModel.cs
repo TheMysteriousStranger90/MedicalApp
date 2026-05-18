@@ -13,8 +13,7 @@ public class IndexModel : PageModel
     public List<ScheduleModel> Schedules { get; set; } = new();
     public string? ErrorMessage { get; set; }
 
-    [BindProperty]
-    public string DeleteId { get; set; } = string.Empty;
+    [BindProperty] public string DeleteId { get; set; } = string.Empty;
 
     public IndexModel(IDoctorService doctorService, ILogger<IndexModel> logger)
     {
@@ -26,15 +25,13 @@ public class IndexModel : PageModel
     {
         try
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userId))
-            {
-                return;
-            }
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return;
 
             _logger.LogInformation("Getting schedules for doctor {DoctorId}", userId);
 
-            var schedules = await _doctorService.GetDoctorScheduleAsync(userId, DateTime.MinValue, DateTime.MaxValue);
+            IEnumerable<ScheduleModel> schedules =
+                await _doctorService.GetDoctorScheduleAsync(userId, DateTime.MinValue, DateTime.MaxValue);
 
             Schedules = schedules.ToList();
         }
@@ -44,7 +41,7 @@ public class IndexModel : PageModel
             ErrorMessage = "Failed to load schedules.";
         }
     }
-    
+
     public async Task<IActionResult> OnPostAsync()
     {
         try
@@ -57,13 +54,10 @@ public class IndexModel : PageModel
                 return BadRequest("Schedule ID is required");
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Forbid();
-            }
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Forbid();
 
-            var result = await _doctorService.DeleteScheduleAsync(DeleteId);
+            DeleteScheduleResponse result = await _doctorService.DeleteScheduleAsync(DeleteId);
             if (result.Success)
             {
                 TempData["SuccessMessage"] = "Schedule deleted successfully";

@@ -16,9 +16,9 @@ public class CreateModel : PageModel
 
     [BindProperty] public CreateScheduleRequest Input { get; set; } = new();
 
-    [BindProperty] public TimeSpan StartTime { get; set; } = new TimeSpan(9, 0, 0);
+    [BindProperty] public TimeSpan StartTime { get; set; } = new(9, 0, 0);
 
-    [BindProperty] public TimeSpan EndTime { get; set; } = new TimeSpan(17, 0, 0);
+    [BindProperty] public TimeSpan EndTime { get; set; } = new(17, 0, 0);
 
     [BindProperty] public DateTime ValidFrom { get; set; } = DateTime.Today;
 
@@ -36,7 +36,7 @@ public class CreateModel : PageModel
 
     public async Task OnGetAsync()
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
+        string userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
         Input.DoctorId = userId;
 
         // Load existing schedules
@@ -52,11 +52,8 @@ public class CreateModel : PageModel
         {
             if (!ModelState.IsValid) return Page();
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!User.IsInRole("Doctor") || string.IsNullOrEmpty(userId))
-            {
-                return Forbid();
-            }
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!User.IsInRole("Doctor") || string.IsNullOrEmpty(userId)) return Forbid();
 
             if (EndTime <= StartTime)
             {
@@ -85,7 +82,7 @@ public class CreateModel : PageModel
             Input.DoctorId = userId;
             Input.SlotDurationMinutes = Input.SlotDurationMinutes == 0 ? 30 : Input.SlotDurationMinutes;
 
-            var result = await _doctorService.CreateScheduleAsync(Input);
+            ScheduleModel result = await _doctorService.CreateScheduleAsync(Input);
             return RedirectToPage("./Index");
         }
         catch (Exception ex)

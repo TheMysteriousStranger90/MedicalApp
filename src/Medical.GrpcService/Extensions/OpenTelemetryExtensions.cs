@@ -6,18 +6,18 @@ namespace Medical.GrpcService.Extensions;
 
 public static class OpenTelemetryExtensions
 {
-    private const string ServiceName    = "Medical.GrpcService";
+    private const string ServiceName = "Medical.GrpcService";
     private const string ServiceVersion = "1.1.0";
 
     public static IServiceCollection AddOpenTelemetryObservability(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var otlpEndpoint = configuration["OpenTelemetry:OtlpEndpoint"];
+        string? otlpEndpoint = configuration["OpenTelemetry:OtlpEndpoint"];
 
-        var resourceBuilder = ResourceBuilder
+        ResourceBuilder resourceBuilder = ResourceBuilder
             .CreateDefault()
-            .AddService(serviceName: ServiceName, serviceVersion: ServiceVersion)
+            .AddService(ServiceName, serviceVersion: ServiceVersion)
             .AddTelemetrySdk()
             .AddEnvironmentVariableDetector();
 

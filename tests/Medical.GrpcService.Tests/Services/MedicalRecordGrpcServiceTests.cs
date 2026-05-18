@@ -26,7 +26,7 @@ public sealed class MedicalRecordGrpcServiceTests
         _unitOfWork = new Mock<IUnitOfWork>();
         _unitOfWork.Setup(u => u.MedicalRecords).Returns(_recordRepo.Object);
 
-        var svc = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+        var svc = new ServiceCollection();
         svc.AddLogging();
         svc.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
         _mapper = svc.BuildServiceProvider().GetRequiredService<IMapper>();
@@ -42,18 +42,18 @@ public sealed class MedicalRecordGrpcServiceTests
     [Fact]
     public async Task GetMedicalRecords_ReturnsRecordsForPatient()
     {
-        var patientId = Guid.NewGuid().ToString();
+        string patientId = Guid.NewGuid().ToString();
         var dtos = new List<MedicalRecordDto>
         {
-            CreateDto(patientId: patientId),
-            CreateDto(patientId: patientId)
+            CreateDto(patientId),
+            CreateDto(patientId)
         };
 
         _recordRepo
             .Setup(r => r.GetPatientMedicalHistoryAsync(patientId))
             .ReturnsAsync(dtos);
 
-        var response = await _sut.GetMedicalRecords(
+        GetMedicalRecordsResponse response = await _sut.GetMedicalRecords(
             new GetMedicalRecordsRequest { PatientId = patientId },
             TestServerCallContext.Create());
 
@@ -63,12 +63,12 @@ public sealed class MedicalRecordGrpcServiceTests
     [Fact]
     public async Task GetMedicalRecords_EmptyHistory_ReturnsEmpty()
     {
-        var patientId = Guid.NewGuid().ToString();
+        string patientId = Guid.NewGuid().ToString();
         _recordRepo
             .Setup(r => r.GetPatientMedicalHistoryAsync(patientId))
             .ReturnsAsync([]);
 
-        var response = await _sut.GetMedicalRecords(
+        GetMedicalRecordsResponse response = await _sut.GetMedicalRecords(
             new GetMedicalRecordsRequest { PatientId = patientId },
             TestServerCallContext.Create());
 
@@ -80,7 +80,7 @@ public sealed class MedicalRecordGrpcServiceTests
     [Fact]
     public async Task CreateMedicalRecord_Success_ReturnsModel()
     {
-        var patientId = Guid.NewGuid().ToString();
+        string patientId = Guid.NewGuid().ToString();
         _recordRepo.Setup(r => r.AddAsync(It.IsAny<MedicalRecord>())).ReturnsAsync(true);
         _unitOfWork.Setup(u => u.Complete()).ReturnsAsync(true);
 
@@ -93,7 +93,7 @@ public sealed class MedicalRecordGrpcServiceTests
             Notes = "Follow up in 4 weeks"
         };
 
-        var result = await _sut.CreateMedicalRecord(request, TestServerCallContext.Create());
+        MedicalRecordModel result = await _sut.CreateMedicalRecord(request, TestServerCallContext.Create());
 
         Assert.Equal(patientId, result.PatientId);
         Assert.Equal("Hypertension", result.Diagnosis);
@@ -116,8 +116,9 @@ public sealed class MedicalRecordGrpcServiceTests
             Notes = string.Empty
         };
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.CreateMedicalRecord(request, TestServerCallContext.Create()));
+        RpcException ex =
+            await Assert.ThrowsAsync<RpcException>(() =>
+                _sut.CreateMedicalRecord(request, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.Internal, ex.StatusCode);
     }

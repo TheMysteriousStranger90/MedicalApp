@@ -2,9 +2,9 @@
 
 public interface IUnitOfWork : IDisposable
 {
-    IAppointmentRepository Appointments { get; }
-    IDoctorRepository Doctors { get; }
-    IPatientRepository Patients { get; }
-    IMedicalRecordRepository MedicalRecords { get; }
-    Task<bool> Complete();
+    public IAppointmentRepository Appointments { get; }
+    public IDoctorRepository Doctors { get; }
+    public IPatientRepository Patients { get; }
+    public IMedicalRecordRepository MedicalRecords { get; }
+    public Task<bool> Complete();
 }

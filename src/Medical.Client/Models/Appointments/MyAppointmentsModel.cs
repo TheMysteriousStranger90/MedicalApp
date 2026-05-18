@@ -32,8 +32,8 @@ public class MyAppointmentsModel : PageModel
     {
         try
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
             if (string.IsNullOrEmpty(userId))
             {
@@ -51,12 +51,13 @@ public class MyAppointmentsModel : PageModel
             if (userRole == "Patient")
             {
                 request.PatientId = userId;
-                var appointments = await _appointmentService.GetAppointmentsAsync(request);
+                IEnumerable<AppointmentModel> appointments = await _appointmentService.GetAppointmentsAsync(request);
                 var viewModels = new List<AppointmentViewModel>();
 
-                foreach (var appointment in appointments.Where(a => a.PatientId == userId)) // Additional security check
+                foreach (AppointmentModel appointment in
+                         appointments.Where(a => a.PatientId == userId)) // Additional security check
                 {
-                    var doctor = await _doctorService.GetDoctorByIdAsync(appointment.DoctorId);
+                    DoctorModel? doctor = await _doctorService.GetDoctorByIdAsync(appointment.DoctorId);
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
@@ -72,12 +73,12 @@ public class MyAppointmentsModel : PageModel
             else if (userRole == "Doctor")
             {
                 request.DoctorId = userId;
-                var appointments = await _appointmentService.GetAppointmentsAsync(request);
+                IEnumerable<AppointmentModel> appointments = await _appointmentService.GetAppointmentsAsync(request);
                 var viewModels = new List<AppointmentViewModel>();
 
-                foreach (var appointment in appointments.Where(a => a.DoctorId == userId))
+                foreach (AppointmentModel appointment in appointments.Where(a => a.DoctorId == userId))
                 {
-                    var patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
+                    PatientModel? patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
                     viewModels.Add(new AppointmentViewModel
                     {
                         Id = appointment.Id,
@@ -115,8 +116,8 @@ public class MyAppointmentsModel : PageModel
                 return Page();
             }
 
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            AppointmentModel appointment = await _appointmentService.GetAppointmentByIdAsync(id);
 
             if (appointment.PatientId != userId)
             {

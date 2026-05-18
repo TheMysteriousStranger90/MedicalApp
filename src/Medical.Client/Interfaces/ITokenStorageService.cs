@@ -2,7 +2,7 @@
 
 public interface ITokenStorageService
 {
-    string? GetToken();
-    void SetToken(string token);
-    void ClearToken();
+    public string? GetToken();
+    public void SetToken(string token);
+    public void ClearToken();
 }

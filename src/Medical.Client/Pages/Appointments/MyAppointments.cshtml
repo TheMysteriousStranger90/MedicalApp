@@ -16,15 +16,15 @@
         <div>
             @if (isDoctor)
             {
-            <a asp-page="/Appointments/DoctorSchedule" class="btn btn-primary me-2">
-                <i class="fas fa-calendar-alt me-2"></i>Manage Schedule
-            </a>
+                <a asp-page="/Appointments/DoctorSchedule" class="btn btn-primary me-2">
+                    <i class="fas fa-calendar-alt me-2"></i>Manage Schedule
+                </a>
             }
             @if (isPatient)
             {
-            <a asp-page="/Appointments/Create" class="btn btn-primary">
-                <i class="fas fa-plus me-2"></i>Book New Appointment
-            </a>
+                <a asp-page="/Appointments/Create" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Book New Appointment
+                </a>
             }
         </div>
     </div>
@@ -43,8 +43,8 @@
                 <div class="card-body">
                     @{
                         var upcomingAppointments = Model.Appointments
-                            .Where(a => a.AppointmentDate > DateTime.Now && 
-                                   a.Status == AppointmentStatus.Scheduled);
+                            .Where(a => a.AppointmentDate > DateTime.Now &&
+                                        a.Status == AppointmentStatus.Scheduled);
                     }
                     @if (!upcomingAppointments.Any())
                     {
@@ -62,23 +62,25 @@
                                             @appointment.AppointmentDate.ToString("h:mm tt")
                                             @if (User.IsInRole("Patient"))
                                             {
-                                            <span>with Dr. @appointment.DoctorName</span>
+                                                <span>with Dr. @appointment.DoctorName</span>
                                             }
                                             else
                                             {
-                                            <span>with @appointment.PatientName</span>
+                                                <span>with @appointment.PatientName</span>
                                             }
                                         </p>
                                     </div>
                                     <div>
-                                        <form method="post" asp-page-handler="Cancel" asp-route-id="@appointment.Id" class="d-inline">
+                                        <form method="post" asp-page-handler="Cancel" asp-route-id="@appointment.Id"
+                                              class="d-inline">
                                             @Html.AntiForgeryToken()
                                             <button type="submit" class="btn btn-sm btn-danger"
                                                     onclick="return confirm('Are you sure you want to cancel this appointment?')">
                                                 <i class="fas fa-times"></i> Cancel
                                             </button>
                                         </form>
-                                        <a asp-page="./Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info">
+                                        <a asp-page="./Details" asp-route-id="@appointment.Id"
+                                           class="btn btn-sm btn-info">
                                             <i class="fas fa-info-circle"></i> Details
                                         </a>
                                     </div>
@@ -98,8 +100,8 @@
                 <div class="card-body">
                     @{
                         var pastAppointments = Model.Appointments
-                            .Where(a => a.AppointmentDate <= DateTime.Now || 
-                                   a.Status != AppointmentStatus.Scheduled);
+                            .Where(a => a.AppointmentDate <= DateTime.Now ||
+                                        a.Status != AppointmentStatus.Scheduled);
                     }
                     @if (!pastAppointments.Any())
                     {
@@ -113,11 +115,12 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6>@appointment.AppointmentDate.ToString("MMM d, yyyy")</h6>
-                                        <span class="badge bg-@(appointment.Status switch {
-                                            AppointmentStatus.Completed => "success",
-                                            AppointmentStatus.Cancelled => "danger",
-                                            _ => "secondary"
-                                        })">
+                                        <span class="badge bg-@(appointment.Status switch
+                                                              {
+                                                                  AppointmentStatus.Completed => "success",
+                                                                  AppointmentStatus.Cancelled => "danger",
+                                                                  _ => "secondary"
+                                                              })">
                                             @appointment.Status
                                         </span>
                                     </div>

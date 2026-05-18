@@ -20,8 +20,8 @@ public class IndexModel : PageModel
     {
         IsAuthenticated = User.Identity?.IsAuthenticated ?? false;
         UserRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? string.Empty;
-        
-        _logger.LogInformation("User authenticated: {IsAuthenticated}, Role: {Role}", 
+
+        _logger.LogInformation("User authenticated: {IsAuthenticated}, Role: {Role}",
             IsAuthenticated, UserRole);
     }
 }

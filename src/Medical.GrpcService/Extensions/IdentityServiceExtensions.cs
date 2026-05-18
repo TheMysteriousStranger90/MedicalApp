@@ -12,11 +12,14 @@ public static class IdentityServiceExtensions
     public static IServiceCollection AddIdentityServices(this IServiceCollection services,
         IConfiguration config)
     {
-        services.AddIdentityCore<User>(opt => {     opt.Password.RequireDigit = true;
+        services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireDigit = true;
                 opt.Password.RequireLowercase = true;
                 opt.Password.RequireUppercase = true;
                 opt.Password.RequireNonAlphanumeric = true;
-                opt.Password.RequiredLength = 8; })
+                opt.Password.RequiredLength = 8;
+            })
             .AddRoles<Role>()
             .AddRoleManager<RoleManager<Role>>()
             .AddSignInManager<SignInManager<User>>()
@@ -32,7 +35,7 @@ public static class IdentityServiceExtensions
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(config["Token:Key"] ?? 
+                    Encoding.UTF8.GetBytes(config["Token:Key"] ??
                                            throw new InvalidOperationException("Token:Key not configured"))),
                 ValidIssuer = config["Token:Issuer"],
                 ValidAudience = config["Token:Audience"],
@@ -48,14 +51,11 @@ public static class IdentityServiceExtensions
             {
                 OnMessageReceived = context =>
                 {
-                    var token = context.Request.Headers["Authorization"]
+                    string token = context.Request.Headers["Authorization"]
                         .ToString()
                         .Replace("Bearer ", "");
 
-                    if (!string.IsNullOrEmpty(token))
-                    {
-                        context.Token = token;
-                    }
+                    if (!string.IsNullOrEmpty(token)) context.Token = token;
 
                     return Task.CompletedTask;
                 }
@@ -68,7 +68,7 @@ public static class IdentityServiceExtensions
             opt.AddPolicy("RequireDoctorRole", policy => policy.RequireRole("Doctor"));
             opt.AddPolicy("RequirePatientRole", policy => policy.RequireRole("Patient"));
         });
-        
+
         return services;
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Polly;
+using Polly.Retry;
 
 namespace Medical.GrpcService.Context;
 
@@ -43,7 +44,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string,
     [ExcludeFromCodeCoverage]
     public async Task MigrateAndCreateDataAsync(IServiceProvider serviceProvider)
     {
-        var retryPolicy = Policy.Handle<SqlException>()
+        AsyncRetryPolicy? retryPolicy = Policy.Handle<SqlException>()
             .WaitAndRetryAsync(new[]
             {
                 TimeSpan.FromSeconds(5),
@@ -55,8 +56,8 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string,
         {
             await Database.MigrateAsync();
 
-            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
+            UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            RoleManager<Role> roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
 
             await SeedDataInitializer.SeedUsersAsync(userManager, roleManager);
             await SeedDataInitializer.SeedDataAsync(this);

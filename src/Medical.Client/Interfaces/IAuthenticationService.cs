@@ -4,7 +4,7 @@ namespace Medical.Client.Interfaces;
 
 public interface IAuthenticationService
 {
-    Task<LoginResponse> LoginAsync(string email, string password);
-    Task<RegisterResponse> RegisterAsync(RegisterInputModel input);
-    Task<LogoutResponse> LogoutAsync(string token);
+    public Task<LoginResponse> LoginAsync(string email, string password);
+    public Task<RegisterResponse> RegisterAsync(RegisterInputModel input);
+    public Task<LogoutResponse> LogoutAsync(string token);
 }

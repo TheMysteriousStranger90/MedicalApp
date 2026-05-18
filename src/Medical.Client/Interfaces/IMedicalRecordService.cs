@@ -2,6 +2,6 @@
 
 public interface IMedicalRecordService
 {
-    Task<IEnumerable<MedicalRecordModel>> GetMedicalRecordsAsync(string patientId);
-    Task<MedicalRecordModel> CreateMedicalRecordAsync(CreateMedicalRecordRequest request);
+    public Task<IEnumerable<MedicalRecordModel>> GetMedicalRecordsAsync(string patientId);
+    public Task<MedicalRecordModel> CreateMedicalRecordAsync(CreateMedicalRecordRequest request);
 }

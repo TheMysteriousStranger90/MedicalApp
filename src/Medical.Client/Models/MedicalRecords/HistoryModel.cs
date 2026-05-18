@@ -25,7 +25,7 @@ public class HistoryModel : PageModel
     {
         try
         {
-            var historyResponse = await _patientService.GetPatientMedicalHistoryAsync(patientId);
+            GetMedicalRecordsResponse historyResponse = await _patientService.GetPatientMedicalHistoryAsync(patientId);
             MedicalRecords = historyResponse.Records;
             Patient = await _patientService.GetPatientByIdAsync(patientId);
             return Page();

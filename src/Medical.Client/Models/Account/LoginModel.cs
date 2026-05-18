@@ -34,7 +34,7 @@ public class LoginModel : PageModel
             if (!ModelState.IsValid)
                 return Page();
 
-            var response = await _authService.LoginAsync(Input.Email, Input.Password);
+            LoginResponse? response = await _authService.LoginAsync(Input.Email, Input.Password);
 
             if (response?.Token != null)
             {
@@ -42,9 +42,9 @@ public class LoginModel : PageModel
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Email, response.Email),
-                    new Claim(ClaimTypes.Name, response.Email),
-                    new Claim(ClaimTypes.NameIdentifier, response.UserId),
+                    new(ClaimTypes.Email, response.Email),
+                    new(ClaimTypes.Name, response.Email),
+                    new(ClaimTypes.NameIdentifier, response.UserId)
                 };
 
                 claims.AddRange(response.Roles.Select(role =>

@@ -6,11 +6,11 @@ namespace Medical.Client.Services;
 
 public class AuthenticationServiceGrpc : IAuthenticationService
 {
-    private readonly Medical.Client.AuthenticationService.AuthenticationServiceClient _client;
+    private readonly AuthenticationService.AuthenticationServiceClient _client;
     private readonly ILogger<AuthenticationServiceGrpc> _logger;
 
     public AuthenticationServiceGrpc(
-        Medical.Client.AuthenticationService.AuthenticationServiceClient client,
+        AuthenticationService.AuthenticationServiceClient client,
         ILogger<AuthenticationServiceGrpc> logger)
     {
         _client = client;

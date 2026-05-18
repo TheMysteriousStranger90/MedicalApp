@@ -13,16 +13,16 @@ public static class GrpcClientExtensions
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {
-        var grpcConfig = configuration.GetSection("GrpcClient").Get<GrpcClientConfig>();
+        GrpcClientConfig? grpcConfig = configuration.GetSection("GrpcClient").Get<GrpcClientConfig>();
         var baseAddress = new Uri(grpcConfig?.BaseAddress ?? "https://localhost:7084");
         var callTimeout = TimeSpan.FromSeconds(grpcConfig?.Timeout > 0 ? grpcConfig.Timeout : 30);
 
         var handler = new SocketsHttpHandler
         {
             EnableMultipleHttp2Connections = true,
-            KeepAlivePingDelay            = TimeSpan.FromSeconds(60),
-            KeepAlivePingTimeout          = TimeSpan.FromSeconds(30),
-            PooledConnectionIdleTimeout   = TimeSpan.FromMinutes(5),
+            KeepAlivePingDelay = TimeSpan.FromSeconds(60),
+            KeepAlivePingTimeout = TimeSpan.FromSeconds(30),
+            PooledConnectionIdleTimeout = TimeSpan.FromMinutes(5)
         };
 
         // In development allow self-signed certificates (dev cert / makemedicalcerts.ps1 output).
@@ -44,9 +44,9 @@ public static class GrpcClientExtensions
             Names = { MethodName.Default },
             RetryPolicy = new RetryPolicy
             {
-                MaxAttempts       = 3,
-                InitialBackoff    = TimeSpan.FromMilliseconds(500),
-                MaxBackoff        = TimeSpan.FromSeconds(5),
+                MaxAttempts = 3,
+                InitialBackoff = TimeSpan.FromMilliseconds(500),
+                MaxBackoff = TimeSpan.FromSeconds(5),
                 BackoffMultiplier = 1.5,
                 RetryableStatusCodes = { Grpc.Core.StatusCode.Unavailable }
             }
@@ -76,19 +76,16 @@ public static class GrpcClientExtensions
         TimeSpan callTimeout)
         where TClient : class
     {
-        services.AddGrpcClient<TClient>(options =>
-            {
-                options.Address = baseAddress;
-            })
+        services.AddGrpcClient<TClient>(options => { options.Address = baseAddress; })
             .ConfigureChannel(options =>
             {
-                options.HttpHandler   = handler;
+                options.HttpHandler = handler;
                 options.ServiceConfig = serviceConfig;
             })
             .AddCallCredentials((context, metadata, serviceProvider) =>
             {
-                var tokenService = serviceProvider.GetRequiredService<ITokenStorageService>();
-                var token = tokenService.GetToken();
+                ITokenStorageService tokenService = serviceProvider.GetRequiredService<ITokenStorageService>();
+                string? token = tokenService.GetToken();
                 if (!string.IsNullOrEmpty(token))
                 {
                     metadata.Add("Authorization",
@@ -96,6 +93,7 @@ public static class GrpcClientExtensions
                             ? token
                             : $"Bearer {token}");
                 }
+
                 return Task.CompletedTask;
             })
             .AddInterceptor<GrpcClientInterceptor>();

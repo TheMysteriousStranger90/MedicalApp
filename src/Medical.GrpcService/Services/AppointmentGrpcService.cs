@@ -23,7 +23,8 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
         _logger = logger;
     }
 
-    public override async Task<AppointmentResponse> GetAppointments(AppointmentRequest request, ServerCallContext context)
+    public override async Task<AppointmentResponse> GetAppointments(AppointmentRequest request,
+        ServerCallContext context)
     {
         try
         {
@@ -70,14 +71,14 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
                     "Invalid appointment ID format"));
             }
 
-            var appointment = await _unitOfWork.Appointments.GetByIdAsync(request.Id);
+            Appointment? appointment = await _unitOfWork.Appointments.GetByIdAsync(request.Id);
             if (appointment == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound,
                     $"Appointment not found with ID: {request.Id}"));
             }
 
-            var response = _mapper.Map<AppointmentModel>(appointment);
+            AppointmentModel? response = _mapper.Map<AppointmentModel>(appointment);
             _logger.LogInformation("Successfully retrieved appointment {Id}", request.Id);
             return response;
         }
@@ -112,7 +113,7 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
             if (request.AppointmentDate == null)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "AppointmentDate is required"));
 
-            var doctor = await _unitOfWork.Doctors.GetByIdAsync(request.DoctorId);
+            Doctor? doctor = await _unitOfWork.Doctors.GetByIdAsync(request.DoctorId);
             if (doctor == null)
                 throw new RpcException(new Status(StatusCode.NotFound, "Doctor not found"));
 
@@ -136,7 +137,7 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
                 appointment.Id, appointment.PatientId, appointment.DoctorId);
 
             await _unitOfWork.Appointments.AddAsync(appointment);
-            var success = await _unitOfWork.Complete();
+            bool success = await _unitOfWork.Complete();
 
             if (!success)
             {
@@ -144,7 +145,7 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
                 throw new RpcException(new Status(StatusCode.Internal, "Failed to create appointment"));
             }
 
-            var response = _mapper.Map<AppointmentModel>(appointment);
+            AppointmentModel? response = _mapper.Map<AppointmentModel>(appointment);
             _logger.LogInformation("Successfully created appointment {AppointmentId}", appointment.Id);
 
             return response;
@@ -167,13 +168,11 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
         {
             _logger.LogInformation("Updating appointment {Id} to status {Status}", request.Id, request.Status);
 
-            var appointment = await _unitOfWork.Appointments.GetByIdAsync(request.Id);
+            Appointment? appointment = await _unitOfWork.Appointments.GetByIdAsync(request.Id);
             if (appointment == null)
-            {
                 throw new RpcException(new Status(StatusCode.NotFound, $"Appointment {request.Id} not found"));
-            }
 
-            var oldStatus = appointment.Status;
+            AppointmentStatus oldStatus = appointment.Status;
 
             appointment.Status = request.Status;
             appointment.Notes = request.Notes ?? appointment.Notes;
@@ -211,12 +210,9 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
             }
 
             await _unitOfWork.Appointments.UpdateAsync(appointment);
-            var success = await _unitOfWork.Complete();
+            bool success = await _unitOfWork.Complete();
 
-            if (!success)
-            {
-                throw new RpcException(new Status(StatusCode.Internal, "Failed to update appointment"));
-            }
+            if (!success) throw new RpcException(new Status(StatusCode.Internal, "Failed to update appointment"));
 
             return _mapper.Map<AppointmentModel>(appointment);
         }
@@ -237,7 +233,7 @@ public class AppointmentGrpcService : AppointmentService.AppointmentServiceBase
     {
         try
         {
-            var result = await _unitOfWork.Appointments.DeleteAsync(request.Id);
+            bool result = await _unitOfWork.Appointments.DeleteAsync(request.Id);
             await _unitOfWork.Complete();
 
             return new DeleteAppointmentResponse

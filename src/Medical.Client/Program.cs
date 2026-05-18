@@ -18,13 +18,13 @@ try
 {
     Log.Information("Starting Medical.Client");
 
-    var builder = WebApplication.CreateBuilder(args);
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog((ctx, services, cfg) =>
         cfg.ReadFrom.Configuration(ctx.Configuration)
-           .ReadFrom.Services(services)
-           .Enrich.WithProperty("Application", "Medical.Client")
-           .Enrich.FromLogContext());
+            .ReadFrom.Services(services)
+            .Enrich.WithProperty("Application", "Medical.Client")
+            .Enrich.FromLogContext());
 
     builder.Services.Configure<HostOptions>(o =>
         o.ShutdownTimeout = TimeSpan.FromSeconds(30));
@@ -34,36 +34,36 @@ try
 
     builder.Services.AddAntiforgery(o =>
     {
-        o.Cookie.Name       = "_MedicalXsrf";
-        o.Cookie.HttpOnly   = true;
+        o.Cookie.Name = "_MedicalXsrf";
+        o.Cookie.HttpOnly = true;
         o.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-        o.Cookie.SameSite   = SameSiteMode.Strict;
-        o.HeaderName        = "X-Csrf-Token";
+        o.Cookie.SameSite = SameSiteMode.Strict;
+        o.HeaderName = "X-Csrf-Token";
     });
 
     builder.Services.AddAuthentication(options =>
         {
-            options.DefaultScheme          = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         })
         .AddCookie(options =>
         {
-            options.LoginPath       = "/Account/Login";
-            options.LogoutPath      = "/Account/Logout";
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
             options.AccessDeniedPath = "/Account/AccessDenied";
-            options.Cookie.Name       = "MedicalAuth";
-            options.Cookie.HttpOnly   = true;
+            options.Cookie.Name = "MedicalAuth";
+            options.Cookie.HttpOnly = true;
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-            options.Cookie.SameSite   = SameSiteMode.Strict;
+            options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.IsEssential = true;
-            options.ExpireTimeSpan    = TimeSpan.FromHours(8);
+            options.ExpireTimeSpan = TimeSpan.FromHours(8);
             options.SlidingExpiration = true;
         });
 
     builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("RequirePatientRole", p => p.RequireRole("Patient"));
-        options.AddPolicy("RequireDoctorRole",  p => p.RequireRole("Doctor"));
+        options.AddPolicy("RequireDoctorRole", p => p.RequireRole("Doctor"));
     });
 
     builder.Services.AddCors(options =>
@@ -95,7 +95,7 @@ try
     builder.Services.AddScoped<IPatientService, PatientServiceGrpc>();
     builder.Services.AddScoped<IMedicalRecordService, MedicalRecordServiceGrpc>();
 
-    var app = builder.Build();
+    WebApplication app = builder.Build();
 
     if (!app.Environment.IsDevelopment())
     {

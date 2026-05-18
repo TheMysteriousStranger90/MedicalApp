@@ -13,12 +13,12 @@ public static class OpenTelemetryExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var otlpEndpoint = configuration["OpenTelemetry:OtlpEndpoint"];
+        string? otlpEndpoint = configuration["OpenTelemetry:OtlpEndpoint"];
 
-        var resourceBuilder = ResourceBuilder
+        ResourceBuilder resourceBuilder = ResourceBuilder
             .CreateDefault()
             .AddService(
-                serviceName: ServiceName,
+                ServiceName,
                 serviceVersion: ServiceVersion)
             .AddTelemetrySdk()
             .AddEnvironmentVariableDetector();

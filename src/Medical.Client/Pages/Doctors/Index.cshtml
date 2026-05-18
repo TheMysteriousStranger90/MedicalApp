@@ -8,11 +8,12 @@
 
 <div class="container">
     <h2 class="mb-4">Our Doctors</h2>
-    
+
     <div class="row mb-4">
         <div class="col-md-6">
             <form method="get" class="d-flex">
-                <input type="text" class="form-control me-2" asp-for="Specialization" placeholder="Search by specialization...">
+                <input type="text" class="form-control me-2" asp-for="Specialization"
+                       placeholder="Search by specialization...">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
@@ -32,12 +33,12 @@
             </form>
         </div>
     </div>
-    
+
     @if (Model.ErrorMessage != null)
     {
         <div class="alert alert-danger">@Model.ErrorMessage</div>
     }
-    
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var doctor in Model.Doctors)
         {
@@ -58,7 +59,8 @@
                         </p>
                         <p class="card-text">
                             <small class="text-muted">
-                                <i class="fas fa-dollar-sign"></i> Consultation Fee: @CurrencyHelper.FormatUSD(doctor.ConsultationFee)
+                                <i class="fas fa-dollar-sign"></i> Consultation
+                                Fee: @CurrencyHelper.FormatUSD(doctor.ConsultationFee)
                             </small>
                         </p>
                         <a asp-page="./Details" asp-route-id="@doctor.Id" class="btn btn-primary">View Details</a>
@@ -67,31 +69,39 @@
             </div>
         }
     </div>
-    
+
     <nav aria-label="Doctors pagination" class="mt-4">
         <ul class="pagination justify-content-center">
             @if (Model.PageNumber > 1)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-route-PageNumber="1" asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">First</a>
+                    <a class="page-link" asp-route-PageNumber="1" asp-route-Specialization="@Model.Specialization"
+                       asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">First</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">Previous</a>
+                    <a class="page-link" asp-route-PageNumber="@(Model.PageNumber - 1)"
+                       asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy"
+                       asp-route-SortOrder="@Model.SortOrder">Previous</a>
                 </li>
             }
-            @for (int i = 1; i <= Model.TotalPages; i++)
+            @for (var i = 1; i <= Model.TotalPages; i++)
             {
                 <li class="page-item @(i == Model.PageNumber ? "active" : "")">
-                    <a class="page-link" asp-route-PageNumber="@i" asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">@i</a>
+                    <a class="page-link" asp-route-PageNumber="@i" asp-route-Specialization="@Model.Specialization"
+                       asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">@i</a>
                 </li>
             }
             @if (Model.PageNumber < Model.TotalPages)
             {
                 <li class="page-item">
-                    <a class="page-link" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">Next</a>
+                    <a class="page-link" asp-route-PageNumber="@(Model.PageNumber + 1)"
+                       asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy"
+                       asp-route-SortOrder="@Model.SortOrder">Next</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" asp-route-PageNumber="@Model.TotalPages" asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy" asp-route-SortOrder="@Model.SortOrder">Last</a>
+                    <a class="page-link" asp-route-PageNumber="@Model.TotalPages"
+                       asp-route-Specialization="@Model.Specialization" asp-route-SortBy="@Model.SortBy"
+                       asp-route-SortOrder="@Model.SortOrder">Last</a>
                 </li>
             }
         </ul>

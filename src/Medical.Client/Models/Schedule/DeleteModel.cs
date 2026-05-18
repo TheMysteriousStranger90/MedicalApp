@@ -11,8 +11,7 @@ public class DeleteModel : PageModel
     private readonly IDoctorService _doctorService;
     private readonly ILogger<DeleteModel> _logger;
 
-    [BindProperty]
-    public string ScheduleId { get; set; } = string.Empty;
+    [BindProperty] public string ScheduleId { get; set; } = string.Empty;
 
     public DeleteModel(IDoctorService doctorService, ILogger<DeleteModel> logger)
     {
@@ -30,13 +29,13 @@ public class DeleteModel : PageModel
     {
         try
         {
-            var result = await _doctorService.DeleteScheduleAsync(ScheduleId);
+            DeleteScheduleResponse result = await _doctorService.DeleteScheduleAsync(ScheduleId);
             if (result.Success)
             {
                 TempData["Message"] = "Schedule deleted successfully";
                 return RedirectToPage("./Index");
             }
-            
+
             return NotFound();
         }
         catch (Exception ex)

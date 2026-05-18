@@ -27,7 +27,7 @@ public sealed class AppointmentGrpcServiceTests
         _unitOfWork = new Mock<IUnitOfWork>();
         _unitOfWork.Setup(u => u.Appointments).Returns(_appointmentRepo.Object);
 
-        var svc = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+        var svc = new ServiceCollection();
         svc.AddLogging();
         svc.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
         _mapper = svc.BuildServiceProvider().GetRequiredService<IMapper>();
@@ -43,10 +43,10 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task GetAppointments_ByDoctorId_ReturnsAppointments()
     {
-        var doctorId = Guid.NewGuid().ToString();
+        string doctorId = Guid.NewGuid().ToString();
         var dtos = new List<AppointmentDto>
         {
-            CreateDto(doctorId: doctorId)
+            CreateDto(doctorId)
         };
 
         _appointmentRepo
@@ -54,7 +54,7 @@ public sealed class AppointmentGrpcServiceTests
             .ReturnsAsync(dtos);
 
         var request = new AppointmentRequest { DoctorId = doctorId };
-        var response = await _sut.GetAppointments(request, TestServerCallContext.Create());
+        AppointmentResponse response = await _sut.GetAppointments(request, TestServerCallContext.Create());
 
         Assert.Single(response.Appointments);
         Assert.Equal(dtos[0].Id, response.Appointments[0].Id);
@@ -63,7 +63,7 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task GetAppointments_ByPatientId_ReturnsAppointments()
     {
-        var patientId = Guid.NewGuid().ToString();
+        string patientId = Guid.NewGuid().ToString();
         var dtos = new List<AppointmentDto> { CreateDto(patientId: patientId) };
 
         _appointmentRepo
@@ -71,7 +71,7 @@ public sealed class AppointmentGrpcServiceTests
             .ReturnsAsync(dtos);
 
         var request = new AppointmentRequest { PatientId = patientId };
-        var response = await _sut.GetAppointments(request, TestServerCallContext.Create());
+        AppointmentResponse response = await _sut.GetAppointments(request, TestServerCallContext.Create());
 
         Assert.Single(response.Appointments);
     }
@@ -85,7 +85,8 @@ public sealed class AppointmentGrpcServiceTests
             .Setup(r => r.GetUpcomingAppointmentsAsync())
             .ReturnsAsync(dtos);
 
-        var response = await _sut.GetAppointments(new AppointmentRequest(), TestServerCallContext.Create());
+        AppointmentResponse response =
+            await _sut.GetAppointments(new AppointmentRequest(), TestServerCallContext.Create());
 
         Assert.Equal(2, response.Appointments.Count);
     }
@@ -97,8 +98,9 @@ public sealed class AppointmentGrpcServiceTests
     {
         var request = new AppointmentByIdRequest { Id = "not-a-guid" };
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.GetAppointmentById(request, TestServerCallContext.Create()));
+        RpcException ex =
+            await Assert.ThrowsAsync<RpcException>(() =>
+                _sut.GetAppointmentById(request, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.InvalidArgument, ex.StatusCode);
     }
@@ -106,11 +108,11 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task GetAppointmentById_NotFound_ThrowsRpcException()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _appointmentRepo.Setup(r => r.GetByIdAsync(id)).ReturnsAsync((Appointment?)null);
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.GetAppointmentById(new AppointmentByIdRequest { Id = id }, TestServerCallContext.Create()));
+        RpcException ex = await Assert.ThrowsAsync<RpcException>(() =>
+            _sut.GetAppointmentById(new AppointmentByIdRequest { Id = id }, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.NotFound, ex.StatusCode);
     }
@@ -119,10 +121,10 @@ public sealed class AppointmentGrpcServiceTests
     public async Task GetAppointmentById_Found_ReturnsModel()
     {
         var id = Guid.NewGuid();
-        var appointment = CreateEntity(id: id);
+        Appointment appointment = CreateEntity(id);
         _appointmentRepo.Setup(r => r.GetByIdAsync(id.ToString())).ReturnsAsync(appointment);
 
-        var result = await _sut.GetAppointmentById(
+        AppointmentModel result = await _sut.GetAppointmentById(
             new AppointmentByIdRequest { Id = id.ToString() },
             TestServerCallContext.Create());
 
@@ -140,8 +142,9 @@ public sealed class AppointmentGrpcServiceTests
             AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow.AddDays(1))
         };
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.CreateAppointment(request, TestServerCallContext.Create()));
+        RpcException ex =
+            await Assert.ThrowsAsync<RpcException>(() =>
+                _sut.CreateAppointment(request, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.InvalidArgument, ex.StatusCode);
     }
@@ -149,7 +152,7 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task CreateAppointment_DoctorNotFound_ThrowsRpcException()
     {
-        var doctorId = Guid.NewGuid().ToString();
+        string doctorId = Guid.NewGuid().ToString();
         var doctorRepo = new Mock<IDoctorRepository>();
         doctorRepo.Setup(r => r.GetByIdAsync(doctorId)).ReturnsAsync((Doctor?)null);
         _unitOfWork.Setup(u => u.Doctors).Returns(doctorRepo.Object);
@@ -161,8 +164,9 @@ public sealed class AppointmentGrpcServiceTests
             AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow.AddDays(1))
         };
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.CreateAppointment(request, TestServerCallContext.Create()));
+        RpcException ex =
+            await Assert.ThrowsAsync<RpcException>(() =>
+                _sut.CreateAppointment(request, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.NotFound, ex.StatusCode);
     }
@@ -170,7 +174,7 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task CreateAppointment_Success_ReturnsModel()
     {
-        var doctorId = Guid.NewGuid().ToString();
+        string doctorId = Guid.NewGuid().ToString();
         var doctor = new Doctor
         {
             Id = doctorId,
@@ -194,7 +198,7 @@ public sealed class AppointmentGrpcServiceTests
             AppointmentDate = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow.AddDays(1))
         };
 
-        var result = await _sut.CreateAppointment(request, TestServerCallContext.Create());
+        AppointmentModel result = await _sut.CreateAppointment(request, TestServerCallContext.Create());
 
         Assert.Equal(doctorId, result.DoctorId);
         _appointmentRepo.Verify(r => r.AddAsync(It.IsAny<Appointment>()), Times.Once);
@@ -206,13 +210,12 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task UpdateAppointment_NotFound_ThrowsRpcException()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _appointmentRepo.Setup(r => r.GetByIdAsync(id)).ReturnsAsync((Appointment?)null);
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.UpdateAppointment(
-                new UpdateAppointmentRequest { Id = id, Status = AppointmentStatus.Cancelled },
-                TestServerCallContext.Create()));
+        RpcException ex = await Assert.ThrowsAsync<RpcException>(() => _sut.UpdateAppointment(
+            new UpdateAppointmentRequest { Id = id, Status = AppointmentStatus.Cancelled },
+            TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.NotFound, ex.StatusCode);
     }
@@ -221,12 +224,12 @@ public sealed class AppointmentGrpcServiceTests
     public async Task UpdateAppointment_StatusChange_UpdatesAppointment()
     {
         var id = Guid.NewGuid();
-        var entity = CreateEntity(id: id);
+        Appointment entity = CreateEntity(id);
         _appointmentRepo.Setup(r => r.GetByIdAsync(id.ToString())).ReturnsAsync(entity);
         _appointmentRepo.Setup(r => r.UpdateAsync(It.IsAny<Appointment>())).ReturnsAsync(true);
         _unitOfWork.Setup(u => u.Complete()).ReturnsAsync(true);
 
-        var result = await _sut.UpdateAppointment(
+        AppointmentModel result = await _sut.UpdateAppointment(
             new UpdateAppointmentRequest
             {
                 Id = id.ToString(),
@@ -244,11 +247,11 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task DeleteAppointment_Found_ReturnsSuccess()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _appointmentRepo.Setup(r => r.DeleteAsync(id)).ReturnsAsync(true);
         _unitOfWork.Setup(u => u.Complete()).ReturnsAsync(true);
 
-        var result = await _sut.DeleteAppointment(
+        DeleteAppointmentResponse result = await _sut.DeleteAppointment(
             new DeleteAppointmentRequest { Id = id }, TestServerCallContext.Create());
 
         Assert.True(result.Success);
@@ -257,11 +260,11 @@ public sealed class AppointmentGrpcServiceTests
     [Fact]
     public async Task DeleteAppointment_NotFound_ReturnsFailure()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _appointmentRepo.Setup(r => r.DeleteAsync(id)).ReturnsAsync(false);
         _unitOfWork.Setup(u => u.Complete()).ReturnsAsync(true);
 
-        var result = await _sut.DeleteAppointment(
+        DeleteAppointmentResponse result = await _sut.DeleteAppointment(
             new DeleteAppointmentRequest { Id = id }, TestServerCallContext.Create());
 
         Assert.False(result.Success);

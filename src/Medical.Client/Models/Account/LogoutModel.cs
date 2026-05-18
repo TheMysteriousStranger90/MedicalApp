@@ -27,7 +27,7 @@ public class LogoutModel : PageModel
     {
         try
         {
-            var token = _tokenStorage.GetToken();
+            string? token = _tokenStorage.GetToken();
             if (!string.IsNullOrEmpty(token))
             {
                 await _authService.LogoutAsync(token);

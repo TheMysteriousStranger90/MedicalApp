@@ -28,21 +28,16 @@ public class EditModel : PageModel
     {
         try
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
             Appointment = await _appointmentService.GetAppointmentByIdAsync(id);
 
-            if (Appointment == null)
-            {
-                return NotFound();
-            }
+            if (Appointment == null) return NotFound();
 
             if (!User.IsInRole("Admin") &&
                 Appointment.DoctorId != userId &&
                 Appointment.PatientId != userId)
-            {
                 return Forbid();
-            }
 
             Input = new UpdateAppointmentRequest
             {
@@ -71,8 +66,8 @@ public class EditModel : PageModel
             if (!ModelState.IsValid)
                 return Page();
 
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var currentAppointment = await _appointmentService.GetAppointmentByIdAsync(Input.Id);
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            AppointmentModel? currentAppointment = await _appointmentService.GetAppointmentByIdAsync(Input.Id);
 
             if (currentAppointment == null)
                 return NotFound();
@@ -80,9 +75,7 @@ public class EditModel : PageModel
             if (!User.IsInRole("Admin") &&
                 currentAppointment.DoctorId != userId &&
                 currentAppointment.PatientId != userId)
-            {
                 return Forbid();
-            }
 
             if (User.IsInRole("Patient"))
             {

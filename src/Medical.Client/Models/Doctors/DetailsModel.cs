@@ -25,10 +25,7 @@ public class DetailsModel : PageModel
         try
         {
             Doctor = await _doctorService.GetDoctorByIdAsync(id);
-            if (Doctor == null)
-            {
-                return NotFound();
-            }
+            if (Doctor == null) return NotFound();
 
             return Page();
         }

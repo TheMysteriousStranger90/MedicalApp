@@ -5,11 +5,11 @@ namespace Medical.Client.Services;
 
 public class PatientServiceGrpc : IPatientService
 {
-    private readonly  Medical.Client.PatientService.PatientServiceClient _client;
+    private readonly PatientService.PatientServiceClient _client;
     private readonly ILogger<PatientServiceGrpc> _logger;
 
     public PatientServiceGrpc(
-        Medical.Client.PatientService.PatientServiceClient client,
+        PatientService.PatientServiceClient client,
         ILogger<PatientServiceGrpc> logger)
     {
         _client = client;
@@ -21,7 +21,7 @@ public class PatientServiceGrpc : IPatientService
         try
         {
             var request = new GetPatientsRequest { DoctorId = doctorId };
-            var response = await _client.GetPatientsAsync(request);
+            GetPatientsResponse? response = await _client.GetPatientsAsync(request);
             return response.Patients;
         }
         catch (RpcException ex)

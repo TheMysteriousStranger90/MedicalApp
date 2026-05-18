@@ -12,21 +12,17 @@ public static class SeedDataInitializer
     {
         var roles = new List<Role>
         {
-            new Role { Name = "Doctor" },
-            new Role { Name = "Patient" },
-            new Role { Name = "Administrator" }
+            new() { Name = "Doctor" },
+            new() { Name = "Patient" },
+            new() { Name = "Administrator" }
         };
 
-        foreach (var role in roles)
-        {
-            if (!(await roleManager.RoleExistsAsync(role.Name ?? throw new InvalidOperationException())))
-            {
+        foreach (Role role in roles)
+            if (!await roleManager.RoleExistsAsync(role.Name ?? throw new InvalidOperationException()))
                 await roleManager.CreateAsync(role);
-            }
-        }
 
         // Seed Admin
-        var adminEmail = "admin@example.com";
+        string adminEmail = "admin@example.com";
         if (await userManager.FindByEmailAsync(adminEmail) == null)
         {
             var admin = new User
@@ -36,17 +32,14 @@ public static class SeedDataInitializer
                 EmailConfirmed = true
             };
 
-            var result = await userManager.CreateAsync(admin, "Admin123!");
-            if (result.Succeeded)
-            {
-                await userManager.AddToRoleAsync(admin, "Administrator");
-            }
+            IdentityResult result = await userManager.CreateAsync(admin, "Admin123!");
+            if (result.Succeeded) await userManager.AddToRoleAsync(admin, "Administrator");
         }
 
         // Seed Doctors
         var doctors = new List<Doctor>
         {
-            new Doctor
+            new()
             {
                 UserName = "doctor1@example.com",
                 Email = "doctor1@example.com",
@@ -58,7 +51,7 @@ public static class SeedDataInitializer
                 Experience = "15 years",
                 ConsultationFee = 150.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor2@example.com",
                 Email = "doctor2@example.com",
@@ -70,7 +63,7 @@ public static class SeedDataInitializer
                 Experience = "10 years",
                 ConsultationFee = 120.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor3@example.com",
                 Email = "doctor3@example.com",
@@ -82,7 +75,7 @@ public static class SeedDataInitializer
                 Experience = "12 years",
                 ConsultationFee = 130.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor4@example.com",
                 Email = "doctor4@example.com",
@@ -94,7 +87,7 @@ public static class SeedDataInitializer
                 Experience = "8 years",
                 ConsultationFee = 110.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor5@example.com",
                 Email = "doctor5@example.com",
@@ -106,7 +99,7 @@ public static class SeedDataInitializer
                 Experience = "20 years",
                 ConsultationFee = 200.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor6@example.com",
                 Email = "doctor6@example.com",
@@ -118,7 +111,7 @@ public static class SeedDataInitializer
                 Experience = "18 years",
                 ConsultationFee = 180.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor7@example.com",
                 Email = "doctor7@example.com",
@@ -130,7 +123,7 @@ public static class SeedDataInitializer
                 Experience = "14 years",
                 ConsultationFee = 160.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor8@example.com",
                 Email = "doctor8@example.com",
@@ -142,7 +135,7 @@ public static class SeedDataInitializer
                 Experience = "16 years",
                 ConsultationFee = 170.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor9@example.com",
                 Email = "doctor9@example.com",
@@ -154,7 +147,7 @@ public static class SeedDataInitializer
                 Experience = "13 years",
                 ConsultationFee = 140.00m
             },
-            new Doctor
+            new()
             {
                 UserName = "doctor10@example.com",
                 Email = "doctor10@example.com",
@@ -168,22 +161,19 @@ public static class SeedDataInitializer
             }
         };
 
-        foreach (var doctor in doctors)
+        foreach (Doctor doctor in doctors)
         {
             if (await userManager.FindByEmailAsync(doctor.Email!) == null)
             {
-                var result = await userManager.CreateAsync(doctor, "Doctor123!");
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(doctor, "Doctor");
-                }
+                IdentityResult result = await userManager.CreateAsync(doctor, "Doctor123!");
+                if (result.Succeeded) await userManager.AddToRoleAsync(doctor, "Doctor");
             }
         }
 
         // Seed Patients
         var patients = new List<Patient>
         {
-            new Patient
+            new()
             {
                 UserName = "patient1@example.com",
                 Email = "patient1@example.com",
@@ -196,7 +186,7 @@ public static class SeedDataInitializer
                 BloodGroup = "A+",
                 EmergencyContact = "Bob Brown: 123-555-0123"
             },
-            new Patient
+            new()
             {
                 UserName = "patient2@example.com",
                 Email = "patient2@example.com",
@@ -209,7 +199,7 @@ public static class SeedDataInitializer
                 BloodGroup = "O+",
                 EmergencyContact = "Jane Wilson: 234-555-0123"
             },
-            new Patient
+            new()
             {
                 UserName = "patient3@example.com",
                 Email = "patient3@example.com",
@@ -222,7 +212,7 @@ public static class SeedDataInitializer
                 BloodGroup = "B-",
                 EmergencyContact = "John Johnson: 345-555-0123"
             },
-            new Patient
+            new()
             {
                 UserName = "patient4@example.com",
                 Email = "patient4@example.com",
@@ -235,7 +225,7 @@ public static class SeedDataInitializer
                 BloodGroup = "AB+",
                 EmergencyContact = "Maria Martinez: 456-555-0123"
             },
-            new Patient
+            new()
             {
                 UserName = "patient5@example.com",
                 Email = "patient5@example.com",
@@ -250,15 +240,12 @@ public static class SeedDataInitializer
             }
         };
 
-        foreach (var patient in patients)
+        foreach (Patient patient in patients)
         {
             if (await userManager.FindByEmailAsync(patient.Email!) == null)
             {
-                var result = await userManager.CreateAsync(patient, "Patient123!");
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(patient, "Patient");
-                }
+                IdentityResult result = await userManager.CreateAsync(patient, "Patient123!");
+                if (result.Succeeded) await userManager.AddToRoleAsync(patient, "Patient");
             }
         }
     }
@@ -267,12 +254,12 @@ public static class SeedDataInitializer
     {
         if (!context.Schedules.Any())
         {
-            var doctor = await context.Doctors.FirstOrDefaultAsync();
+            Doctor? doctor = await context.Doctors.FirstOrDefaultAsync();
             if (doctor != null)
             {
                 var schedules = new List<Schedule>
                 {
-                    new Schedule
+                    new()
                     {
                         DoctorId = doctor.Id,
                         StartTime = new TimeSpan(9, 0, 0), // 9:00 AM
@@ -284,7 +271,7 @@ public static class SeedDataInitializer
                         ValidTo = DateTime.Today.AddMonths(3),
                         Notes = "Regular Monday schedule"
                     },
-                    new Schedule
+                    new()
                     {
                         DoctorId = doctor.Id,
                         StartTime = new TimeSpan(9, 0, 0),
@@ -299,18 +286,18 @@ public static class SeedDataInitializer
                 };
 
                 // Generate time slots for each schedule
-                foreach (var schedule in schedules)
+                foreach (Schedule schedule in schedules)
                 {
                     var slots = new List<TimeSlot>();
-                    var startDate = schedule.ValidFrom!.Value;
-                    var endDate = schedule.ValidTo!.Value;
+                    DateTime startDate = schedule.ValidFrom!.Value;
+                    DateTime endDate = schedule.ValidTo!.Value;
 
-                    for (var date = startDate; date <= endDate; date = date.AddDays(1))
+                    for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
                     {
                         if (date.DayOfWeek != schedule.DayOfWeek) continue;
 
-                        var slotStart = date.Date.Add(schedule.StartTime);
-                        var slotEnd = date.Date.Add(schedule.EndTime);
+                        DateTime slotStart = date.Date.Add(schedule.StartTime);
+                        DateTime slotEnd = date.Date.Add(schedule.EndTime);
 
                         while (slotStart.AddMinutes(schedule.SlotDurationMinutes) <= slotEnd)
                         {
@@ -335,8 +322,8 @@ public static class SeedDataInitializer
 
         if (!context.Appointments.Any())
         {
-            var doctor = await context.Doctors.FirstOrDefaultAsync();
-            var patient = await context.Patients.FirstOrDefaultAsync();
+            Doctor? doctor = await context.Doctors.FirstOrDefaultAsync();
+            Patient? patient = await context.Patients.FirstOrDefaultAsync();
 
             if (doctor != null && patient != null)
             {

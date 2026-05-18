@@ -14,7 +14,7 @@ public sealed class AutoMapperProfileTests
 
     public AutoMapperProfileTests()
     {
-        var svc = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+        var svc = new ServiceCollection();
         svc.AddLogging();
         svc.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
         _mapper = svc.BuildServiceProvider().GetRequiredService<IMapper>();
@@ -37,7 +37,7 @@ public sealed class AutoMapperProfileTests
             IsPaid = false
         };
 
-        var dto = _mapper.Map<AppointmentDto>(entity);
+        AppointmentDto? dto = _mapper.Map<AppointmentDto>(entity);
 
         Assert.Equal(id.ToString(), dto.Id);
         Assert.Equal(entity.DoctorId, dto.DoctorId);
@@ -56,10 +56,10 @@ public sealed class AutoMapperProfileTests
             DoctorId = Guid.NewGuid().ToString(),
             PatientId = Guid.NewGuid().ToString(),
             AppointmentDate = new DateTime(2026, 6, 1, 10, 0, 0, DateTimeKind.Utc),
-            Status = AppointmentStatus.Completed,
+            Status = AppointmentStatus.Completed
         };
 
-        var model = _mapper.Map<AppointmentModel>(entity);
+        AppointmentModel? model = _mapper.Map<AppointmentModel>(entity);
 
         Assert.Equal(id.ToString(), model.Id);
         Assert.Equal(entity.DoctorId, model.DoctorId);
@@ -73,7 +73,7 @@ public sealed class AutoMapperProfileTests
     [Fact]
     public void Doctor_MapsTo_DoctorDto()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         var doctor = new Doctor
         {
             Id = id,
@@ -84,7 +84,7 @@ public sealed class AutoMapperProfileTests
             UserName = "house@med.com"
         };
 
-        var dto = _mapper.Map<DoctorDto>(doctor);
+        DoctorDto? dto = _mapper.Map<DoctorDto>(doctor);
 
         Assert.Equal(id, dto.Id);
         Assert.Equal("Dr. House", dto.FullName);
@@ -104,7 +104,7 @@ public sealed class AutoMapperProfileTests
             LicenseNumber = "LIC-999"
         };
 
-        var model = _mapper.Map<DoctorModel>(dto);
+        DoctorModel? model = _mapper.Map<DoctorModel>(dto);
 
         Assert.Equal(dto.Id, model.Id);
         Assert.Equal(dto.FullName, model.FullName);
@@ -127,7 +127,7 @@ public sealed class AutoMapperProfileTests
             CreatedAt = new DateTime(2026, 5, 1, 0, 0, 0, DateTimeKind.Utc)
         };
 
-        var model = _mapper.Map<MedicalRecordModel>(record);
+        MedicalRecordModel? model = _mapper.Map<MedicalRecordModel>(record);
 
         Assert.Equal(record.PatientId, model.PatientId);
         Assert.Equal("Flu", model.Diagnosis);
@@ -137,7 +137,7 @@ public sealed class AutoMapperProfileTests
     [Fact]
     public void CreateMedicalRecordRequest_MapsTo_MedicalRecord()
     {
-        var patientId = Guid.NewGuid().ToString();
+        string patientId = Guid.NewGuid().ToString();
         var request = new CreateMedicalRecordRequest
         {
             PatientId = patientId,
@@ -147,7 +147,7 @@ public sealed class AutoMapperProfileTests
             Notes = "Follow up"
         };
 
-        var entity = _mapper.Map<MedicalRecord>(request);
+        MedicalRecord? entity = _mapper.Map<MedicalRecord>(request);
 
         Assert.Equal(patientId, entity.PatientId);
         Assert.Equal("Hypertension", entity.Diagnosis);

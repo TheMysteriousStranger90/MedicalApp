@@ -1,15 +1,15 @@
 <Project>
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <LangVersion>latest</LangVersion>
-        <Deterministic>true</Deterministic>
-        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-        <AnalysisLevel>latest-recommended</AnalysisLevel>
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <GenerateDocumentationFile>false</GenerateDocumentationFile>
-        <Optimize Condition="'$(Configuration)' == 'Release'">true</Optimize>        <!--
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Optimize Condition="'$(Configuration)' == 'Release'">true</Optimize>        <!--
             Suppressed build warnings:
             CA1848  – LoggerMessage delegates: touching all log call sites is too invasive; Serilog handles perf.
             CS1998  – async without await: pre-existing in GenericRepository.
@@ -24,10 +24,10 @@
             CA1816  – GC.SuppressFinalize: pre-existing UnitOfWork.
             CA1859  – Use concrete type: pre-existing DoctorRepository.
         -->
-        <NoWarn>;CA1848;CS1998;CA1305;CA1051;CA1725;CA1716;CA1861;CA1822;CA1311;CA1304;CA1816;CA1859</NoWarn>
-    </PropertyGroup>
+    <NoWarn>;CA1848;CS1998;CA1305;CA1051;CA1725;CA1716;CA1861;CA1822;CA1311;CA1304;CA1816;CA1859</NoWarn>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" PrivateAssets="all"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" PrivateAssets="all"/>
+  </ItemGroup>
 </Project>

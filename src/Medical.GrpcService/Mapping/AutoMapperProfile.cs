@@ -27,7 +27,7 @@ public class AutoMapperProfile : Profile
         CreateMap<AppointmentDto, AppointmentModel>()
             .ForMember(dest => dest.AppointmentDate, opt =>
                 opt.MapFrom(src =>
-                    Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(src.AppointmentDate.ToUniversalTime())))
+                    Timestamp.FromDateTime(src.AppointmentDate.ToUniversalTime())))
             .ReverseMap()
             .ForMember(dest => dest.AppointmentDate, opt =>
                 opt.MapFrom(src => src.AppointmentDate.ToDateTime()));
@@ -96,7 +96,7 @@ public class AutoMapperProfile : Profile
 
         CreateMap<MedicalRecord, MedicalRecordModel>()
             .ForMember(d => d.CreatedAt,
-                opt => opt.MapFrom(s => Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(s.CreatedAt)));
+                opt => opt.MapFrom(s => Timestamp.FromDateTime(s.CreatedAt)));
 
         CreateMap<LabResult, LabResultModel>().ReverseMap();
         CreateMap<CreateMedicalRecordRequest, MedicalRecord>()
@@ -147,14 +147,14 @@ public class AutoMapperProfile : Profile
                     Timestamp.FromDateTime(DateTime.Today.Add(s.EndTime).ToUniversalTime())))
             .ForMember(d => d.ValidFrom,
                 opt => opt.MapFrom(s =>
-                    s.ValidFrom.HasValue ?
-                        Timestamp.FromDateTime(s.ValidFrom.Value.ToUniversalTime()) :
-                        Timestamp.FromDateTime(DateTime.MinValue.ToUniversalTime())))
+                    s.ValidFrom.HasValue
+                        ? Timestamp.FromDateTime(s.ValidFrom.Value.ToUniversalTime())
+                        : Timestamp.FromDateTime(DateTime.MinValue.ToUniversalTime())))
             .ForMember(d => d.ValidTo,
                 opt => opt.MapFrom(s =>
-                    s.ValidTo.HasValue ?
-                        Timestamp.FromDateTime(s.ValidTo.Value.ToUniversalTime()) :
-                        Timestamp.FromDateTime(DateTime.MaxValue.ToUniversalTime())));
+                    s.ValidTo.HasValue
+                        ? Timestamp.FromDateTime(s.ValidTo.Value.ToUniversalTime())
+                        : Timestamp.FromDateTime(DateTime.MaxValue.ToUniversalTime())));
 
         CreateMap<UpdateScheduleRequest, Schedule>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.Parse(src.Id)))

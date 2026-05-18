@@ -26,7 +26,7 @@ public class PatientRepository : GenericRepository<Patient>, IPatientRepository
         try
         {
             _logger.LogInformation("Getting patient with medical records: {PatientId}", patientId);
-            var patient = await _context.Patients
+            Patient? patient = await _context.Patients
                 .Include(p => p.MedicalRecords)
                 .ThenInclude(mr => mr.LabResults)
                 .FirstOrDefaultAsync(p => p.Id == patientId);
@@ -45,7 +45,7 @@ public class PatientRepository : GenericRepository<Patient>, IPatientRepository
         try
         {
             _logger.LogInformation("Getting patients for doctor: {DoctorId}", doctorId);
-            var patients = await _context.Appointments
+            List<Patient> patients = await _context.Appointments
                 .Where(a => a.DoctorId == doctorId)
                 .Select(a => a.Patient)
                 .Distinct()

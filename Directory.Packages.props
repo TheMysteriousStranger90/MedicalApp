@@ -1,62 +1,62 @@
 <Project>
-    <PropertyGroup>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    </PropertyGroup>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
 
-    <ItemGroup Label="gRPC / Protobuf">
-        <PackageVersion Include="Google.Protobuf" Version="3.29.3"/>
-        <PackageVersion Include="Grpc.AspNetCore" Version="2.70.0"/>
-        <PackageVersion Include="Grpc.AspNetCore.Web" Version="2.70.0"/>
-        <PackageVersion Include="Grpc.AspNetCore.Server.Reflection" Version="2.70.0"/>
-        <PackageVersion Include="Grpc.Net.Client" Version="2.70.0"/>
-        <PackageVersion Include="Grpc.Net.ClientFactory" Version="2.70.0"/>
-        <PackageVersion Include="Grpc.Tools" Version="2.70.0"/>
-    </ItemGroup>
+  <ItemGroup Label="gRPC / Protobuf">
+    <PackageVersion Include="Google.Protobuf" Version="3.29.3"/>
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.70.0"/>
+    <PackageVersion Include="Grpc.AspNetCore.Web" Version="2.70.0"/>
+    <PackageVersion Include="Grpc.AspNetCore.Server.Reflection" Version="2.70.0"/>
+    <PackageVersion Include="Grpc.Net.Client" Version="2.70.0"/>
+    <PackageVersion Include="Grpc.Net.ClientFactory" Version="2.70.0"/>
+    <PackageVersion Include="Grpc.Tools" Version="2.70.0"/>
+  </ItemGroup>
 
-    <ItemGroup Label="ASP.NET Core / Identity / EF Core">
-        <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.9"/>
-        <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0"/>
-    </ItemGroup>
+  <ItemGroup Label="ASP.NET Core / Identity / EF Core">
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.9"/>
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0"/>
+  </ItemGroup>
 
-    <ItemGroup Label="OpenTelemetry">
-        <PackageVersion Include="OpenTelemetry" Version="1.15.3"/>
-        <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3"/>
-        <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2"/>
-        <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1"/>
-        <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1"/>
-        <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.15.3"/>
-        <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3"/>
-        <PackageVersion Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.15.3-beta.1"/>
-    </ItemGroup>
+  <ItemGroup Label="OpenTelemetry">
+    <PackageVersion Include="OpenTelemetry" Version="1.15.3"/>
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.15.3"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.15.3-beta.1"/>
+  </ItemGroup>
 
-    <ItemGroup Label="Serilog">
-        <PackageVersion Include="Serilog" Version="4.2.0"/>
-        <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0"/>
-        <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1"/>
-        <PackageVersion Include="Serilog.Enrichers.Thread" Version="4.0.0"/>
-        <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0"/>
-        <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0"/>
-        <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0"/>
-    </ItemGroup>
+  <ItemGroup Label="Serilog">
+    <PackageVersion Include="Serilog" Version="4.2.0"/>
+    <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0"/>
+    <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1"/>
+    <PackageVersion Include="Serilog.Enrichers.Thread" Version="4.0.0"/>
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0"/>
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0"/>
+    <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0"/>
+  </ItemGroup>
 
-    <ItemGroup Label="Other">
-        <PackageVersion Include="AutoMapper" Version="16.1.1"/>
-        <PackageVersion Include="Polly" Version="8.6.6"/>
-    </ItemGroup>
-    <ItemGroup Label="Test">
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0"/>
-        <PackageVersion Include="xunit" Version="2.9.3"/>
-        <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2"/>
-        <PackageVersion Include="coverlet.collector" Version="6.0.4"/>
-        <PackageVersion Include="Moq" Version="4.20.72"/>
-        <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.9"/>
-    </ItemGroup>
+  <ItemGroup Label="Other">
+    <PackageVersion Include="AutoMapper" Version="16.1.1"/>
+    <PackageVersion Include="Polly" Version="8.6.6"/>
+  </ItemGroup>
+  <ItemGroup Label="Test">
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0"/>
+    <PackageVersion Include="xunit" Version="2.9.3"/>
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2"/>
+    <PackageVersion Include="coverlet.collector" Version="6.0.4"/>
+    <PackageVersion Include="Moq" Version="4.20.72"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.9"/>
+  </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Medical.GrpcService.Entities;
 
@@ -6,11 +6,9 @@ public class LabResult
 {
     public Guid Id { get; set; }
 
-    [Required]
-    public Guid MedicalRecordId { get; set; }
+    [Required] public Guid MedicalRecordId { get; set; }
 
-    [Required]
-    public required string TestName { get; set; }
+    [Required] public required string TestName { get; set; }
     public required string TestResult { get; set; }
     public required string ReferenceRange { get; set; }
     public DateTime TestDate { get; set; }

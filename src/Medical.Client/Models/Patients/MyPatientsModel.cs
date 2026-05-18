@@ -30,7 +30,7 @@ public class MyPatientsModel : PageModel
     {
         try
         {
-            var doctorId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? doctorId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(doctorId))
             {
                 ErrorMessage = "Doctor ID not found";
@@ -38,29 +38,29 @@ public class MyPatientsModel : PageModel
             }
 
             var request = new AppointmentRequest { DoctorId = doctorId };
-            var appointments = await _appointmentService.GetAppointmentsAsync(request);
+            IEnumerable<AppointmentModel> appointments = await _appointmentService.GetAppointmentsAsync(request);
 
-            var upcomingPatientIds = appointments
-                .Where(a => a.AppointmentDate.ToDateTime() > DateTime.Now && 
-                           a.Status == AppointmentStatus.Scheduled)
+            IEnumerable<string> upcomingPatientIds = appointments
+                .Where(a => a.AppointmentDate.ToDateTime() > DateTime.Now &&
+                            a.Status == AppointmentStatus.Scheduled)
                 .Select(a => a.PatientId)
                 .Distinct();
 
-            var pastPatientIds = appointments
-                .Where(a => a.AppointmentDate.ToDateTime() <= DateTime.Now || 
-                           a.Status != AppointmentStatus.Scheduled)
+            IEnumerable<string> pastPatientIds = appointments
+                .Where(a => a.AppointmentDate.ToDateTime() <= DateTime.Now ||
+                            a.Status != AppointmentStatus.Scheduled)
                 .Select(a => a.PatientId)
                 .Distinct();
 
             var upcomingPatients = new List<PatientViewModel>();
             var pastPatients = new List<PatientViewModel>();
 
-            foreach (var patientId in upcomingPatientIds)
+            foreach (string patientId in upcomingPatientIds)
             {
-                var patient = await _patientService.GetPatientByIdAsync(patientId);
-                var nextAppointment = appointments
-                    .Where(a => a.PatientId == patientId && 
-                           a.AppointmentDate.ToDateTime() > DateTime.Now)
+                PatientModel patient = await _patientService.GetPatientByIdAsync(patientId);
+                AppointmentModel? nextAppointment = appointments
+                    .Where(a => a.PatientId == patientId &&
+                                a.AppointmentDate.ToDateTime() > DateTime.Now)
                     .OrderBy(a => a.AppointmentDate)
                     .FirstOrDefault();
 
@@ -74,10 +74,10 @@ public class MyPatientsModel : PageModel
                 });
             }
 
-            foreach (var patientId in pastPatientIds)
+            foreach (string patientId in pastPatientIds)
             {
-                var patient = await _patientService.GetPatientByIdAsync(patientId);
-                var lastAppointment = appointments
+                PatientModel patient = await _patientService.GetPatientByIdAsync(patientId);
+                AppointmentModel? lastAppointment = appointments
                     .Where(a => a.PatientId == patientId)
                     .OrderByDescending(a => a.AppointmentDate)
                     .FirstOrDefault();

@@ -41,7 +41,8 @@
                     <td>@appointment.DoctorName</td>
                     <td>@appointment.PatientName</td>
                     <td>
-                        <span class="badge bg-@(appointment.Status switch {
+                        <span class="badge bg-@(appointment.Status switch
+                                              {
                                                   AppointmentStatus.Scheduled => "primary",
                                                   AppointmentStatus.Completed => "success",
                                                   AppointmentStatus.Cancelled => "danger",

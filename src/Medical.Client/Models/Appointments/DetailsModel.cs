@@ -12,8 +12,7 @@ public class DetailsModel : PageModel
     private readonly IDoctorService _doctorService;
     private readonly IPatientService _patientService;
     private readonly ILogger<DetailsModel> _logger;
-    [BindProperty]
-    public CompleteAppointmentModel CompleteModel { get; set; } = null!;
+    [BindProperty] public CompleteAppointmentModel CompleteModel { get; set; } = null!;
     public AppointmentModel? Appointment { get; private set; }
     public string? DoctorName { get; private set; }
     public string? PatientName { get; private set; }
@@ -37,7 +36,7 @@ public class DetailsModel : PageModel
     {
         try
         {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             Appointment = await _appointmentService.GetAppointmentByIdAsync(id);
 
             if (Appointment == null)
@@ -49,12 +48,10 @@ public class DetailsModel : PageModel
             if (!User.IsInRole("Admin") &&
                 Appointment.DoctorId != userId &&
                 Appointment.PatientId != userId)
-            {
                 return Forbid();
-            }
 
-            var doctor = await _doctorService.GetDoctorByIdAsync(Appointment.DoctorId);
-            var patient = await _patientService.GetPatientByIdAsync(Appointment.PatientId);
+            DoctorModel? doctor = await _doctorService.GetDoctorByIdAsync(Appointment.DoctorId);
+            PatientModel? patient = await _patientService.GetPatientByIdAsync(Appointment.PatientId);
 
             DoctorName = doctor?.FullName;
             PatientName = patient?.FullName;
@@ -79,13 +76,14 @@ public class DetailsModel : PageModel
                 return Page();
             }
 
-            var appointment = await _appointmentService.GetAppointmentByIdAsync(CompleteModel.AppointmentId);
+            AppointmentModel? appointment =
+                await _appointmentService.GetAppointmentByIdAsync(CompleteModel.AppointmentId);
             if (appointment == null)
             {
                 ErrorMessage = "Appointment not found";
                 return Page();
             }
-            
+
             var updateRequest = new UpdateAppointmentRequest
             {
                 Id = CompleteModel.AppointmentId,

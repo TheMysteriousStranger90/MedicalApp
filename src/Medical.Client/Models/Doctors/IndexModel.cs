@@ -24,22 +24,22 @@ public class IndexModel : PageModel
         _doctorService = doctorService;
         _logger = logger;
     }
-    
+
     private string GetLastName(string fullName)
     {
-        var parts = fullName.Split(' ');
+        string[] parts = fullName.Split(' ');
         return parts.Length > 1 ? parts[^1] : fullName;
     }
-    
+
     private int GetExperienceYears(string experience)
     {
         try
         {
-            var years = experience.ToLower()
+            string years = experience.ToLower()
                 .Replace("years", "")
                 .Replace("year", "")
                 .Trim();
-            
+
             return int.TryParse(years, out int result) ? result : 0;
         }
         catch
@@ -52,7 +52,8 @@ public class IndexModel : PageModel
     {
         try
         {
-            var doctors = await _doctorService.GetDoctorsBySpecializationAsync(Specialization ?? string.Empty);
+            IEnumerable<DoctorModel> doctors =
+                await _doctorService.GetDoctorsBySpecializationAsync(Specialization ?? string.Empty);
 
             if (!string.IsNullOrEmpty(Specialization))
             {

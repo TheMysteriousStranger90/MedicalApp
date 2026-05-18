@@ -19,20 +19,20 @@ public static class ApplicationServicesExtensions
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
-        
+
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        
+
         services.AddScoped<IPatientRepository, PatientRepository>();
         services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
         services.AddScoped<IDoctorRepository, DoctorRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-        
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        
+
         services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
-        
+
         services.AddScoped<ITokenService, TokenService>();
-        
+
         return services;
     }
 }

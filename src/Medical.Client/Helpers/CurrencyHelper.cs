@@ -4,10 +4,7 @@ namespace Medical.Client.Helpers;
 
 public static class CurrencyHelper
 {
-    private static readonly CultureInfo USDCulture = new CultureInfo("en-US");
+    private static readonly CultureInfo USDCulture = new("en-US");
 
-    public static string FormatUSD(double amount)
-    {
-        return amount.ToString("C", USDCulture);
-    }
+    public static string FormatUSD(double amount) => amount.ToString("C", USDCulture);
 }

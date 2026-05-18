@@ -30,11 +30,11 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task AddAsync_ThenGetById_ReturnsEntity()
     {
-        var appointment = CreateAppointment();
+        Appointment appointment = CreateAppointment();
         await _repository.AddAsync(appointment);
         await _context.SaveChangesAsync();
 
-        var result = await _repository.GetByIdAsync(appointment.Id.ToString());
+        Appointment? result = await _repository.GetByIdAsync(appointment.Id.ToString());
 
         Assert.NotNull(result);
         Assert.Equal(appointment.Id, result.Id);
@@ -43,7 +43,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task GetByIdAsync_InvalidGuid_ReturnsNull()
     {
-        var result = await _repository.GetByIdAsync("not-a-guid");
+        Appointment? result = await _repository.GetByIdAsync("not-a-guid");
 
         Assert.Null(result);
     }
@@ -51,7 +51,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task GetByIdAsync_UnknownGuid_ReturnsNull()
     {
-        var result = await _repository.GetByIdAsync(Guid.NewGuid().ToString());
+        Appointment? result = await _repository.GetByIdAsync(Guid.NewGuid().ToString());
 
         Assert.Null(result);
     }
@@ -65,7 +65,7 @@ public sealed class GenericRepositoryTests : IDisposable
         await _repository.AddAsync(CreateAppointment());
         await _context.SaveChangesAsync();
 
-        var all = await _repository.GetAllAsync();
+        IEnumerable<Appointment> all = await _repository.GetAllAsync();
 
         Assert.Equal(2, all.Count());
     }
@@ -73,7 +73,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task GetAllAsync_EmptyDb_ReturnsEmpty()
     {
-        var all = await _repository.GetAllAsync();
+        IEnumerable<Appointment> all = await _repository.GetAllAsync();
 
         Assert.Empty(all);
     }
@@ -83,7 +83,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task UpdateAsync_ChangesArePersisted()
     {
-        var appointment = CreateAppointment();
+        Appointment appointment = CreateAppointment();
         await _repository.AddAsync(appointment);
         await _context.SaveChangesAsync();
 
@@ -91,7 +91,7 @@ public sealed class GenericRepositoryTests : IDisposable
         await _repository.UpdateAsync(appointment);
         await _context.SaveChangesAsync();
 
-        var updated = await _repository.GetByIdAsync(appointment.Id.ToString());
+        Appointment? updated = await _repository.GetByIdAsync(appointment.Id.ToString());
         Assert.NotNull(updated);
         Assert.Equal(AppointmentStatus.Cancelled, updated.Status);
     }
@@ -101,11 +101,11 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task DeleteAsync_ExistingEntity_ReturnsTrue()
     {
-        var appointment = CreateAppointment();
+        Appointment appointment = CreateAppointment();
         await _repository.AddAsync(appointment);
         await _context.SaveChangesAsync();
 
-        var result = await _repository.DeleteAsync(appointment.Id.ToString());
+        bool result = await _repository.DeleteAsync(appointment.Id.ToString());
         await _context.SaveChangesAsync();
 
         Assert.True(result);
@@ -115,7 +115,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task DeleteAsync_NonExistent_ReturnsFalse()
     {
-        var result = await _repository.DeleteAsync(Guid.NewGuid().ToString());
+        bool result = await _repository.DeleteAsync(Guid.NewGuid().ToString());
 
         Assert.False(result);
     }
@@ -125,11 +125,11 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task Exists_AfterAdd_ReturnsTrue()
     {
-        var appointment = CreateAppointment();
+        Appointment appointment = CreateAppointment();
         await _repository.AddAsync(appointment);
         await _context.SaveChangesAsync();
 
-        var exists = await _repository.Exists(appointment.Id.ToString());
+        bool exists = await _repository.Exists(appointment.Id.ToString());
 
         Assert.True(exists);
     }
@@ -137,7 +137,7 @@ public sealed class GenericRepositoryTests : IDisposable
     [Fact]
     public async Task Exists_UnknownId_ReturnsFalse()
     {
-        var exists = await _repository.Exists(Guid.NewGuid().ToString());
+        bool exists = await _repository.Exists(Guid.NewGuid().ToString());
 
         Assert.False(exists);
     }

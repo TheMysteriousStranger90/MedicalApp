@@ -15,8 +15,7 @@ public class CreateModel : PageModel
     private readonly ILogger<CreateModel> _logger;
     private readonly ITokenStorageService _tokenStorage;
 
-    [BindProperty]
-    public CreateAppointmentRequest Input { get; set; } = new();
+    [BindProperty] public CreateAppointmentRequest Input { get; set; } = new();
 
     [BindProperty]
     [DataType(DataType.DateTime)]
@@ -25,12 +24,13 @@ public class CreateModel : PageModel
         .AddHours(1)
         .AddSeconds(-DateTime.Now.Second)
         .AddMilliseconds(-DateTime.Now.Millisecond);
+
     public List<DoctorModel> AvailableDoctors { get; set; } = new();
     public DoctorModel? SelectedDoctor { get; set; }
     public string? ErrorMessage { get; set; }
     public List<ScheduleModel> DoctorSchedules { get; set; } = new();
     public List<TimeSlotModel> AvailableTimeSlots { get; set; } = new();
-    
+
 
     public CreateModel(
         IAppointmentService appointmentService,
@@ -54,7 +54,7 @@ public class CreateModel : PageModel
                 Input.DoctorId = doctorId;
 
                 // Get schedule for next month
-                var schedules = await _doctorService.GetDoctorScheduleAsync(
+                IEnumerable<ScheduleModel> schedules = await _doctorService.GetDoctorScheduleAsync(
                     doctorId,
                     DateTime.UtcNow,
                     DateTime.UtcNow.AddMonths(1));
@@ -72,7 +72,7 @@ public class CreateModel : PageModel
             }
             else
             {
-                var response = await _doctorService.GetAllDoctorsAsync();
+                IEnumerable<DoctorModel> response = await _doctorService.GetAllDoctorsAsync();
                 AvailableDoctors = response.ToList();
             }
         }
@@ -89,17 +89,17 @@ public class CreateModel : PageModel
         {
             if (!ModelState.IsValid) return Page();
 
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId)) return RedirectToPage("/Account/Login");
-        
+
             var localDateTime = DateTime.SpecifyKind(AppointmentDateTime, DateTimeKind.Utc);
 
             Input.PatientId = userId;
             Input.AppointmentDate = Timestamp.FromDateTime(localDateTime.ToUtcTime());
 
             _logger.LogInformation("Creating appointment for local time: {LocalTime}", localDateTime);
-    
-            var appointment = await _appointmentService.CreateAppointmentAsync(Input);
+
+            AppointmentModel appointment = await _appointmentService.CreateAppointmentAsync(Input);
             return RedirectToPage("./Details", new { id = appointment.Id });
         }
         catch (Exception ex)

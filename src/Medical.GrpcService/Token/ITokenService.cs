@@ -4,5 +4,5 @@ namespace Medical.GrpcService.Token;
 
 public interface ITokenService
 {
-    Task<string> CreateToken(User user);
+    public Task<string> CreateToken(User user);
 }

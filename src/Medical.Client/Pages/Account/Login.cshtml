@@ -26,7 +26,8 @@
 
                     <form method="post">
                         <div class="form-floating mb-3">
-                            <input asp-for="Input.Email" class="form-control" placeholder="name@example.com" autocomplete="username"/>
+                            <input asp-for="Input.Email" class="form-control" placeholder="name@example.com"
+                                   autocomplete="username"/>
                             <label asp-for="Input.Email">
                                 <i class="fas fa-envelope me-1"></i> Email
                             </label>
@@ -34,7 +35,8 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input asp-for="Input.Password" class="form-control" placeholder="Password" autocomplete="current-password"/>
+                            <input asp-for="Input.Password" class="form-control" placeholder="Password"
+                                   autocomplete="current-password"/>
                             <label asp-for="Input.Password">
                                 <i class="fas fa-lock me-1"></i> Password
                             </label>
@@ -55,8 +57,9 @@
 
                         <div class="text-center">
                             <p class="text-muted">
-                                Don't have an account? 
-                                <a asp-page="/Account/Register" class="text-primary text-decoration-none">Register here</a>
+                                Don't have an account?
+                                <a asp-page="/Account/Register" class="text-primary text-decoration-none">Register
+                                    here</a>
                             </p>
                         </div>
                     </form>

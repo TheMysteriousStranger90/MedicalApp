@@ -15,31 +15,31 @@
         @if (userRole == "Doctor")
         {
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Doctors/Index" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Doctors/Index" ? "active" : "")"
                    asp-page="/Doctors/Index">
                     <i class="fas fa-user-md me-1"></i> Doctors
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Patients/MyPatients" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Patients/MyPatients" ? "active" : "")"
                    asp-page="/Patients/MyPatients">
                     <i class="fas fa-users me-1"></i> My Patients
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/MyAppointments" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/MyAppointments" ? "active" : "")"
                    asp-page="/Appointments/MyAppointments">
                     <i class="fas fa-calendar-check me-1"></i> My Appointments
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Schedule/Create" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Schedule/Create" ? "active" : "")"
                    asp-page="/Schedule/Create">
                     <i class="fas fa-plus-circle me-1"></i> Create Schedule
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Schedule/Index" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Schedule/Index" ? "active" : "")"
                    asp-page="/Schedule/Index">
                     <i class="fas fa-calendar-alt me-1"></i> My Schedules
                 </a>
@@ -48,25 +48,25 @@
         else if (userRole == "Patient")
         {
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Doctors/Index" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Doctors/Index" ? "active" : "")"
                    asp-page="/Doctors/Index">
                     <i class="fas fa-user-md me-1"></i> Find Doctor
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/MyAppointments" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Appointments/MyAppointments" ? "active" : "")"
                    asp-page="/Appointments/MyAppointments">
                     <i class="fas fa-calendar-check me-1"></i> My Appointments
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/MedicalRecords/History" ? "active" : "")" 
+                <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/MedicalRecords/History" ? "active" : "")"
                    asp-page="/MedicalRecords/History" asp-route-patientId="@userId">
                     <i class="fas fa-file-medical me-1"></i> Medical History
                 </a>
             </li>
         }
-        
+
         <li class="nav-item">
             <form class="form-inline" asp-page="/Account/Logout" method="post">
                 <button type="submit" class="nav-link btn btn-link">

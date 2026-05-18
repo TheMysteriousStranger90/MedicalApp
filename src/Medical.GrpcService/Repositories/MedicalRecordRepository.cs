@@ -26,7 +26,7 @@ public class MedicalRecordRepository : GenericRepository<MedicalRecord>, IMedica
         try
         {
             _logger.LogInformation("Getting medical history for patient: {PatientId}", patientId);
-            var records = await _context.MedicalRecords
+            List<MedicalRecord> records = await _context.MedicalRecords
                 .Include(mr => mr.LabResults)
                 .Where(mr => mr.PatientId == patientId)
                 .OrderByDescending(mr => mr.CreatedAt)
@@ -46,7 +46,7 @@ public class MedicalRecordRepository : GenericRepository<MedicalRecord>, IMedica
         try
         {
             _logger.LogInformation("Getting medical record with lab results: {RecordId}", recordId);
-            var record = await _context.MedicalRecords
+            MedicalRecord? record = await _context.MedicalRecords
                 .Include(mr => mr.LabResults)
                 .Include(mr => mr.Patient)
                 .FirstOrDefaultAsync(mr => mr.Id.ToString() == recordId);

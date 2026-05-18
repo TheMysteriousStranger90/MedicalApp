@@ -5,14 +5,14 @@ namespace Medical.GrpcService.Repositories.Interfaces;
 
 public interface IDoctorRepository : IGenericRepository<Doctor>
 {
-    Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationAsync(string specialization);
-    Task<DoctorDto?> GetDoctorWithSchedulesAsync(string doctorId);
-    Task<IEnumerable<DoctorDto>> GetAvailableDoctorsAsync(DateTime date);
-    Task<IEnumerable<DoctorDto>> GetAllDoctorsAsync();
-    Task<ScheduleDto> CreateScheduleAsync(Schedule schedule);
-    Task<bool> IsTimeSlotAvailable(Guid scheduleId, DateTime startTime);
-    Task<Schedule?> GetScheduleByIdAsync(string id);
-    Task<ScheduleDto> UpdateScheduleAsync(Schedule schedule);
-    Task<bool> DeleteScheduleAsync(string id);
-    Task<IEnumerable<ScheduleDto>> GetDoctorSchedulesAsync(string doctorId, DateTime fromDate, DateTime toDate);
+    public Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationAsync(string specialization);
+    public Task<DoctorDto?> GetDoctorWithSchedulesAsync(string doctorId);
+    public Task<IEnumerable<DoctorDto>> GetAvailableDoctorsAsync(DateTime date);
+    public Task<IEnumerable<DoctorDto>> GetAllDoctorsAsync();
+    public Task<ScheduleDto> CreateScheduleAsync(Schedule schedule);
+    public Task<bool> IsTimeSlotAvailable(Guid scheduleId, DateTime startTime);
+    public Task<Schedule?> GetScheduleByIdAsync(string id);
+    public Task<ScheduleDto> UpdateScheduleAsync(Schedule schedule);
+    public Task<bool> DeleteScheduleAsync(string id);
+    public Task<IEnumerable<ScheduleDto>> GetDoctorSchedulesAsync(string doctorId, DateTime fromDate, DateTime toDate);
 }

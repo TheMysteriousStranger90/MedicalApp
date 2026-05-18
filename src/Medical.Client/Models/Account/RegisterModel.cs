@@ -34,7 +34,7 @@ public class RegisterModel : PageModel
             if (!ModelState.IsValid)
                 return Page();
 
-            var response = await _authService.RegisterAsync(Input);
+            RegisterResponse? response = await _authService.RegisterAsync(Input);
 
             if (response?.Success == true)
             {
@@ -42,9 +42,9 @@ public class RegisterModel : PageModel
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, response.UserId),
-                    new Claim(ClaimTypes.Email, response.Email),
-                    new Claim(ClaimTypes.Name, response.Email)
+                    new(ClaimTypes.NameIdentifier, response.UserId),
+                    new(ClaimTypes.Email, response.Email),
+                    new(ClaimTypes.Name, response.Email)
                 };
 
                 claims.AddRange(response.Roles.Select(role =>

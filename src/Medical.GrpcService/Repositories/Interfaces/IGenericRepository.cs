@@ -2,10 +2,10 @@
 
 public interface IGenericRepository<T> where T : class
 {
-    Task<T?> GetByIdAsync(string id);
-    Task<IEnumerable<T>> GetAllAsync();
-    Task<bool> AddAsync(T entity);
-    Task<bool> UpdateAsync(T entity);
-    Task<bool> DeleteAsync(string id);
-    Task<bool> Exists(string id);
+    public Task<T?> GetByIdAsync(string id);
+    public Task<IEnumerable<T>> GetAllAsync();
+    public Task<bool> AddAsync(T entity);
+    public Task<bool> UpdateAsync(T entity);
+    public Task<bool> DeleteAsync(string id);
+    public Task<bool> Exists(string id);
 }

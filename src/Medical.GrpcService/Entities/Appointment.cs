@@ -7,17 +7,13 @@ public class Appointment
 {
     public Guid Id { get; set; }
 
-    [Required]
-    public required string DoctorId { get; set; }
+    [Required] public required string DoctorId { get; set; }
 
-    [Required]
-    public required string PatientId { get; set; }
+    [Required] public required string PatientId { get; set; }
 
-    [Required]
-    public DateTime AppointmentDate { get; set; }
+    [Required] public DateTime AppointmentDate { get; set; }
 
-    [Required]
-    public AppointmentStatus Status { get; set; }
+    [Required] public AppointmentStatus Status { get; set; }
 
     public string? Notes { get; set; }
     public string? Symptoms { get; set; }

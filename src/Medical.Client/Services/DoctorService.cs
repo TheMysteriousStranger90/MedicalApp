@@ -6,11 +6,11 @@ namespace Medical.Client.Services;
 
 public class DoctorServiceGrpc : IDoctorService
 {
-    private readonly Medical.Client.DoctorService.DoctorServiceClient _client;
+    private readonly DoctorService.DoctorServiceClient _client;
     private readonly ILogger<DoctorServiceGrpc> _logger;
 
     public DoctorServiceGrpc(
-        Medical.Client.DoctorService.DoctorServiceClient client,
+        DoctorService.DoctorServiceClient client,
         ILogger<DoctorServiceGrpc> logger)
     {
         _client = client;
@@ -22,7 +22,7 @@ public class DoctorServiceGrpc : IDoctorService
         try
         {
             var request = new GetDoctorsRequest { Specialization = string.Empty };
-            var response = await _client.GetDoctorsAsync(request);
+            GetDoctorsResponse? response = await _client.GetDoctorsAsync(request);
             return response.Doctors;
         }
         catch (RpcException ex)
@@ -40,7 +40,7 @@ public class DoctorServiceGrpc : IDoctorService
                 return await GetAllDoctorsAsync();
 
             var request = new GetDoctorsRequest { Specialization = specialization };
-            var response = await _client.GetDoctorsAsync(request);
+            GetDoctorsResponse? response = await _client.GetDoctorsAsync(request);
             return response.Doctors;
         }
         catch (RpcException ex)
@@ -68,11 +68,11 @@ public class DoctorServiceGrpc : IDoctorService
     {
         try
         {
-            var request = new GetAvailableDoctorsRequest 
-            { 
-                Date = Timestamp.FromDateTime(DateTime.SpecifyKind(date, DateTimeKind.Utc)) 
+            var request = new GetAvailableDoctorsRequest
+            {
+                Date = Timestamp.FromDateTime(DateTime.SpecifyKind(date, DateTimeKind.Utc))
             };
-            var response = await _client.GetAvailableDoctorsAsync(request);
+            GetDoctorsResponse? response = await _client.GetAvailableDoctorsAsync(request);
             return response.Doctors;
         }
         catch (RpcException ex)
@@ -81,12 +81,12 @@ public class DoctorServiceGrpc : IDoctorService
             throw;
         }
     }
-    
-        public async Task<ScheduleModel> CreateScheduleAsync(CreateScheduleRequest request)
+
+    public async Task<ScheduleModel> CreateScheduleAsync(CreateScheduleRequest request)
     {
         try
         {
-            var response = await _client.CreateScheduleAsync(request);
+            ScheduleModel? response = await _client.CreateScheduleAsync(request);
             return response;
         }
         catch (RpcException ex)
@@ -100,7 +100,7 @@ public class DoctorServiceGrpc : IDoctorService
     {
         try
         {
-            var response = await _client.UpdateScheduleAsync(request);
+            ScheduleModel? response = await _client.UpdateScheduleAsync(request);
             return response;
         }
         catch (RpcException ex)
@@ -136,7 +136,7 @@ public class DoctorServiceGrpc : IDoctorService
                 ToDate = Timestamp.FromDateTime(DateTime.SpecifyKind(toDate, DateTimeKind.Utc))
             };
 
-            var response = await _client.GetDoctorScheduleAsync(request);
+            GetDoctorScheduleResponse? response = await _client.GetDoctorScheduleAsync(request);
             return response.Schedules;
         }
         catch (RpcException ex)
@@ -150,7 +150,8 @@ public class DoctorServiceGrpc : IDoctorService
     {
         try
         {
-            var schedules = await GetDoctorScheduleAsync(doctorId, date.Date, date.Date.AddDays(1));
+            IEnumerable<ScheduleModel> schedules =
+                await GetDoctorScheduleAsync(doctorId, date.Date, date.Date.AddDays(1));
             return schedules
                 .SelectMany(s => s.TimeSlots)
                 .Where(ts => !ts.IsBooked)

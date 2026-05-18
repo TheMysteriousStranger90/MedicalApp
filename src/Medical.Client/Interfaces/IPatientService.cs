@@ -2,7 +2,7 @@
 
 public interface IPatientService
 {
-    Task<IEnumerable<PatientModel>> GetPatientsAsync(string doctorId);
-    Task<PatientModel> GetPatientByIdAsync(string id);
-    Task<GetMedicalRecordsResponse> GetPatientMedicalHistoryAsync(string patientId);
+    public Task<IEnumerable<PatientModel>> GetPatientsAsync(string doctorId);
+    public Task<PatientModel> GetPatientByIdAsync(string id);
+    public Task<GetMedicalRecordsResponse> GetPatientMedicalHistoryAsync(string patientId);
 }

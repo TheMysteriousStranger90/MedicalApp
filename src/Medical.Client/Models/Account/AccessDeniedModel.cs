@@ -5,8 +5,5 @@ namespace Medical.Client.Models.Account;
 
 public class AccessDeniedModel : PageModel
 {
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
+    public IActionResult OnGet() => Page();
 }

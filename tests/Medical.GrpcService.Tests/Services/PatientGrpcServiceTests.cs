@@ -27,7 +27,7 @@ public sealed class PatientGrpcServiceTests
         _unitOfWork = new Mock<IUnitOfWork>();
         _unitOfWork.Setup(u => u.Patients).Returns(_patientRepo.Object);
 
-        var svc = new Microsoft.Extensions.DependencyInjection.ServiceCollection();
+        var svc = new ServiceCollection();
         svc.AddLogging();
         svc.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
         _mapper = svc.BuildServiceProvider().GetRequiredService<IMapper>();
@@ -43,11 +43,11 @@ public sealed class PatientGrpcServiceTests
     [Fact]
     public async Task GetPatients_ReturnsAllPatientsForDoctor()
     {
-        var doctorId = Guid.NewGuid().ToString();
+        string doctorId = Guid.NewGuid().ToString();
         var dtos = new List<PatientDto> { CreateDto(), CreateDto() };
         _patientRepo.Setup(r => r.GetPatientsByDoctorAsync(doctorId)).ReturnsAsync(dtos);
 
-        var response = await _sut.GetPatients(
+        GetPatientsResponse response = await _sut.GetPatients(
             new GetPatientsRequest { DoctorId = doctorId },
             TestServerCallContext.Create());
 
@@ -59,7 +59,7 @@ public sealed class PatientGrpcServiceTests
     {
         _patientRepo.Setup(r => r.GetPatientsByDoctorAsync(It.IsAny<string>())).ReturnsAsync([]);
 
-        var response = await _sut.GetPatients(
+        GetPatientsResponse response = await _sut.GetPatients(
             new GetPatientsRequest { DoctorId = Guid.NewGuid().ToString() },
             TestServerCallContext.Create());
 
@@ -71,11 +71,11 @@ public sealed class PatientGrpcServiceTests
     [Fact]
     public async Task GetPatientById_Found_ReturnsModel()
     {
-        var id = Guid.NewGuid().ToString();
-        var dto = CreateDto(id: id);
+        string id = Guid.NewGuid().ToString();
+        PatientDto dto = CreateDto(id);
         _patientRepo.Setup(r => r.GetPatientWithMedicalRecordsAsync(id)).ReturnsAsync(dto);
 
-        var result = await _sut.GetPatientById(
+        PatientModel result = await _sut.GetPatientById(
             new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create());
 
         Assert.Equal(id, result.Id);
@@ -85,11 +85,11 @@ public sealed class PatientGrpcServiceTests
     [Fact]
     public async Task GetPatientById_NotFound_ThrowsRpcException()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _patientRepo.Setup(r => r.GetPatientWithMedicalRecordsAsync(id)).ReturnsAsync((PatientDto?)null);
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.GetPatientById(new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create()));
+        RpcException ex = await Assert.ThrowsAsync<RpcException>(() =>
+            _sut.GetPatientById(new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.NotFound, ex.StatusCode);
     }
@@ -99,12 +99,11 @@ public sealed class PatientGrpcServiceTests
     [Fact]
     public async Task GetPatientMedicalHistory_NotFound_ThrowsRpcException()
     {
-        var id = Guid.NewGuid().ToString();
+        string id = Guid.NewGuid().ToString();
         _patientRepo.Setup(r => r.GetPatientWithMedicalRecordsAsync(id)).ReturnsAsync((PatientDto?)null);
 
-        var ex = await Assert.ThrowsAsync<RpcException>(
-            () => _sut.GetPatientMedicalHistory(
-                new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create()));
+        RpcException ex = await Assert.ThrowsAsync<RpcException>(() => _sut.GetPatientMedicalHistory(
+            new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create()));
 
         Assert.Equal(StatusCode.NotFound, ex.StatusCode);
     }
@@ -112,12 +111,12 @@ public sealed class PatientGrpcServiceTests
     [Fact]
     public async Task GetPatientMedicalHistory_NoRecords_ReturnsEmpty()
     {
-        var id = Guid.NewGuid().ToString();
-        var dto = CreateDto(id: id);
+        string id = Guid.NewGuid().ToString();
+        PatientDto dto = CreateDto(id);
         dto.MedicalRecords = [];
         _patientRepo.Setup(r => r.GetPatientWithMedicalRecordsAsync(id)).ReturnsAsync(dto);
 
-        var result = await _sut.GetPatientMedicalHistory(
+        GetMedicalRecordsResponse result = await _sut.GetPatientMedicalHistory(
             new GetPatientByIdRequest { Id = id }, TestServerCallContext.Create());
 
         Assert.Empty(result.Records);

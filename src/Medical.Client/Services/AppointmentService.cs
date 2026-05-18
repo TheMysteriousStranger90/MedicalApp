@@ -24,15 +24,15 @@ public class AppointmentServiceGrpc : IAppointmentService
         try
         {
             _logger.LogInformation("Requesting appointments for PatientId: {PatientId}", request.PatientId);
-        
+
             var metadata = new Metadata
             {
                 { "Authorization", $"Bearer {_tokenStorage.GetToken()}" }
             };
 
-            var response = await _client.GetAppointmentsAsync(request, metadata);
+            AppointmentResponse? response = await _client.GetAppointmentsAsync(request, metadata);
             _logger.LogInformation("Received {Count} appointments", response.Appointments.Count);
-        
+
             return response.Appointments;
         }
         catch (RpcException ex)
@@ -51,7 +51,7 @@ public class AppointmentServiceGrpc : IAppointmentService
             {
                 { "Authorization", $"Bearer {_tokenStorage.GetToken()}" }
             };
-        
+
             return await _client.GetAppointmentByIdAsync(request, metadata);
         }
         catch (RpcException ex)
@@ -65,14 +65,14 @@ public class AppointmentServiceGrpc : IAppointmentService
     {
         try
         {
-            var token = _tokenStorage.GetToken();
+            string? token = _tokenStorage.GetToken();
             _logger.LogInformation("Creating appointment with token: {TokenExists}", !string.IsNullOrEmpty(token));
-            
+
             return await _client.CreateAppointmentAsync(request);
         }
         catch (RpcException ex)
         {
-            _logger.LogError(ex, "Error creating appointment. Status: {Status}, Detail: {Detail}", 
+            _logger.LogError(ex, "Error creating appointment. Status: {Status}, Detail: {Detail}",
                 ex.StatusCode, ex.Status.Detail);
             throw;
         }
@@ -87,17 +87,17 @@ public class AppointmentServiceGrpc : IAppointmentService
                 { "Authorization", $"Bearer {_tokenStorage.GetToken()}" }
             };
 
-            _logger.LogInformation("Updating appointment {Id} with status {Status}", 
+            _logger.LogInformation("Updating appointment {Id} with status {Status}",
                 request.Id, request.Status);
 
-            var response = await _client.UpdateAppointmentAsync(request, metadata);
+            AppointmentModel? response = await _client.UpdateAppointmentAsync(request, metadata);
             _logger.LogInformation("Successfully updated appointment {Id}", request.Id);
-            
+
             return response;
         }
         catch (RpcException ex)
         {
-            _logger.LogError(ex, "Error updating appointment {Id}. Status: {Status}, Detail: {Detail}", 
+            _logger.LogError(ex, "Error updating appointment {Id}. Status: {Status}, Detail: {Detail}",
                 request.Id, ex.StatusCode, ex.Status.Detail);
             throw;
         }

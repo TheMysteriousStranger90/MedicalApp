@@ -17,16 +17,16 @@ public class TokenService : ITokenService
     {
         _config = config;
         _userManager = userManager;
-        
-        var keyBytes = Encoding.UTF8.GetBytes(_config["Token:Key"] 
-                                              ?? throw new InvalidOperationException("Token:Key not configured"));
-            
+
+        byte[] keyBytes = Encoding.UTF8.GetBytes(_config["Token:Key"]
+                                                 ?? throw new InvalidOperationException("Token:Key not configured"));
+
         if (keyBytes.Length * 8 < 512)
         {
             throw new InvalidOperationException(
                 "Token key must be at least 512 bits (64 bytes) for HMAC-SHA512");
         }
-        
+
         _key = new SymmetricSecurityKey(keyBytes);
     }
 
@@ -34,13 +34,13 @@ public class TokenService : ITokenService
     {
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName ?? throw new InvalidOperationException()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email ?? throw new InvalidOperationException()),
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+            new(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+            new(JwtRegisteredClaimNames.UniqueName, user.UserName ?? throw new InvalidOperationException()),
+            new(JwtRegisteredClaimNames.Email, user.Email ?? throw new InvalidOperationException()),
+            new(JwtRegisteredClaimNames.Sub, user.Email)
         };
 
-        var roles = await _userManager.GetRolesAsync(user);
+        IList<string> roles = await _userManager.GetRolesAsync(user);
 
         claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
@@ -52,12 +52,12 @@ public class TokenService : ITokenService
             Expires = DateTime.Now.AddDays(7),
             SigningCredentials = creds,
             Issuer = _config["Token:Issuer"],
-            Audience = _config["Token:Audience"],
+            Audience = _config["Token:Audience"]
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
+        SecurityToken? token = tokenHandler.CreateToken(tokenDescriptor);
 
         return tokenHandler.WriteToken(token);
     }

@@ -1,6 +1,7 @@
 using AutoMapper;
 using Grpc.Core;
 using Medical.GrpcService.Entities;
+using Medical.GrpcService.Entities.DTOs;
 using Medical.GrpcService.Repositories.Interfaces;
 
 namespace Medical.GrpcService.Services;
@@ -25,7 +26,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
     {
         try
         {
-            var doctors = string.IsNullOrEmpty(request.Specialization)
+            IEnumerable<DoctorDto> doctors = string.IsNullOrEmpty(request.Specialization)
                 ? await _unitOfWork.Doctors.GetAllDoctorsAsync()
                 : await _unitOfWork.Doctors.GetDoctorsBySpecializationAsync(request.Specialization);
 
@@ -46,7 +47,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
     {
         try
         {
-            var doctor = await _unitOfWork.Doctors.GetDoctorWithSchedulesAsync(request.Id);
+            DoctorDto? doctor = await _unitOfWork.Doctors.GetDoctorWithSchedulesAsync(request.Id);
             if (doctor == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound,
@@ -74,7 +75,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
         try
         {
             var date = request.Date.ToDateTime();
-            var doctors = await _unitOfWork.Doctors.GetAvailableDoctorsAsync(date);
+            IEnumerable<DoctorDto> doctors = await _unitOfWork.Doctors.GetAvailableDoctorsAsync(date);
             var response = new GetDoctorsResponse();
             response.Doctors.AddRange(_mapper.Map<IEnumerable<DoctorModel>>(doctors));
             return response;
@@ -92,10 +93,10 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
     {
         try
         {
-            var schedule = await _unitOfWork.Doctors.GetScheduleByIdAsync(request.Id);
+            Schedule? schedule = await _unitOfWork.Doctors.GetScheduleByIdAsync(request.Id);
             if (schedule == null)
                 throw new RpcException(new Status(StatusCode.NotFound, "Schedule not found"));
-            
+
             schedule.DayOfWeek = (DayOfWeek)request.DayOfWeek;
             schedule.StartTime = request.StartTime.ToDateTime().TimeOfDay;
             schedule.EndTime = request.EndTime.ToDateTime().TimeOfDay;
@@ -104,10 +105,10 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
             schedule.Notes = request.Notes;
 
             _logger.LogInformation(
-                "Processing update for schedule {Id} - Day: {Day}, Duration: {Duration}min", 
+                "Processing update for schedule {Id} - Day: {Day}, Duration: {Duration}min",
                 request.Id, request.DayOfWeek, request.SlotDurationMinutes);
 
-            var result = await _unitOfWork.Doctors.UpdateScheduleAsync(schedule);
+            ScheduleDto result = await _unitOfWork.Doctors.UpdateScheduleAsync(schedule);
             return _mapper.Map<ScheduleModel>(result);
         }
         catch (Exception ex)
@@ -122,7 +123,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
     {
         try
         {
-            var success = await _unitOfWork.Doctors.DeleteScheduleAsync(request.Id);
+            bool success = await _unitOfWork.Doctors.DeleteScheduleAsync(request.Id);
             return new DeleteScheduleResponse
             {
                 Success = success,
@@ -141,7 +142,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
     {
         try
         {
-            var schedules = await _unitOfWork.Doctors.GetDoctorSchedulesAsync(
+            IEnumerable<ScheduleDto> schedules = await _unitOfWork.Doctors.GetDoctorSchedulesAsync(
                 request.DoctorId,
                 request.FromDate.ToDateTime(),
                 request.ToDate.ToDateTime());
@@ -169,9 +170,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
                 request.EndTime.ToDateTime());
 
             if (request.EndTime.ToDateTime() <= request.StartTime.ToDateTime())
-            {
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "End time must be after start time"));
-            }
 
             var schedule = new Schedule
             {
@@ -193,7 +192,7 @@ public class DoctorGrpcService : DoctorService.DoctorServiceBase
                 schedule.ValidFrom,
                 schedule.ValidTo);
 
-            var result = await _unitOfWork.Doctors.CreateScheduleAsync(schedule);
+            ScheduleDto result = await _unitOfWork.Doctors.CreateScheduleAsync(schedule);
             return _mapper.Map<ScheduleModel>(result);
         }
         catch (Exception ex)

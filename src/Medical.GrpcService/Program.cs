@@ -16,12 +16,12 @@ try
 {
     Log.Information("Starting Medical.GrpcService");
 
-    var builder = WebApplication.CreateBuilder(args);
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog((ctx, services, cfg) =>
         cfg.ReadFrom.Configuration(ctx.Configuration)
-           .ReadFrom.Services(services)
-           .Enrich.FromLogContext());
+            .ReadFrom.Services(services)
+            .Enrich.FromLogContext());
 
     builder.WebHost.ConfigureKestrel((ctx, options) =>
     {
@@ -40,16 +40,18 @@ try
         }
         else
         {
-            var certPath = ctx.Configuration["Kestrel:Certificates:Default:Path"]
-                ?? throw new InvalidOperationException(
-                    "Kestrel:Certificates:Default:Path must be configured in Production. " +
-                    "Set via Kestrel__Certificates__Default__Path environment variable.");
+            string certPath = ctx.Configuration["Kestrel:Certificates:Default:Path"]
+                              ?? throw new InvalidOperationException(
+                                  "Kestrel:Certificates:Default:Path must be configured in Production. " +
+                                  "Set via Kestrel__Certificates__Default__Path environment variable.");
 
-            var certPassword = ctx.Configuration["Kestrel:Certificates:Default:Password"];
+            string? certPassword = ctx.Configuration["Kestrel:Certificates:Default:Password"];
             if (string.IsNullOrEmpty(certPassword))
+            {
                 throw new InvalidOperationException(
                     "Kestrel:Certificates:Default:Password must be set in Production. " +
                     "Set via Kestrel__Certificates__Default__Password environment variable.");
+            }
 
             // HTTP/2 + TLS for gRPC
             options.ListenAnyIP(7084, o =>
@@ -73,7 +75,7 @@ try
     {
         options.EnableDetailedErrors = builder.Environment.IsDevelopment();
         options.MaxReceiveMessageSize = 16 * 1024 * 1024; // 16 MB
-        options.MaxSendMessageSize   = 16 * 1024 * 1024; // 16 MB
+        options.MaxSendMessageSize = 16 * 1024 * 1024; // 16 MB
     });
 
     if (builder.Environment.IsDevelopment())
@@ -94,12 +96,12 @@ try
 
     builder.Services.AddOpenTelemetryObservability(builder.Configuration);
 
-    var app = builder.Build();
+    WebApplication app = builder.Build();
 
     try
     {
-        using var scope = app.Services.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        using IServiceScope scope = app.Services.CreateScope();
+        ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         await context.MigrateAndCreateDataAsync(scope.ServiceProvider);
     }
     catch (Exception ex)
@@ -109,9 +111,7 @@ try
     }
 
     if (app.Environment.IsDevelopment())
-    {
         app.UseDeveloperExceptionPage();
-    }
     else
     {
         app.UseExceptionHandler(exBuilder =>
@@ -156,7 +156,7 @@ try
     {
         Version = "1.1.0",
         Environment = app.Environment.EnvironmentName,
-        MachineName = System.Environment.MachineName
+        MachineName = Environment.MachineName
     }));
     app.MapGet("/docs", () => Results.Redirect("https://github.com/TheMysteriousStranger90/MedicalApp"));
 

@@ -30,12 +30,13 @@
             <div class="card-header">
                 <h5 class="mb-0">
                     Appointment Information
-                    <span class="badge bg-@(Model.Appointment.Status switch {
-                        AppointmentStatus.Scheduled => "primary",
-                        AppointmentStatus.Completed => "success",
-                        AppointmentStatus.Cancelled => "danger",
-                        _ => "secondary"
-                    }) ms-2">
+                    <span class="badge bg-@(Model.Appointment.Status switch
+                                          {
+                                              AppointmentStatus.Scheduled => "primary",
+                                              AppointmentStatus.Completed => "success",
+                                              AppointmentStatus.Cancelled => "danger",
+                                              _ => "secondary"
+                                          }) ms-2">
                         @Model.Appointment.Status
                     </span>
                 </h5>
@@ -54,7 +55,7 @@
                             <dd class="col-sm-8">
                                 @Model.Appointment.AppointmentDate.ToLocalTimeString()
                             </dd>
-                            
+
                             <dt class="col-sm-4">Fee</dt>
                             <dd class="col-sm-8">@CurrencyHelper.FormatUSD(@Model.Appointment.Fee)</dd>
 
@@ -90,7 +91,7 @@
                 </div>
                 <div class="card-body">
                     <form method="post" asp-page-handler="Complete">
-                        <input type="hidden" asp-for="CompleteModel.AppointmentId" value="@Model.Appointment.Id" />
+                        <input type="hidden" asp-for="CompleteModel.AppointmentId" value="@Model.Appointment.Id"/>
 
                         <div class="mb-3">
                             <label asp-for="CompleteModel.Diagnosis" class="form-label">Diagnosis</label>

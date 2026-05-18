@@ -30,7 +30,7 @@ public class DoctorScheduleModel : PageModel
     {
         try
         {
-            var doctorId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            string? doctorId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(doctorId))
             {
                 ErrorMessage = "Doctor ID not found";
@@ -46,12 +46,12 @@ public class DoctorScheduleModel : PageModel
                 Date = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(StartDate.Value.ToUniversalTime())
             };
 
-            var appointments = await _appointmentService.GetAppointmentsAsync(request);
+            IEnumerable<AppointmentModel> appointments = await _appointmentService.GetAppointmentsAsync(request);
             var viewModels = new List<AppointmentViewModel>();
 
-            foreach (var appointment in appointments)
+            foreach (AppointmentModel appointment in appointments)
             {
-                var patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
+                PatientModel? patient = await _patientService.GetPatientByIdAsync(appointment.PatientId);
                 viewModels.Add(new AppointmentViewModel
                 {
                     Id = appointment.Id,
@@ -63,8 +63,8 @@ public class DoctorScheduleModel : PageModel
             }
 
             Appointments = viewModels
-                .Where(a => a.AppointmentDate.Date >= StartDate.Value.Date && 
-                           a.AppointmentDate.Date <= EndDate.Value.Date)
+                .Where(a => a.AppointmentDate.Date >= StartDate.Value.Date &&
+                            a.AppointmentDate.Date <= EndDate.Value.Date)
                 .OrderBy(a => a.AppointmentDate);
         }
         catch (Exception ex)

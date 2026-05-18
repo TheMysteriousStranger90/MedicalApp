@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Grpc.Core;
 using Medical.GrpcService.Entities;
+using Medical.GrpcService.Entities.DTOs;
 using Medical.GrpcService.Repositories.Interfaces;
 
 namespace Medical.GrpcService.Services;
@@ -27,7 +28,7 @@ public class MedicalRecordGrpcService : MedicalRecordService.MedicalRecordServic
     {
         try
         {
-            var records = await _unitOfWork.MedicalRecords
+            IEnumerable<MedicalRecordDto> records = await _unitOfWork.MedicalRecords
                 .GetPatientMedicalHistoryAsync(request.PatientId);
 
             var response = new GetMedicalRecordsResponse();
@@ -36,30 +37,28 @@ public class MedicalRecordGrpcService : MedicalRecordService.MedicalRecordServic
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error getting medical records for patient {PatientId}", 
+            _logger.LogError(ex, "Error getting medical records for patient {PatientId}",
                 request.PatientId);
-            throw new RpcException(new Status(StatusCode.Internal, 
+            throw new RpcException(new Status(StatusCode.Internal,
                 "Error retrieving medical records"));
         }
     }
 
-    public override async Task<MedicalRecordModel> CreateMedicalRecord(CreateMedicalRecordRequest request, ServerCallContext context)
+    public override async Task<MedicalRecordModel> CreateMedicalRecord(CreateMedicalRecordRequest request,
+        ServerCallContext context)
     {
         try
         {
-            var medicalRecord = _mapper.Map<MedicalRecord>(request);
+            MedicalRecord? medicalRecord = _mapper.Map<MedicalRecord>(request);
 
             await _unitOfWork.MedicalRecords.AddAsync(medicalRecord);
-            var success = await _unitOfWork.Complete();
+            bool success = await _unitOfWork.Complete();
 
-            if (!success)
-            {
-                throw new RpcException(new Status(StatusCode.Internal, "Failed to create medical record"));
-            }
+            if (!success) throw new RpcException(new Status(StatusCode.Internal, "Failed to create medical record"));
 
             return _mapper.Map<MedicalRecordModel>(medicalRecord);
         }
-        catch (AutoMapper.AutoMapperMappingException ex)
+        catch (AutoMapperMappingException ex)
         {
             _logger.LogError(ex, "Mapping error creating medical record for patient {PatientId}", request.PatientId);
             throw new RpcException(new Status(StatusCode.Internal, "Error mapping medical record"));

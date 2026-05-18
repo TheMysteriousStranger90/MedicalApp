@@ -33,7 +33,7 @@ public class GrpcClientInterceptor : Interceptor
         context = EnrichContext(context);
 
         var sw = Stopwatch.StartNew();
-        var call = continuation(request, context);
+        AsyncUnaryCall<TResponse> call = continuation(request, context);
 
         return new AsyncUnaryCall<TResponse>(
             TrackAsync(call.ResponseAsync, context.Method.FullName, sw),
@@ -50,24 +50,26 @@ public class GrpcClientInterceptor : Interceptor
         where TRequest : class
         where TResponse : class
     {
-        var headers = context.Options.Headers is null
+        Metadata headers = context.Options.Headers is null
             ? new Metadata()
             : new Metadata();
 
         if (context.Options.Headers is not null)
-            foreach (var entry in context.Options.Headers)
+        {
+            foreach (Metadata.Entry entry in context.Options.Headers)
                 headers.Add(entry);
+        }
 
         // Propagate the ASP.NET Core trace ID as a correlation ID so the
         // gRPC server can correlate logs across service boundaries.
-        var correlationId =
+        string correlationId =
             _httpContextAccessor.HttpContext?.TraceIdentifier
             ?? Activity.Current?.Id
             ?? Guid.NewGuid().ToString("N");
 
         headers.Add("x-correlation-id", correlationId);
 
-        var options = context.Options.WithHeaders(headers);
+        CallOptions options = context.Options.WithHeaders(headers);
         return new ClientInterceptorContext<TRequest, TResponse>(
             context.Method, context.Host, options);
     }
@@ -79,7 +81,7 @@ public class GrpcClientInterceptor : Interceptor
     {
         try
         {
-            var result = await responseTask;
+            TResponse result = await responseTask;
             _logger.LogDebug("gRPC {Method} succeeded in {ElapsedMs}ms",
                 methodName, sw.ElapsedMilliseconds);
             return result;

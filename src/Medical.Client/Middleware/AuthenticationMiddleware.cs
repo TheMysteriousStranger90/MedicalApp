@@ -27,15 +27,15 @@ public class AuthenticationMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         // Skip middleware overhead for static file requests
-        var path = context.Request.Path.Value ?? string.Empty;
+        string path = context.Request.Path.Value ?? string.Empty;
         if (IsStaticFile(path))
         {
             await _next(context);
             return;
         }
 
-        var user = context.User;
-        var token = _tokenStorage.GetToken();
+        ClaimsPrincipal user = context.User;
+        string? token = _tokenStorage.GetToken();
 
         _logger.LogDebug(
             "Auth check — Authenticated: {IsAuthenticated}, Roles: [{Roles}], Path: {Path}",

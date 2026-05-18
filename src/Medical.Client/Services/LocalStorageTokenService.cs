@@ -18,7 +18,7 @@ public class LocalStorageTokenService : ITokenStorageService
 
     public string? GetToken()
     {
-        var token = _httpContextAccessor.HttpContext?.Request.Cookies[TokenKey];
+        string? token = _httpContextAccessor.HttpContext?.Request.Cookies[TokenKey];
         _logger.LogDebug("Retrieved token from cookies: {TokenExists}", !string.IsNullOrEmpty(token));
         return token;
     }
@@ -37,8 +37,5 @@ public class LocalStorageTokenService : ITokenStorageService
         _logger.LogDebug("Token stored in cookies");
     }
 
-    public void ClearToken()
-    {
-        _httpContextAccessor.HttpContext?.Response.Cookies.Delete(TokenKey);
-    }
+    public void ClearToken() => _httpContextAccessor.HttpContext?.Response.Cookies.Delete(TokenKey);
 }
