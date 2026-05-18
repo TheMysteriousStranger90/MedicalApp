@@ -1,0 +1,94 @@
+# docker-compose.yml
+# Usage:
+#   Development : docker compose up
+#   Production  : docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Before running generate the certificates:
+#   powershell -File makemedicalcerts.ps1
+# Or use dotnet dev-certs for local development:
+#   dotnet dev-certs https -ep certs/aspnetapp.pfx -p P@ssw0rd!
+#   dotnet dev-certs https --trust
+
+name: medicalapp
+
+services:
+  # ── SQL Server ────────────────────────────────────────────────────────────
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: medicalapp-db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "P@ssw0rd!Strong"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'P@ssw0rd!Strong' -Q 'SELECT 1' -No || exit 1"]
+      interval: 15s
+      retries: 10
+      start_period: 30s
+      timeout: 10s
+    restart: unless-stopped
+
+  # ── gRPC Service ──────────────────────────────────────────────────────────
+  grpcservice:
+    build:
+      context: .
+      dockerfile: src/Medical.GrpcService/Dockerfile
+    container_name: medicalapp-grpc
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:7084
+      ASPNETCORE_Kestrel__Certificates__Default__Password: P@ssw0rd!
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/server.pfx
+      ConnectionStrings__DefaultConnection: >-
+        Server=db,1433;Database=Medical.GrpcServiceDB;
+        User Id=sa;Password=P@ssw0rd!Strong;
+        MultipleActiveResultSets=true;TrustServerCertificate=true
+      Token__Key: super_secret_key_with_minimum_512_bits_length_for_hmac_sha512_please_change_in_production_environment_12345
+      Token__Issuer: https://localhost:7084
+      Token__Audience: https://localhost:7084
+    ports:
+      - "7084:7084"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:5006/health/live || exit 1"]
+      interval: 10s
+      retries: 6
+      start_period: 30s
+      timeout: 5s
+    volumes:
+      - ./certs:/https:ro
+    restart: unless-stopped
+
+  # ── Razor Pages Client ────────────────────────────────────────────────────
+  client:
+    build:
+      context: .
+      dockerfile: src/Medical.Client/Dockerfile
+    container_name: medicalapp-client
+    depends_on:
+      grpcservice:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:7082
+      ASPNETCORE_Kestrel__Certificates__Default__Password: P@ssw0rd!
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/client.pfx
+      GrpcClient__BaseAddress: https://grpcservice:7084
+      GrpcClient__UseTls: "true"
+      Token__Key: super_secret_key_with_minimum_512_bits_length_for_hmac_sha512_please_change_in_production_environment_12345
+      Token__Issuer: https://grpcservice:7084
+      Token__Audience: https://grpcservice:7084
+    ports:
+      - "7082:7082"
+    volumes:
+      - ./certs:/https:ro
+    restart: unless-stopped
+
+volumes:
+  sqlserver-data:

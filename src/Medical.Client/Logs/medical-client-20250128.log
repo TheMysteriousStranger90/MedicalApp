@@ -1,0 +1,63 @@
+2025-01-28 12:29:30.685 +02:00 [INF] Starting Medical Client web application
+2025-01-28 12:29:33.082 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 12:29:59.962 +02:00 [INF] Creating appointment: {"DoctorId":"347fb2bf-fa90-4005-adf6-6b87922aef47","PatientId":"aa1d4b1f-4a91-445f-9433-f184c71b279c","AppointmentDate":"2025-01-28T13:29:52.8150000Z","Symptoms":"dfgdfgd","Notes":"dgdfgdfgdfgd"}
+2025-01-28 12:29:59.978 +02:00 [INF] Creating appointment with token: true
+2025-01-28 12:42:24.032 +02:00 [INF] Starting Medical Client web application
+2025-01-28 12:42:25.949 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 12:42:39.798 +02:00 [INF] Fetching appointments for patient aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:42:39.804 +02:00 [INF] Requesting appointments for PatientId: aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:42:39.997 +02:00 [INF] Received 7 appointments
+2025-01-28 12:42:40.001 +02:00 [INF] Retrieved 7 appointments
+2025-01-28 12:43:02.004 +02:00 [INF] Fetching appointments for patient aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:43:02.006 +02:00 [INF] Requesting appointments for PatientId: aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:43:02.020 +02:00 [INF] Received 7 appointments
+2025-01-28 12:43:02.022 +02:00 [INF] Retrieved 7 appointments
+2025-01-28 12:43:07.809 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 12:43:26.933 +02:00 [INF] Creating appointment: {"DoctorId":"3d49b4be-a33d-4bdf-84fe-6308827046d1","PatientId":"aa1d4b1f-4a91-445f-9433-f184c71b279c","AppointmentDate":"2025-01-28T13:43:09.8660000Z","Symptoms":"выавыавыавы","Notes":"выавыавыаыаы"}
+2025-01-28 12:43:26.941 +02:00 [INF] Creating appointment with token: true
+2025-01-28 12:44:11.214 +02:00 [INF] Fetching appointments for patient aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:44:11.216 +02:00 [INF] Requesting appointments for PatientId: aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 12:44:11.229 +02:00 [INF] Received 8 appointments
+2025-01-28 12:44:11.232 +02:00 [INF] Retrieved 8 appointments
+2025-01-28 12:59:55.076 +02:00 [INF] Starting Medical Client web application
+2025-01-28 12:59:56.984 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 13:00:01.454 +02:00 [INF] User authenticated: false, Role: 
+2025-01-28 13:00:47.377 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-28 13:01:10.686 +02:00 [INF] User authenticated: false, Role: 
+2025-01-28 13:01:47.088 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 13:01:48.491 +02:00 [INF] Fetching appointments for patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:01:48.497 +02:00 [INF] Requesting appointments for PatientId: 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:01:48.690 +02:00 [INF] Received 8 appointments
+2025-01-28 13:01:48.693 +02:00 [INF] Retrieved 8 appointments
+2025-01-28 13:02:09.925 +02:00 [INF] Fetching appointments for patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:02:09.927 +02:00 [INF] Requesting appointments for PatientId: 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:02:09.934 +02:00 [INF] Received 8 appointments
+2025-01-28 13:02:09.935 +02:00 [INF] Retrieved 8 appointments
+2025-01-28 13:02:13.188 +02:00 [INF] Cancelling appointment 5b1fefd9-d82b-465c-16ac-08dd3f73263e
+2025-01-28 13:02:13.193 +02:00 [INF] Updating appointment 5b1fefd9-d82b-465c-16ac-08dd3f73263e with status "Cancelled"
+2025-01-28 13:02:13.454 +02:00 [INF] Successfully updated appointment 5b1fefd9-d82b-465c-16ac-08dd3f73263e
+2025-01-28 13:02:13.456 +02:00 [INF] Successfully cancelled appointment 5b1fefd9-d82b-465c-16ac-08dd3f73263e
+2025-01-28 13:02:13.465 +02:00 [INF] Fetching appointments for patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:02:13.466 +02:00 [INF] Requesting appointments for PatientId: 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:02:13.472 +02:00 [INF] Received 8 appointments
+2025-01-28 13:02:13.474 +02:00 [INF] Retrieved 8 appointments
+2025-01-28 13:06:19.891 +02:00 [INF] Starting Medical Client web application
+2025-01-28 13:06:21.819 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 13:06:23.873 +02:00 [INF] Fetching appointments for patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:06:23.878 +02:00 [INF] Requesting appointments for PatientId: 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:06:25.037 +02:00 [INF] Received 8 appointments
+2025-01-28 13:06:25.042 +02:00 [INF] Retrieved 8 appointments for Patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:06:38.174 +02:00 [INF] Fetching appointments for patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:06:38.177 +02:00 [INF] Requesting appointments for PatientId: 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:06:38.204 +02:00 [INF] Received 8 appointments
+2025-01-28 13:06:38.206 +02:00 [INF] Retrieved 8 appointments for Patient 58a8150f-9395-4d81-808c-326032f0dadf
+2025-01-28 13:09:45.339 +02:00 [INF] Starting Medical Client web application
+2025-01-28 13:09:46.023 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 13:09:48.203 +02:00 [INF] User authenticated: false, Role: 
+2025-01-28 13:10:14.077 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-28 13:10:15.311 +02:00 [INF] Fetching appointments for patient aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 13:10:15.315 +02:00 [INF] Requesting appointments for PatientId: aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 13:10:15.889 +02:00 [INF] Received 8 appointments
+2025-01-28 13:10:15.894 +02:00 [INF] Retrieved 8 appointments for Patient aa1d4b1f-4a91-445f-9433-f184c71b279c
+2025-01-28 13:10:24.620 +02:00 [INF] User authenticated: false, Role: 
+2025-01-28 13:10:46.398 +02:00 [INF] User authenticated: true, Role: Doctor

@@ -1,0 +1,47 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# Test results
+**/TestResults/
+**/.coverage/
+**/*.trx
+
+# VS / IDE
+**/.vs/
+**/.vscode/
+**/.idea/
+**/*.user
+**/*.suo
+**/*.swp
+**/*.DotSettings.user
+**/*.lscache
+
+# Logs
+**/Logs/
+**/*.log
+
+# Git
+.git/
+.gitattributes
+
+# Certificates (generated at deploy time)
+*.pfx
+
+# Local overrides
+**/appsettings.Development.json
+**/appsettings.Local.json
+
+# Docs
+README.md
+Screenshots/
+LICENSE
+
+# Scripts
+makemedicalcerts.ps1
+
+# Docker itself
+Dockerfile*
+docker-compose*.yml
+.dockerignore

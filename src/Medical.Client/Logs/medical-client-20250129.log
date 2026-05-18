@@ -1,0 +1,859 @@
+2025-01-29 07:29:27.446 +02:00 [INF] Starting Medical Client web application
+2025-01-29 07:29:28.704 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 07:30:15.871 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:30:18.985 +02:00 [INF] Fetching appointments for patient daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:18.989 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:19.271 +02:00 [INF] Received 1 appointments
+2025-01-29 07:30:19.278 +02:00 [INF] Retrieved 1 appointments for Patient daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:25.533 +02:00 [WRN] Unauthorized cancellation attempt - AppointmentId: a1ec7f46-7f7d-4e68-7a77-08dd4025f312, UserId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:57.216 +02:00 [INF] Fetching appointments for patient daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:57.219 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:30:57.233 +02:00 [INF] Received 1 appointments
+2025-01-29 07:30:57.236 +02:00 [INF] Retrieved 1 appointments for Patient daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:39:16.811 +02:00 [INF] Starting Medical Client web application
+2025-01-29 07:39:18.073 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:39:20.498 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:39:21.541 +02:00 [INF] Received 1 appointments
+2025-01-29 07:39:27.635 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:39:27.648 +02:00 [INF] Received 1 appointments
+2025-01-29 07:39:34.196 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:39:34.206 +02:00 [INF] Received 1 appointments
+2025-01-29 07:39:54.958 +02:00 [INF] Creating appointment: {"DoctorId":"a6e6db71-a702-445f-81fb-21cf4131b856","PatientId":"daf4af0e-88ce-4333-afe8-8df8a5391484","AppointmentDate":"2025-01-29T08:39:44.6180000Z","Symptoms":"Example - 1","Notes":"Example - 1"}
+2025-01-29 07:39:54.972 +02:00 [INF] Creating appointment with token: true
+2025-01-29 07:39:57.351 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 07:39:57.359 +02:00 [INF] Received 2 appointments
+2025-01-29 07:40:01.127 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:40:01.136 +02:00 [INF] Received 2 appointments
+2025-01-29 07:40:05.959 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:40:05.966 +02:00 [INF] Received 2 appointments
+2025-01-29 07:40:10.318 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:40:10.324 +02:00 [INF] Received 2 appointments
+2025-01-29 07:40:13.379 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:40:13.386 +02:00 [INF] Received 2 appointments
+2025-01-29 07:40:19.791 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 07:40:19.797 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:23.754 +02:00 [INF] Starting Medical Client web application
+2025-01-29 07:44:25.055 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:44:29.380 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:44:30.526 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:35.444 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:44:35.467 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:39.630 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:44:39.641 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:40.393 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:44:41.529 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:44:41.537 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:44.933 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 07:44:44.942 +02:00 [INF] Received 2 appointments
+2025-01-29 07:44:58.267 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 07:44:58.278 +02:00 [INF] Received 2 appointments
+2025-01-29 07:45:00.779 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 07:45:00.787 +02:00 [INF] Received 2 appointments
+2025-01-29 07:51:04.146 +02:00 [INF] Starting Medical Client web application
+2025-01-29 07:51:05.523 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:51:07.385 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:51:08.563 +02:00 [INF] Received 2 appointments
+2025-01-29 07:51:12.203 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:51:12.235 +02:00 [INF] Received 2 appointments
+2025-01-29 07:51:15.181 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:51:15.193 +02:00 [INF] Received 2 appointments
+2025-01-29 07:51:17.067 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:51:17.077 +02:00 [INF] Received 2 appointments
+2025-01-29 07:51:23.202 +02:00 [INF] Creating appointment: {"DoctorId":"aa5753ba-1647-42c9-8a0f-e81387e90825","PatientId":"daf4af0e-88ce-4333-afe8-8df8a5391484","AppointmentDate":"2025-01-29T08:51:20.4690000Z","Symptoms":"впвапва","Notes":"пвапвапвпв"}
+2025-01-29 07:51:23.216 +02:00 [INF] Creating appointment with token: true
+2025-01-29 07:51:25.582 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:51:25.602 +02:00 [INF] Received 3 appointments
+2025-01-29 07:54:22.757 +02:00 [INF] Starting Medical Client web application
+2025-01-29 07:54:24.257 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 07:54:25.990 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:54:27.109 +02:00 [INF] Received 3 appointments
+2025-01-29 07:54:29.746 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:54:29.876 +02:00 [INF] Received 3 appointments
+2025-01-29 07:54:38.372 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:54:38.383 +02:00 [INF] Received 3 appointments
+2025-01-29 07:54:40.963 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:54:40.974 +02:00 [INF] Received 3 appointments
+2025-01-29 07:54:50.906 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:54:50.915 +02:00 [INF] Received 3 appointments
+2025-01-29 07:55:38.968 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 07:55:38.976 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:01.679 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:01:03.487 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 08:01:05.384 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:06.536 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:13.014 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:13.025 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:15.362 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:15.372 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:17.241 +02:00 [INF] Cancelling appointment 5faefe9e-92ed-491e-b552-208be43f6d5c
+2025-01-29 08:01:17.247 +02:00 [INF] Updating appointment 5faefe9e-92ed-491e-b552-208be43f6d5c with status "Cancelled"
+2025-01-29 08:01:17.657 +02:00 [INF] Successfully updated appointment 5faefe9e-92ed-491e-b552-208be43f6d5c
+2025-01-29 08:01:17.659 +02:00 [INF] Successfully cancelled appointment 5faefe9e-92ed-491e-b552-208be43f6d5c
+2025-01-29 08:01:17.675 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:17.683 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:20.529 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:20.537 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:22.905 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:22.913 +02:00 [INF] Received 3 appointments
+2025-01-29 08:01:38.365 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:01:38.380 +02:00 [INF] Received 3 appointments
+2025-01-29 08:03:44.007 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:03:45.439 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 08:03:47.453 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:03:48.532 +02:00 [INF] Received 3 appointments
+2025-01-29 08:04:26.711 +02:00 [INF] Creating appointment: {"DoctorId":"0f451612-b028-4243-9999-459cbe05a1d3","PatientId":"daf4af0e-88ce-4333-afe8-8df8a5391484","AppointmentDate":"2025-01-31T12:20:03.9340000Z","Symptoms":"впвапва","Notes":"вапвапвапв"}
+2025-01-29 08:04:26.725 +02:00 [INF] Creating appointment with token: true
+2025-01-29 08:04:31.179 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:04:31.189 +02:00 [INF] Received 4 appointments
+2025-01-29 08:04:39.638 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:04:39.647 +02:00 [INF] Received 4 appointments
+2025-01-29 08:04:42.289 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 08:05:17.454 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:09:43.621 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:09:45.146 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:09:47.481 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:09:48.652 +02:00 [INF] Received 4 appointments
+2025-01-29 08:09:55.232 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:09:55.380 +02:00 [INF] Received 4 appointments
+2025-01-29 08:10:11.093 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:10:11.106 +02:00 [INF] Received 4 appointments
+2025-01-29 08:10:14.683 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:10:14.691 +02:00 [INF] Received 4 appointments
+2025-01-29 08:13:48.177 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:13:49.566 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:13:51.427 +02:00 [INF] Loading appointments for Doctor with ID 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:13:51.435 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:13:52.496 +02:00 [INF] Received 4 appointments
+2025-01-29 08:13:52.499 +02:00 [INF] Retrieved 4 appointments
+2025-01-29 08:13:52.503 +02:00 [WRN] Filtered out appointment a1ec7f46-7f7d-4e68-7a77-08dd4025f312 - wrong doctor
+2025-01-29 08:13:52.504 +02:00 [WRN] Filtered out appointment c7aa4eb6-ef27-4416-8522-0cf3927ada40 - wrong doctor
+2025-01-29 08:13:52.506 +02:00 [WRN] Filtered out appointment 5faefe9e-92ed-491e-b552-208be43f6d5c - wrong doctor
+2025-01-29 08:13:52.508 +02:00 [WRN] Filtered out appointment a8961dec-617b-43b6-bc38-34e1817d54f5 - wrong doctor
+2025-01-29 08:13:52.510 +02:00 [INF] Processed 0 appointments for view
+2025-01-29 08:18:16.453 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:18:17.531 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:18:19.912 +02:00 [INF] Loading appointments for Doctor with ID 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:18:19.919 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:18:19.925 +02:00 [INF] Requesting appointments for DoctorId: 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:18:20.884 +02:00 [INF] Retrieved 4 appointments
+2025-01-29 08:18:20.891 +02:00 [WRN] Filtered out appointment a1ec7f46-7f7d-4e68-7a77-08dd4025f312 - wrong doctor
+2025-01-29 08:18:20.893 +02:00 [WRN] Filtered out appointment c7aa4eb6-ef27-4416-8522-0cf3927ada40 - wrong doctor
+2025-01-29 08:18:20.895 +02:00 [WRN] Filtered out appointment 5faefe9e-92ed-491e-b552-208be43f6d5c - wrong doctor
+2025-01-29 08:18:20.896 +02:00 [WRN] Filtered out appointment a8961dec-617b-43b6-bc38-34e1817d54f5 - wrong doctor
+2025-01-29 08:18:20.899 +02:00 [INF] Processed 0 appointments for view
+2025-01-29 08:18:22.947 +02:00 [INF] Loading appointments for Doctor with ID 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:18:22.950 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:18:22.951 +02:00 [INF] Requesting appointments for DoctorId: 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:18:23.072 +02:00 [INF] Retrieved 4 appointments
+2025-01-29 08:18:23.074 +02:00 [WRN] Filtered out appointment a1ec7f46-7f7d-4e68-7a77-08dd4025f312 - wrong doctor
+2025-01-29 08:18:23.076 +02:00 [WRN] Filtered out appointment c7aa4eb6-ef27-4416-8522-0cf3927ada40 - wrong doctor
+2025-01-29 08:18:23.077 +02:00 [WRN] Filtered out appointment 5faefe9e-92ed-491e-b552-208be43f6d5c - wrong doctor
+2025-01-29 08:18:23.078 +02:00 [WRN] Filtered out appointment a8961dec-617b-43b6-bc38-34e1817d54f5 - wrong doctor
+2025-01-29 08:18:23.080 +02:00 [INF] Processed 0 appointments for view
+2025-01-29 08:22:00.121 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:22:01.227 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:22:02.738 +02:00 [INF] Loading appointments for Doctor with ID 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:22:02.748 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:22:02.753 +02:00 [INF] Requesting appointments for DoctorId: 62aea4e7-34e9-47e5-a30e-bbc9a4c7e401
+2025-01-29 08:22:03.831 +02:00 [INF] Retrieved 0 appointments
+2025-01-29 08:22:03.837 +02:00 [INF] Processed 0 appointments for view
+2025-01-29 08:22:27.651 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 08:31:27.093 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:31:28.679 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 08:32:02.767 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 08:32:04.199 +02:00 [INF] Requesting appointments for PatientId: daf4af0e-88ce-4333-afe8-8df8a5391484
+2025-01-29 08:32:04.638 +02:00 [INF] Received 4 appointments
+2025-01-29 08:33:09.188 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:33:09.921 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 08:33:12.386 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 08:33:38.027 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:35:31.209 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:35:32.449 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:35:34.562 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:35:35.510 +02:00 [INF] Received 4 appointments
+2025-01-29 08:36:18.563 +02:00 [INF] Updating appointment a8961dec-617b-43b6-bc38-34e1817d54f5 with status "Completed"
+2025-01-29 08:36:18.980 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 08:36:18.985 +02:00 [ERR] Error updating appointment a8961dec-617b-43b6-bc38-34e1817d54f5. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 88
+2025-01-29 08:36:19.000 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Medical.Client.Pages.Appointments.Pages_Appointments_Details.ExecuteAsync() in D:\OtherProjects\MedicalApp\Medical.Client\Pages\Appointments\Details.cshtml:line 82
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Medical.Client.Middleware.AuthenticationMiddleware.InvokeAsync(HttpContext context) in D:\OtherProjects\MedicalApp\Medical.Client\Middleware\AuthenticationMiddleware.cs:line 36
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-29 08:40:22.815 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:40:23.759 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:40:27.998 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:40:29.024 +02:00 [INF] Received 4 appointments
+2025-01-29 08:40:45.218 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:40:45.228 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:34.152 +02:00 [INF] Starting Medical Client web application
+2025-01-29 08:46:35.735 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 08:46:37.600 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:38.696 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:46.613 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:46.626 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:49.333 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:49.342 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:51.454 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:51.463 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:53.369 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:53.377 +02:00 [INF] Received 4 appointments
+2025-01-29 08:46:56.053 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:46:56.061 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:03.721 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:03.726 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:04.194 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:04.204 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:05.662 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:05.667 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:19.070 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:19.146 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:27.205 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:27.210 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:32.674 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:32.680 +02:00 [INF] Received 4 appointments
+2025-01-29 08:47:35.696 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 08:47:35.702 +02:00 [INF] Received 4 appointments
+2025-01-29 09:09:01.774 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:09:03.299 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:09:06.697 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:07.918 +02:00 [INF] Received 1 appointments
+2025-01-29 09:09:43.397 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:43.407 +02:00 [INF] Received 1 appointments
+2025-01-29 09:09:45.767 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:45.777 +02:00 [INF] Received 1 appointments
+2025-01-29 09:09:51.736 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:51.746 +02:00 [INF] Received 1 appointments
+2025-01-29 09:09:54.770 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:54.777 +02:00 [INF] Received 1 appointments
+2025-01-29 09:09:55.775 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:09:55.782 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:07.032 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:07.040 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:09.020 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:09.059 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:13.491 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:13.501 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:15.199 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:15.207 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:16.908 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:16.918 +02:00 [INF] Received 1 appointments
+2025-01-29 09:10:18.462 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:10:18.470 +02:00 [INF] Received 1 appointments
+2025-01-29 09:15:56.937 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:15:58.582 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:16:03.372 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:16:04.382 +02:00 [INF] Received 1 appointments
+2025-01-29 09:16:14.874 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:16:14.897 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:14.614 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:17:15.851 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:17:26.497 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:27.553 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:31.867 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:31.891 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:40.729 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:40.739 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:41.545 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:41.554 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:45.439 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:45.449 +02:00 [INF] Received 1 appointments
+2025-01-29 09:17:49.749 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:17:49.758 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:18.491 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:18.498 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:23.836 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:23.845 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:26.311 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:26.319 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:27.418 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:27.427 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:30.927 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:30.936 +02:00 [INF] Received 1 appointments
+2025-01-29 09:18:36.514 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:18:36.523 +02:00 [INF] Received 1 appointments
+2025-01-29 09:20:37.310 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:20:37.334 +02:00 [INF] Received 1 appointments
+2025-01-29 09:20:42.245 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 09:23:04.901 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 09:23:06.746 +02:00 [INF] Requesting appointments for PatientId: e5daafb8-9cd6-48ec-8ab1-c270e83f9d82
+2025-01-29 09:23:06.768 +02:00 [INF] Received 1 appointments
+2025-01-29 09:23:09.693 +02:00 [INF] Requesting appointments for PatientId: e5daafb8-9cd6-48ec-8ab1-c270e83f9d82
+2025-01-29 09:23:09.702 +02:00 [INF] Received 1 appointments
+2025-01-29 09:23:36.989 +02:00 [INF] Creating appointment: {"DoctorId":"44513133-2004-4717-81eb-f388d066cebc","PatientId":"e5daafb8-9cd6-48ec-8ab1-c270e83f9d82","AppointmentDate":"2025-01-31T16:30:17.4170000Z","Symptoms":"example - 1","Notes":"example - 1"}
+2025-01-29 09:23:36.997 +02:00 [INF] Creating appointment with token: true
+2025-01-29 09:23:40.726 +02:00 [INF] Requesting appointments for PatientId: e5daafb8-9cd6-48ec-8ab1-c270e83f9d82
+2025-01-29 09:23:40.732 +02:00 [INF] Received 2 appointments
+2025-01-29 09:23:54.770 +02:00 [INF] Requesting appointments for PatientId: e5daafb8-9cd6-48ec-8ab1-c270e83f9d82
+2025-01-29 09:23:54.780 +02:00 [INF] Received 2 appointments
+2025-01-29 09:24:31.866 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 09:25:05.732 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:25:07.239 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:07.254 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:25.601 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:25.606 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:28.554 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:28.558 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:31.446 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:31.451 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:32.319 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:32.324 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:35.883 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:35.888 +02:00 [INF] Received 2 appointments
+2025-01-29 09:25:36.825 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:25:36.831 +02:00 [INF] Received 2 appointments
+2025-01-29 09:26:26.584 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:26:26.594 +02:00 [INF] Received 2 appointments
+2025-01-29 09:26:31.496 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:26:31.502 +02:00 [INF] Received 2 appointments
+2025-01-29 09:26:33.641 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:26:33.645 +02:00 [INF] Received 2 appointments
+2025-01-29 09:38:47.564 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:38:48.491 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:38:51.416 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:38:52.048 +02:00 [INF] Received 2 appointments
+2025-01-29 09:38:58.603 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'logger')
+   at System.ThrowHelper.Throw(String paramName)
+   at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)
+   at Microsoft.Extensions.Logging.LoggerExtensions.LogError(ILogger logger, Exception exception, String message, Object[] args)
+   at Medical.Client.Models.Appointments.EditModel.OnGetAsync(String id) in D:\OtherProjects\MedicalApp\Medical.Client\Models\Appointments\EditModel.cs:line 52
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.ExecutorFactory.GenericTaskHandlerMethod.Convert[T](Object taskAsObject)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.ExecutorFactory.GenericTaskHandlerMethod.Execute(Object receiver, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeHandlerMethodAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeNextPageFilterAsync()
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Rethrow(PageHandlerExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Medical.Client.Middleware.AuthenticationMiddleware.InvokeAsync(HttpContext context) in D:\OtherProjects\MedicalApp\Medical.Client\Middleware\AuthenticationMiddleware.cs:line 36
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-29 09:45:16.674 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:45:18.250 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:45:20.218 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:45:21.214 +02:00 [INF] Received 2 appointments
+2025-01-29 09:45:32.639 +02:00 [INF] Updating appointment b5f39a0f-7896-4e03-808b-f08b337245a7 with status "Completed"
+2025-01-29 09:45:33.322 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 09:45:33.330 +02:00 [ERR] Error updating appointment b5f39a0f-7896-4e03-808b-f08b337245a7. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 09:51:54.650 +02:00 [INF] Starting Medical Client web application
+2025-01-29 09:51:55.852 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 09:51:57.497 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:51:58.535 +02:00 [INF] Received 1 appointments
+2025-01-29 09:51:59.931 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:51:59.956 +02:00 [INF] Received 1 appointments
+2025-01-29 09:52:00.848 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 09:52:00.856 +02:00 [INF] Received 1 appointments
+2025-01-29 09:52:10.320 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 10:38:58.108 +02:00 [INF] Starting Medical Client web application
+2025-01-29 10:38:59.207 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 10:39:39.745 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 10:39:41.035 +02:00 [INF] Requesting appointments for PatientId: 620772f8-cad3-4261-bd37-4c2c2e49fca9
+2025-01-29 10:39:41.403 +02:00 [INF] Received 1 appointments
+2025-01-29 10:40:00.947 +02:00 [INF] Creating appointment: {"DoctorId":"190fbc22-e212-4d83-87bc-6c2bb38acc39","PatientId":"620772f8-cad3-4261-bd37-4c2c2e49fca9","AppointmentDate":"2025-01-31T16:45:46.9350000Z","Symptoms":"EXAMPLE - 1","Notes":"EXAMPLE - 1"}
+2025-01-29 10:40:00.957 +02:00 [INF] Creating appointment with token: true
+2025-01-29 10:40:03.874 +02:00 [INF] Requesting appointments for PatientId: 620772f8-cad3-4261-bd37-4c2c2e49fca9
+2025-01-29 10:40:03.880 +02:00 [INF] Received 2 appointments
+2025-01-29 10:40:15.779 +02:00 [INF] Updating appointment cb73a5a3-389f-415a-9a0e-577cb895f2c9 with status "Cancelled"
+2025-01-29 10:40:15.831 +02:00 [INF] Successfully updated appointment cb73a5a3-389f-415a-9a0e-577cb895f2c9
+2025-01-29 10:40:17.124 +02:00 [INF] Requesting appointments for PatientId: 620772f8-cad3-4261-bd37-4c2c2e49fca9
+2025-01-29 10:40:17.132 +02:00 [INF] Received 2 appointments
+2025-01-29 10:40:41.208 +02:00 [INF] Creating appointment: {"DoctorId":"190fbc22-e212-4d83-87bc-6c2bb38acc39","PatientId":"620772f8-cad3-4261-bd37-4c2c2e49fca9","AppointmentDate":"2025-01-30T15:45:21.4680000Z","Symptoms":"EXAMPLE - 2","Notes":"EXAMPLE - 2"}
+2025-01-29 10:40:41.217 +02:00 [INF] Creating appointment with token: true
+2025-01-29 10:40:44.412 +02:00 [INF] Requesting appointments for PatientId: 620772f8-cad3-4261-bd37-4c2c2e49fca9
+2025-01-29 10:40:44.418 +02:00 [INF] Received 3 appointments
+2025-01-29 10:40:48.909 +02:00 [INF] Requesting appointments for PatientId: 620772f8-cad3-4261-bd37-4c2c2e49fca9
+2025-01-29 10:40:48.915 +02:00 [INF] Received 3 appointments
+2025-01-29 10:40:53.629 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 10:41:24.094 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 10:41:25.212 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:41:25.218 +02:00 [INF] Received 3 appointments
+2025-01-29 10:41:28.369 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:41:28.374 +02:00 [INF] Received 3 appointments
+2025-01-29 10:41:37.430 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:41:37.437 +02:00 [INF] Received 3 appointments
+2025-01-29 10:41:40.340 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:41:40.347 +02:00 [INF] Received 3 appointments
+2025-01-29 10:41:52.690 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:41:52.939 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:41:52.948 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 10:42:01.400 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:42:01.404 +02:00 [INF] Received 3 appointments
+2025-01-29 10:42:09.517 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:42:09.534 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:42:09.536 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 10:42:09.543 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Medical.Client.Pages.Appointments.Pages_Appointments_Details.ExecuteAsync() in D:\OtherProjects\MedicalApp\Medical.Client\Pages\Appointments\Details.cshtml:line 82
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Medical.Client.Middleware.AuthenticationMiddleware.InvokeAsync(HttpContext context) in D:\OtherProjects\MedicalApp\Medical.Client\Middleware\AuthenticationMiddleware.cs:line 36
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-29 10:45:47.871 +02:00 [INF] Starting Medical Client web application
+2025-01-29 10:45:49.299 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 10:45:50.952 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:45:51.960 +02:00 [INF] Received 3 appointments
+2025-01-29 10:46:00.768 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:46:01.407 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:46:01.414 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 10:46:01.433 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Medical.Client.Pages.Appointments.Pages_Appointments_Details.ExecuteAsync() in D:\OtherProjects\MedicalApp\Medical.Client\Pages\Appointments\Details.cshtml:line 82
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Medical.Client.Middleware.AuthenticationMiddleware.InvokeAsync(HttpContext context) in D:\OtherProjects\MedicalApp\Medical.Client\Middleware\AuthenticationMiddleware.cs:line 36
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-29 10:48:00.237 +02:00 [INF] Starting Medical Client web application
+2025-01-29 10:48:01.509 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 10:48:03.031 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:48:03.699 +02:00 [INF] Received 3 appointments
+2025-01-29 10:48:11.556 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:48:12.006 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:48:12.012 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 10:54:57.396 +02:00 [INF] Starting Medical Client web application
+2025-01-29 10:54:58.957 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 10:55:00.892 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:55:01.905 +02:00 [INF] Received 3 appointments
+2025-01-29 10:55:11.361 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:55:12.024 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:55:12.031 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 10:57:37.633 +02:00 [INF] Starting Medical Client web application
+2025-01-29 10:57:38.546 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 10:57:40.425 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 10:57:42.002 +02:00 [INF] Received 3 appointments
+2025-01-29 10:57:51.972 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 10:57:52.614 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.'.
+2025-01-29 10:57:52.622 +02:00 [ERR] Error updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a. Status: "Internal", Detail: Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error updating appointment: An error occurred while saving the entity changes. See the inner exception for details.")
+   at Medical.Client.Services.AppointmentServiceGrpc.UpdateAppointmentAsync(UpdateAppointmentRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\AppointmentService.cs:line 93
+2025-01-29 11:01:50.611 +02:00 [INF] Starting Medical Client web application
+2025-01-29 11:01:51.862 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 11:01:54.397 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:01:55.376 +02:00 [INF] Received 3 appointments
+2025-01-29 11:02:09.154 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:02:09.728 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:02:27.646 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Scheduled"
+2025-01-29 11:02:27.659 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:02:40.524 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:02:40.535 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:02:40.620 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error creating medical record'.
+2025-01-29 11:02:40.626 +02:00 [ERR] Error creating medical record for patient 620772f8-cad3-4261-bd37-4c2c2e49fca9
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error creating medical record")
+   at Medical.Client.Services.MedicalRecordServiceGrpc.CreateMedicalRecordAsync(CreateMedicalRecordRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\MedicalRecordService.cs:line 38
+2025-01-29 11:08:46.260 +02:00 [INF] Starting Medical Client web application
+2025-01-29 11:08:47.278 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 11:08:49.005 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:08:52.552 +02:00 [INF] Received 3 appointments
+2025-01-29 11:09:03.881 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:09:04.321 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:09:06.487 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:09:06.495 +02:00 [INF] Received 3 appointments
+2025-01-29 11:09:10.988 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Scheduled"
+2025-01-29 11:09:11.001 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:15:44.316 +02:00 [INF] Starting Medical Client web application
+2025-01-29 11:15:45.738 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 11:15:48.219 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:15:49.295 +02:00 [INF] Received 3 appointments
+2025-01-29 11:15:58.581 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Scheduled"
+2025-01-29 11:15:58.969 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:16:05.535 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:16:05.543 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:16:05.670 +02:00 [INF] Call failed with gRPC error status. Status code: '"Internal"', Message: 'Error creating medical record'.
+2025-01-29 11:16:05.675 +02:00 [ERR] Error creating medical record for patient 620772f8-cad3-4261-bd37-4c2c2e49fca9
+Grpc.Core.RpcException: Status(StatusCode="Internal", Detail="Error creating medical record")
+   at Medical.Client.Services.MedicalRecordServiceGrpc.CreateMedicalRecordAsync(CreateMedicalRecordRequest request) in D:\OtherProjects\MedicalApp\Medical.Client\Services\MedicalRecordService.cs:line 38
+2025-01-29 11:21:40.092 +02:00 [INF] Starting Medical Client web application
+2025-01-29 11:21:40.982 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 11:21:42.464 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:21:43.123 +02:00 [INF] Received 3 appointments
+2025-01-29 11:21:50.357 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:21:50.828 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:21:56.122 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Scheduled"
+2025-01-29 11:21:56.140 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:22:02.713 +02:00 [INF] Updating appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a with status "Completed"
+2025-01-29 11:22:02.729 +02:00 [INF] Successfully updated appointment 952823c4-1d5d-4d33-ba7b-4123e1cbbc1a
+2025-01-29 11:22:07.632 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 11:22:07.642 +02:00 [INF] Received 3 appointments
+2025-01-29 12:33:01.543 +02:00 [INF] Starting Medical Client web application
+2025-01-29 12:33:03.422 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 12:33:11.792 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 12:33:53.936 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 12:34:26.489 +02:00 [INF] Creating appointment: {"DoctorId":"466dcc6f-65b6-41e6-94ae-4e3983303be6","PatientId":"80030458-f949-4597-826e-388fc723c98e","AppointmentDate":"2025-01-31T15:35:06.6770000Z","Symptoms":"Example - 1","Notes":"Example - 1"}
+2025-01-29 12:34:26.501 +02:00 [INF] Creating appointment with token: true
+2025-01-29 12:34:38.216 +02:00 [INF] Updating appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e with status "Scheduled"
+2025-01-29 12:34:38.249 +02:00 [INF] Successfully updated appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e
+2025-01-29 12:34:54.766 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:34:54.804 +02:00 [INF] Received 2 appointments
+2025-01-29 12:34:58.310 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:34:58.320 +02:00 [INF] Received 2 appointments
+2025-01-29 12:35:00.148 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:35:00.156 +02:00 [INF] Received 2 appointments
+2025-01-29 12:35:02.661 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 12:35:06.017 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:35:06.027 +02:00 [INF] Received 2 appointments
+2025-01-29 12:37:23.208 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:37:23.231 +02:00 [INF] Received 2 appointments
+2025-01-29 12:37:30.279 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:37:30.285 +02:00 [INF] Received 2 appointments
+2025-01-29 12:37:59.818 +02:00 [INF] Creating appointment: {"DoctorId":"466dcc6f-65b6-41e6-94ae-4e3983303be6","PatientId":"80030458-f949-4597-826e-388fc723c98e","AppointmentDate":"2025-01-30T18:35:38.6370000Z","Symptoms":"blah blah","Notes":"blah blah"}
+2025-01-29 12:37:59.824 +02:00 [INF] Creating appointment with token: true
+2025-01-29 12:38:02.240 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:38:02.249 +02:00 [INF] Received 3 appointments
+2025-01-29 12:38:20.847 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:38:20.855 +02:00 [INF] Received 3 appointments
+2025-01-29 12:39:56.665 +02:00 [INF] Starting Medical Client web application
+2025-01-29 12:39:57.985 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 12:39:59.821 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:40:02.261 +02:00 [INF] Received 3 appointments
+2025-01-29 12:40:22.539 +02:00 [INF] Creating appointment: {"DoctorId":"466dcc6f-65b6-41e6-94ae-4e3983303be6","PatientId":"80030458-f949-4597-826e-388fc723c98e","AppointmentDate":"2025-01-31T08:44:03.9510000Z","Symptoms":"dfgdg","Notes":"gdgdfg"}
+2025-01-29 12:40:22.553 +02:00 [INF] Creating appointment with token: true
+2025-01-29 12:40:28.021 +02:00 [INF] Updating appointment 54d4f1df-f024-4689-ba17-25eeff4f37d5 with status "Cancelled"
+2025-01-29 12:40:28.088 +02:00 [INF] Successfully updated appointment 54d4f1df-f024-4689-ba17-25eeff4f37d5
+2025-01-29 12:40:29.032 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:40:29.045 +02:00 [INF] Received 4 appointments
+2025-01-29 12:40:35.835 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:40:35.844 +02:00 [INF] Received 4 appointments
+2025-01-29 12:42:40.240 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 12:43:57.192 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:43:57.206 +02:00 [INF] Received 4 appointments
+2025-01-29 12:44:14.538 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:44:14.545 +02:00 [INF] Received 4 appointments
+2025-01-29 12:44:25.201 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 12:44:25.207 +02:00 [INF] Received 4 appointments
+2025-01-29 12:44:28.262 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 12:46:54.124 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 12:50:58.252 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 12:50:59.412 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:50:59.433 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:05.988 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:05.999 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:08.746 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:08.752 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:32.104 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:32.114 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:33.735 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:33.746 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:34.268 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:34.272 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:40.095 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:40.102 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:42.432 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:42.436 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:46.869 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:46.875 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:48.587 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:48.595 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:55.901 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:55.913 +02:00 [INF] Received 4 appointments
+2025-01-29 12:51:59.910 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:51:59.918 +02:00 [INF] Received 4 appointments
+2025-01-29 12:52:01.416 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:52:01.424 +02:00 [INF] Received 4 appointments
+2025-01-29 12:52:17.737 +02:00 [INF] Updating appointment 0ce0ba32-348d-45bd-b12a-7c1e8f524c76 with status "Completed"
+2025-01-29 12:52:17.893 +02:00 [INF] Successfully updated appointment 0ce0ba32-348d-45bd-b12a-7c1e8f524c76
+2025-01-29 12:56:20.349 +02:00 [INF] Starting Medical Client web application
+2025-01-29 12:56:22.337 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 12:56:24.362 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:56:25.578 +02:00 [INF] Received 4 appointments
+2025-01-29 12:56:34.768 +02:00 [INF] Updating appointment 0ce0ba32-348d-45bd-b12a-7c1e8f524c76 with status "Completed"
+2025-01-29 12:56:35.251 +02:00 [INF] Successfully updated appointment 0ce0ba32-348d-45bd-b12a-7c1e8f524c76
+2025-01-29 12:56:44.775 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:56:44.785 +02:00 [INF] Received 4 appointments
+2025-01-29 12:56:47.527 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:56:47.537 +02:00 [INF] Received 4 appointments
+2025-01-29 12:57:02.982 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:57:02.987 +02:00 [INF] Received 4 appointments
+2025-01-29 12:57:11.021 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:57:11.029 +02:00 [INF] Received 4 appointments
+2025-01-29 12:57:32.382 +02:00 [INF] Updating appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e with status "Completed"
+2025-01-29 12:57:32.471 +02:00 [INF] Successfully updated appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e
+2025-01-29 12:57:44.712 +02:00 [INF] Updating appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e with status "Completed"
+2025-01-29 12:57:44.726 +02:00 [INF] Successfully updated appointment 8381d13f-53e5-4e7b-b6e5-6cf500fd807e
+2025-01-29 12:57:58.025 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:57:58.035 +02:00 [INF] Received 4 appointments
+2025-01-29 12:57:58.745 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:57:58.753 +02:00 [INF] Received 4 appointments
+2025-01-29 12:58:05.709 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 12:58:05.718 +02:00 [INF] Received 4 appointments
+2025-01-29 13:00:40.072 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:00:40.085 +02:00 [INF] Received 4 appointments
+2025-01-29 13:00:43.062 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:00:43.070 +02:00 [INF] Received 4 appointments
+2025-01-29 13:00:44.124 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:00:44.131 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:01.748 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:01.760 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:03.959 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:03.967 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:07.369 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:07.406 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:10.366 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:10.374 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:19.194 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:19.203 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:21.532 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:21.539 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:27.857 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:27.866 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:28.861 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:28.868 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:32.030 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:32.037 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:42.671 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:42.680 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:45.580 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:45.587 +02:00 [INF] Received 4 appointments
+2025-01-29 13:01:49.354 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:01:49.360 +02:00 [INF] Received 4 appointments
+2025-01-29 13:04:36.190 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:04:37.712 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 13:04:39.388 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:04:40.628 +02:00 [INF] Received 4 appointments
+2025-01-29 13:05:58.462 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 13:05:59.147 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:05:59.175 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:03.169 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:03.194 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:05.502 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:05.514 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:07.010 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:07.021 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:09.245 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:09.254 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:17.053 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:17.064 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:20.431 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:20.440 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:23.287 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:23.312 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:29.206 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:29.214 +02:00 [INF] Received 4 appointments
+2025-01-29 13:06:34.165 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:06:34.174 +02:00 [INF] Received 4 appointments
+2025-01-29 13:07:16.027 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:07:17.651 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 13:07:19.334 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:07:20.650 +02:00 [INF] Received 4 appointments
+2025-01-29 13:07:26.711 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:07:26.728 +02:00 [INF] Received 4 appointments
+2025-01-29 13:07:47.445 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 13:07:47.455 +02:00 [INF] Received 4 appointments
+2025-01-29 13:08:44.312 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:08:45.480 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 13:08:48.725 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 13:09:19.028 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 13:09:26.555 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:09:26.708 +02:00 [INF] Received 4 appointments
+2025-01-29 13:09:31.356 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:09:31.371 +02:00 [INF] Received 4 appointments
+2025-01-29 13:10:44.081 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:10:44.102 +02:00 [INF] Received 4 appointments
+2025-01-29 13:11:05.049 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 13:11:09.096 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:11:09.110 +02:00 [INF] Received 4 appointments
+2025-01-29 13:11:37.205 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:11:37.214 +02:00 [INF] Received 4 appointments
+2025-01-29 13:14:48.027 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:14:49.515 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 13:14:51.394 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:14:52.505 +02:00 [INF] Received 4 appointments
+2025-01-29 13:15:10.911 +02:00 [INF] Creating appointment with token: true
+2025-01-29 13:15:18.570 +02:00 [INF] Updating appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07 with status "Scheduled"
+2025-01-29 13:15:18.627 +02:00 [INF] Successfully updated appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07
+2025-01-29 13:15:22.765 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:15:22.775 +02:00 [INF] Received 5 appointments
+2025-01-29 13:15:44.533 +02:00 [INF] Creating appointment with token: true
+2025-01-29 13:15:50.260 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:15:50.267 +02:00 [INF] Received 6 appointments
+2025-01-29 13:20:15.700 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:20:17.052 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 13:20:19.426 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:20:20.617 +02:00 [INF] Received 6 appointments
+2025-01-29 13:20:39.922 +02:00 [INF] Local appointment time: "2025-01-30T20:30:00.0000000+02:00"
+2025-01-29 13:20:39.925 +02:00 [INF] UTC appointment time: "2025-01-30T18:30:00.0000000Z"
+2025-01-29 13:20:39.928 +02:00 [INF] Creating appointment with token: true
+2025-01-29 13:25:23.842 +02:00 [INF] Starting Medical Client web application
+2025-01-29 13:25:25.406 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 13:25:31.393 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:25:31.653 +02:00 [INF] Received 7 appointments
+2025-01-29 13:25:37.500 +02:00 [INF] Cancelling appointment cc999e61-3802-4996-b2b7-6333061b3425
+2025-01-29 13:25:37.506 +02:00 [INF] Updating appointment cc999e61-3802-4996-b2b7-6333061b3425 with status "Cancelled"
+2025-01-29 13:25:38.012 +02:00 [INF] Successfully updated appointment cc999e61-3802-4996-b2b7-6333061b3425
+2025-01-29 13:25:38.014 +02:00 [INF] Successfully cancelled appointment cc999e61-3802-4996-b2b7-6333061b3425
+2025-01-29 13:25:38.031 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:25:38.039 +02:00 [INF] Received 7 appointments
+2025-01-29 13:25:39.609 +02:00 [INF] Cancelling appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07
+2025-01-29 13:25:39.612 +02:00 [INF] Updating appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07 with status "Cancelled"
+2025-01-29 13:25:39.632 +02:00 [INF] Successfully updated appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07
+2025-01-29 13:25:39.634 +02:00 [INF] Successfully cancelled appointment 9620707c-4895-46ce-a04a-fcea6d0c5f07
+2025-01-29 13:25:39.653 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:25:39.663 +02:00 [INF] Received 7 appointments
+2025-01-29 13:25:41.491 +02:00 [INF] Cancelling appointment 16994915-ac01-46f4-abcf-a85d4bd41bc0
+2025-01-29 13:25:41.494 +02:00 [INF] Updating appointment 16994915-ac01-46f4-abcf-a85d4bd41bc0 with status "Cancelled"
+2025-01-29 13:25:41.517 +02:00 [INF] Successfully updated appointment 16994915-ac01-46f4-abcf-a85d4bd41bc0
+2025-01-29 13:25:41.519 +02:00 [INF] Successfully cancelled appointment 16994915-ac01-46f4-abcf-a85d4bd41bc0
+2025-01-29 13:25:41.546 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:25:41.559 +02:00 [INF] Received 7 appointments
+2025-01-29 13:25:57.419 +02:00 [INF] Local appointment time: "2025-01-31T18:30:00.0000000+02:00"
+2025-01-29 13:25:57.421 +02:00 [INF] UTC appointment time: "2025-01-31T16:30:00.0000000Z"
+2025-01-29 13:25:57.424 +02:00 [INF] Creating appointment with token: true
+2025-01-29 13:26:15.874 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 13:26:15.880 +02:00 [INF] Received 8 appointments
+2025-01-29 14:38:30.291 +02:00 [INF] Starting Medical Client web application
+2025-01-29 14:38:32.512 +02:00 [INF] User authenticated: true, Role: Patient
+2025-01-29 14:38:45.091 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:38:45.278 +02:00 [INF] Received 8 appointments
+2025-01-29 14:39:09.479 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:39:09.492 +02:00 [INF] Received 8 appointments
+2025-01-29 14:39:11.464 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:39:11.473 +02:00 [INF] Received 8 appointments
+2025-01-29 14:39:19.689 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:39:19.698 +02:00 [INF] Received 8 appointments
+2025-01-29 14:39:56.809 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:39:56.815 +02:00 [INF] Received 8 appointments
+2025-01-29 14:40:10.128 +02:00 [INF] Creating appointment: {"DoctorId":"40445d09-48d4-4be2-a136-c44efb178afd","PatientId":"80030458-f949-4597-826e-388fc723c98e","AppointmentDate":"2025-01-31T18:45:00.0000000Z","Symptoms":"5555555","Notes":"555555555"}
+2025-01-29 14:40:10.141 +02:00 [INF] Creating appointment with token: true
+2025-01-29 14:40:15.351 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:40:15.365 +02:00 [INF] Received 9 appointments
+2025-01-29 14:40:28.192 +02:00 [INF] Requesting appointments for PatientId: 80030458-f949-4597-826e-388fc723c98e
+2025-01-29 14:40:28.200 +02:00 [INF] Received 9 appointments
+2025-01-29 14:40:39.510 +02:00 [INF] User authenticated: false, Role: 
+2025-01-29 14:41:20.988 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 14:41:22.086 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:41:22.106 +02:00 [INF] Received 9 appointments
+2025-01-29 14:41:34.456 +02:00 [INF] Updating appointment b023667b-3f38-48b3-b1f6-7a968b57b0c8 with status "Completed"
+2025-01-29 14:41:34.578 +02:00 [INF] Successfully updated appointment b023667b-3f38-48b3-b1f6-7a968b57b0c8
+2025-01-29 14:43:51.420 +02:00 [INF] Starting Medical Client web application
+2025-01-29 14:43:53.011 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 14:44:08.848 +02:00 [INF] Updating appointment b023667b-3f38-48b3-b1f6-7a968b57b0c8 with status "Completed"
+2025-01-29 14:44:09.269 +02:00 [INF] Successfully updated appointment b023667b-3f38-48b3-b1f6-7a968b57b0c8
+2025-01-29 14:44:22.656 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:22.703 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:25.429 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:25.440 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:33.824 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:33.834 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:37.351 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:37.360 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:40.464 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:40.474 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:44.612 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:44.622 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:50.298 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:50.306 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:51.718 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:51.727 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:53.068 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:53.077 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:53.706 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:53.712 +02:00 [INF] Received 9 appointments
+2025-01-29 14:44:59.069 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:44:59.079 +02:00 [INF] Received 9 appointments
+2025-01-29 14:45:05.868 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 14:45:07.032 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:45:07.040 +02:00 [INF] Received 9 appointments
+2025-01-29 14:45:10.428 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:45:10.438 +02:00 [INF] Received 9 appointments
+2025-01-29 14:45:23.214 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:45:23.219 +02:00 [INF] Received 9 appointments
+2025-01-29 14:45:31.065 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:45:31.070 +02:00 [INF] Received 9 appointments
+2025-01-29 14:54:32.202 +02:00 [INF] Starting Medical Client web application
+2025-01-29 14:54:33.559 +02:00 [INF] User authenticated: true, Role: Doctor
+2025-01-29 14:54:36.374 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:54:40.294 +02:00 [INF] Received 2 appointments
+2025-01-29 14:54:49.386 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:54:49.402 +02:00 [INF] Received 2 appointments
+2025-01-29 14:54:53.103 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:54:53.117 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:00.545 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:00.561 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:06.399 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:06.415 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:08.569 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:08.590 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:09.785 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:09.800 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:11.735 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:11.748 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:13.723 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:13.741 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:14.906 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:14.920 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:16.258 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:16.275 +02:00 [INF] Received 2 appointments
+2025-01-29 14:55:20.399 +02:00 [INF] Requesting appointments for PatientId: 
+2025-01-29 14:55:20.413 +02:00 [INF] Received 2 appointments

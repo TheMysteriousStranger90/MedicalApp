@@ -1,0 +1,40 @@
+# docker-compose.prod.yml  – Production overrides
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Required environment variables (set via .env or CI secrets):
+#   DB_SA_PASSWORD       - strong SQL Server SA password
+#   TOKEN_SECRET_KEY     - JWT signing key (>=64 chars)
+#   CERT_PASSWORD        - PFX certificate password
+#   GRPC_HOST            - public hostname for gRPC service
+#   CLIENT_HOST          - public hostname for the web client
+
+name: medicalapp
+
+services:
+  db:
+    environment:
+      SA_PASSWORD: "${DB_SA_PASSWORD}"
+    restart: always
+
+  grpcservice:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "${CERT_PASSWORD}"
+      ConnectionStrings__DefaultConnection: >-
+        Server=db,1433;Database=Medical.GrpcServiceDB;
+        User Id=sa;Password=${DB_SA_PASSWORD};
+        MultipleActiveResultSets=true;TrustServerCertificate=true
+      Token__Key: "${TOKEN_SECRET_KEY}"
+      Token__Issuer: "https://${GRPC_HOST}:7084"
+      Token__Audience: "https://${GRPC_HOST}:7084"
+    restart: always
+
+  client:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "${CERT_PASSWORD}"
+      GrpcClient__BaseAddress: "https://grpcservice:7084"
+      Token__Key: "${TOKEN_SECRET_KEY}"
+      Token__Issuer: "https://${GRPC_HOST}:7084"
+      Token__Audience: "https://${GRPC_HOST}:7084"
+    restart: always
